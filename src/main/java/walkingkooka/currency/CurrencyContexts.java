@@ -19,7 +19,7 @@ package walkingkooka.currency;
 
 import walkingkooka.reflect.PublicStaticHelper;
 
-public final class CurrentContexts implements PublicStaticHelper {
+public final class CurrencyContexts implements PublicStaticHelper {
 
     /**
      * {@see FakeCurrencyContext}
@@ -31,7 +31,7 @@ public final class CurrentContexts implements PublicStaticHelper {
     /**
      * Stop creation
      */
-    private CurrentContexts() {
+    private CurrencyContexts() {
         throw new UnsupportedOperationException();
     }
 }
