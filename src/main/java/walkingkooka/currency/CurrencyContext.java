@@ -17,9 +17,9 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.Context;
 import walkingkooka.util.HasCurrency;
 
-import javax.naming.Context;
 import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Locale;
