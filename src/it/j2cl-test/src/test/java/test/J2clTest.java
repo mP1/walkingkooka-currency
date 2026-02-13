@@ -12,8 +12,8 @@ public class J2clTest {
     @Test
     public void testAssertEquals() {
         checkEquals(
-                "",
-                ""
+            "",
+            ""
         );
     }
 }
