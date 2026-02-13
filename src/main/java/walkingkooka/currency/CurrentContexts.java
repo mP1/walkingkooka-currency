@@ -22,6 +22,13 @@ import walkingkooka.reflect.PublicStaticHelper;
 public final class CurrentContexts implements PublicStaticHelper {
 
     /**
+     * {@see FakeCurrencyContext}
+     */
+    public static FakeCurrencyContext fake() {
+        return new FakeCurrencyContext();
+    }
+
+    /**
      * Stop creation
      */
     private CurrentContexts() {
