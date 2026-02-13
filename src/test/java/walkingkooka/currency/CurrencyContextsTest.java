@@ -22,7 +22,7 @@ import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
 
-public final class CurrentContextsTest implements PublicStaticHelperTesting<CurrentContexts> {
+public final class CurrencyContextsTest implements PublicStaticHelperTesting<CurrencyContexts> {
     @Override
     public boolean canHavePublicTypes(final Method method) {
         return false;
@@ -31,8 +31,8 @@ public final class CurrentContextsTest implements PublicStaticHelperTesting<Curr
     // class............................................................................................................
 
     @Override
-    public Class<CurrentContexts> type() {
-        return CurrentContexts.class;
+    public Class<CurrencyContexts> type() {
+        return CurrencyContexts.class;
     }
 
     @Override
