@@ -40,7 +40,7 @@ public interface CurrencyContext extends Context,
     /**
      * Returns all available {@link Currency currencies}.
      */
-    Set<Locale> availableCurrencies();
+    Set<Currency> availableCurrencies();
 
     /**
      * Returns the {@link Currency currencies} for the given {@link Locale}. Note this response may be zero or many.
