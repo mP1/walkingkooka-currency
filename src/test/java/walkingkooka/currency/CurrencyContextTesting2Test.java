@@ -51,6 +51,17 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
         }
 
         @Override
+        public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+            Objects.requireNonNull(currencyCode, "currencyCode");
+
+            return Optional.of(
+                Currency.getInstance(
+                    Locale.forLanguageTag("en-AU")
+                )
+            );
+        }
+
+        @Override
         public Set<Currency> currencyForLocale(final Locale locale) {
             Objects.requireNonNull(locale, "locale");
 

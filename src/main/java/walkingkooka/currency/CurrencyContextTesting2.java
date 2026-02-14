@@ -39,6 +39,17 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
         );
     }
 
+    // currencyForCurrencyCode..........................................................................................
+
+    @Test
+    default void testCurrencyForCurrencyCodeWithNullFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .currencyForCurrencyCode(null)
+        );
+    }
+
     // currencyForLocale................................................................................................
 
     @Test

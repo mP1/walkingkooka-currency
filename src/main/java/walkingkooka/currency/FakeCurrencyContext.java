@@ -45,6 +45,11 @@ public class FakeCurrencyContext implements CurrencyContext {
     }
 
     @Override
+    public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public Set<Currency> currencyForLocale(final Locale locale) {
         throw new UnsupportedOperationException();
     }

@@ -43,6 +43,11 @@ public interface CurrencyContext extends Context,
     Set<Currency> availableCurrencies();
 
     /**
+     * Returns the available {@link Currency} for the given code.
+     */
+    Optional<Currency> currencyForCurrencyCode(final String currencyCode);
+
+    /**
      * Returns the {@link Currency currencies} for the given {@link Locale}. Note this response may be zero or many.
      */
     Set<Currency> currencyForLocale(final Locale locale);

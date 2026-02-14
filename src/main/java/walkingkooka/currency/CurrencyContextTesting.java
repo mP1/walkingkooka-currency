@@ -50,6 +50,36 @@ public interface CurrencyContextTesting extends HasCurrencyTesting,
         );
     }
 
+    // currencyForCurrencyCode..........................................................................................
+
+    default void currencyForCurrencyCodeAndCheck(final CurrencyContext context,
+                                                 final String currencyCode) {
+        this.currencyForCurrencyCodeAndCheck(
+            context,
+            currencyCode,
+            Optional.empty()
+        );
+    }
+
+    default void currencyForCurrencyCodeAndCheck(final CurrencyContext context,
+                                                 final String currencyCode,
+                                                 final Currency expected) {
+        this.currencyForCurrencyCodeAndCheck(
+            context,
+            currencyCode,
+            Optional.of(expected)
+        );
+    }
+
+    default void currencyForCurrencyCodeAndCheck(final CurrencyContext context,
+                                                 final String currencyCode,
+                                                 final Optional<Currency> expected) {
+        this.checkEquals(
+            expected,
+            context.currencyForCurrencyCode(currencyCode)
+        );
+    }
+    
     // currencyForLocale................................................................................................
 
     default void currencyForLocaleAndCheck(final CurrencyContext context,

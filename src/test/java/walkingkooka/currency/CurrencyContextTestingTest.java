@@ -54,6 +54,26 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
         );
     }
 
+    // currencyForCurrencyCode..........................................................................................
+
+    @Test
+    public void testCurrencyForCurrencyCode() {
+        final Currency currency = Currency.getInstance("AUD");
+
+        this.currencyForCurrencyCodeAndCheck(
+            new FakeCurrencyContext() {
+                @Override
+                public Optional<Currency> currencyForCurrencyCode(final String c) {
+                    checkEquals(currency.getCurrencyCode(), c, "currencyCode");
+
+                    return Optional.of(currency);
+                }
+            },
+            currency.getCurrencyCode(),
+            currency
+        );
+    }
+    
     // currencyForLocale................................................................................................
 
     @Test
