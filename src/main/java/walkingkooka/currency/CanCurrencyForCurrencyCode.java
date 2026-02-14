@@ -17,8 +17,6 @@
 
 package walkingkooka.currency;
 
-import walkingkooka.text.CharSequences;
-
 import java.util.Currency;
 import java.util.Optional;
 

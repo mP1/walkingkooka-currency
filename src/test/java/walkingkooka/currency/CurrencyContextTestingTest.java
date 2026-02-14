@@ -73,7 +73,7 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
             currency
         );
     }
-    
+
     // currencyForLocale................................................................................................
 
     @Test

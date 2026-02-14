@@ -50,7 +50,7 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
             context::toString
         );
     }
-    
+
     // currencyForLocale................................................................................................
 
     default void currencyForLocaleAndCheck(final CurrencyContext context,

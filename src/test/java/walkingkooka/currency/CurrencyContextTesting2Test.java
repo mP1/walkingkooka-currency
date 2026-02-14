@@ -17,13 +17,9 @@
 
 package walkingkooka.currency;
 
-import org.junit.jupiter.api.Test;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.currency.CurrencyContextTesting2Test.TestCurrencyContext;
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Locale;
@@ -31,7 +27,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-public final class CurrencyContextTesting2Test implements CurrencyContextTesting2<TestCurrencyContext>  {
+public final class CurrencyContextTesting2Test implements CurrencyContextTesting2<TestCurrencyContext> {
 
     @Override
     public TestCurrencyContext createContext() {
@@ -77,10 +73,10 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
                                                 final int offset,
                                                 final int count) {
             Objects.requireNonNull(text, "text");
-            if(offset < 0) {
+            if (offset < 0) {
                 throw new IllegalArgumentException("offset " + offset + " < 0");
             }
-            if(count < 0) {
+            if (count < 0) {
                 throw new IllegalArgumentException("count " + count + " < 0");
             }
             return Sets.of(

@@ -19,7 +19,6 @@ package walkingkooka.currency;
 
 import walkingkooka.collect.set.Sets;
 import walkingkooka.currency.CurrencyContextDelegatorTest.TestCurrencyContextDelegator;
-import walkingkooka.currency.CurrencyContextTesting2Test.TestCurrencyContext;
 
 import java.time.LocalDateTime;
 import java.util.Currency;
@@ -98,10 +97,10 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
                                                 final int offset,
                                                 final int count) {
             Objects.requireNonNull(text, "text");
-            if(offset < 0) {
+            if (offset < 0) {
                 throw new IllegalArgumentException("offset " + offset + " < 0");
             }
-            if(count < 0) {
+            if (count < 0) {
                 throw new IllegalArgumentException("count " + count + " < 0");
             }
             return Sets.of(
