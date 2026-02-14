@@ -34,6 +34,6 @@ public interface CanCurrencyForCurrencyCode {
      */
     default Currency currencyForCurrencyCodeOrFail(final String currencyCode) {
         return this.currencyForCurrencyCode(currencyCode)
-            .orElseThrow(() -> new IllegalArgumentException("Unknown currency code: " + CharSequences.quoteAndEscape(currencyCode)));
+            .orElseThrow(() -> new MissingCurrencyException(currencyCode));
     }
 }
