@@ -45,7 +45,7 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
         throw new UnsupportedOperationException();
     }
 
-    final class TestCurrencyContextDelegator implements CurrencyContextDelegator {
+    final static class TestCurrencyContextDelegator implements CurrencyContextDelegator {
 
         TestCurrencyContextDelegator() {
             super();
@@ -64,7 +64,7 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
         }
     }
 
-    final class TestCurrencyContext extends FakeCurrencyContext {
+    final static class TestCurrencyContext extends FakeCurrencyContext {
 
         @Override
         public void setCurrency(final Currency currency) {
