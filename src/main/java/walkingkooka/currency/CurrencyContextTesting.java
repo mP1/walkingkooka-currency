@@ -32,6 +32,18 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
     HasCurrencyTesting,
     TreePrintableTesting {
 
+    // setCurrency....................................................................................................
+
+    default void setCurrencyAndCheck(final CurrencyContext context,
+                                     final Currency currency) {
+        context.setCurrency(currency);
+
+        this.currencyAndCheck(
+            context,
+            currency
+        );
+    }
+
     // availableCurrencies..............................................................................................
 
     default void availableCurrenciesAndCheck(final CurrencyContext context,

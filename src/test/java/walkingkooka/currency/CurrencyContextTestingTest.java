@@ -26,11 +26,39 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
 public final class CurrencyContextTestingTest implements CurrencyContextTesting,
     ClassTesting<CurrencyContextTesting> {
+
+    // setCurrency......................................................................................................
+
+    @Test
+    public void testSetCurrency() {
+        final Currency currency = Currency.getInstance("NZD");
+
+        final CurrencyContext context = new FakeCurrencyContext() {
+            @Override
+            public Currency currency() {
+                return this.currency;
+            }
+
+            @Override
+            public void setCurrency(final Currency currency) {
+                Objects.requireNonNull(currency, "currency");
+                this.currency = currency;
+            }
+
+            private Currency currency = Currency.getInstance("AUD");
+        };
+
+        this.setCurrencyAndCheck(
+            context,
+            currency
+        );
+    }
 
     // availableCurrencies..............................................................................................
 
