@@ -17,6 +17,8 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.text.CharSequences;
+
 import java.util.Currency;
 import java.util.Optional;
 
@@ -26,4 +28,12 @@ public interface CanCurrencyForCurrencyCode {
      * Returns the available {@link Currency} for the given code.
      */
     Optional<Currency> currencyForCurrencyCode(final String currencyCode);
+
+    /**
+     * If the currency code is unknown or invalid an {@link IllegalArgumentException} will be thrown.
+     */
+    default Currency currencyForCurrencyCodeOrFail(final String currencyCode) {
+        return this.currencyForCurrencyCode(currencyCode)
+            .orElseThrow(() -> new IllegalArgumentException("Unknown currency code: " + CharSequences.quoteAndEscape(currencyCode)));
+    }
 }
