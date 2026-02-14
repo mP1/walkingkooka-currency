@@ -30,6 +30,7 @@ import java.util.Set;
  * A {@link Context} with some {@link Currency} operations.
  */
 public interface CurrencyContext extends Context,
+    CanCurrencyForCurrencyCode,
     HasCurrency {
 
     /**
@@ -41,11 +42,6 @@ public interface CurrencyContext extends Context,
      * Returns all available {@link Currency currencies}.
      */
     Set<Currency> availableCurrencies();
-
-    /**
-     * Returns the available {@link Currency} for the given code.
-     */
-    Optional<Currency> currencyForCurrencyCode(final String currencyCode);
 
     /**
      * Returns the {@link Currency currencies} for the given {@link Locale}. Note this response may be zero or many.
