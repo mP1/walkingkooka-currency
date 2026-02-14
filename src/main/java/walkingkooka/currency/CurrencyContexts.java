@@ -19,6 +19,8 @@ package walkingkooka.currency;
 
 import walkingkooka.reflect.PublicStaticHelper;
 
+import java.util.Objects;
+
 public final class CurrencyContexts implements PublicStaticHelper {
 
     /**
@@ -26,6 +28,13 @@ public final class CurrencyContexts implements PublicStaticHelper {
      */
     public static FakeCurrencyContext fake() {
         return new FakeCurrencyContext();
+    }
+
+    /**
+     * {@see ReadOnlyCurrencyContext}
+     */
+    public static CurrencyContext readOnly(final CurrencyContext context) {
+        return ReadOnlyCurrencyContext.with(context);
     }
 
     /**
