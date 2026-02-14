@@ -109,8 +109,10 @@ final class JdkCurrencyContext implements CurrencyContext {
 
         return this.availableCurrencies()
             .stream()
-            .filter(c -> c.getDisplayName().startsWith(text))
-            .skip(offset)
+            .filter(
+                c -> JdkCurrencyContextGetDisplayName.getDisplayName(c)
+                .startsWith(text)
+            ).skip(offset)
             .limit(count)
             .collect(ImmutableSet.collector());
     }
