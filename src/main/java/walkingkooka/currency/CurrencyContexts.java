@@ -19,7 +19,8 @@ package walkingkooka.currency;
 
 import walkingkooka.reflect.PublicStaticHelper;
 
-import java.util.Objects;
+import java.util.Currency;
+import java.util.function.BiFunction;
 
 public final class CurrencyContexts implements PublicStaticHelper {
 
@@ -28,6 +29,17 @@ public final class CurrencyContexts implements PublicStaticHelper {
      */
     public static FakeCurrencyContext fake() {
         return new FakeCurrencyContext();
+    }
+
+    /**
+     * {@see JdkCurrencyContext}
+     */
+    public static CurrencyContext jdk(final Currency currency,
+                                      final BiFunction<Currency, Currency, Number> exchangeRates) {
+        return JdkCurrencyContext.with(
+            currency,
+            exchangeRates
+        );
     }
 
     /**
