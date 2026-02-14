@@ -64,7 +64,7 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
     // findByCurrencyText...............................................................................................
 
     @Test
-    default void testFindByCurrencyTextWithNullTextFails() {
+    default void testFindByCurrencyTextWithNullTextAndCheckFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createContext()
@@ -77,7 +77,7 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
     }
 
     @Test
-    default void testFindByCurrencyTextWithNegativeOffsetFails() {
+    default void testFindByCurrencyTextAndCheckWithNegativeOffsetFails() {
         assertThrows(
             IllegalArgumentException.class,
             () -> this.createContext()
@@ -90,7 +90,7 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
     }
 
     @Test
-    default void testFindByCurrencyTextWithNegativeCountFails() {
+    default void testFindByCurrencyTextAndCheckWithNegativeCountFails() {
         assertThrows(
             IllegalArgumentException.class,
             () -> this.createContext()

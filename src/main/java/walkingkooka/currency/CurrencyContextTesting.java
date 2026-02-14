@@ -74,12 +74,12 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
 
     // findByCurrencyText...............................................................................................
 
-    default void findByCurrencyText(final CurrencyContext context,
-                                    final String text,
-                                    final int offset,
-                                    final int count,
-                                    final Currency... expected) {
-        this.findByCurrencyText(
+    default void findByCurrencyTextAndCheck(final CurrencyContext context,
+                                            final String text,
+                                            final int offset,
+                                            final int count,
+                                            final Currency... expected) {
+        this.findByCurrencyTextAndCheck(
             context,
             text,
             offset,
@@ -88,11 +88,11 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
         );
     }
 
-    default void findByCurrencyText(final CurrencyContext context,
-                                    final String text,
-                                    final int offset,
-                                    final int count,
-                                    final Set<Currency> expected) {
+    default void findByCurrencyTextAndCheck(final CurrencyContext context,
+                                            final String text,
+                                            final int offset,
+                                            final int count,
+                                            final Set<Currency> expected) {
         this.checkEquals(
             expected,
             context.findByCurrencyText(
