@@ -28,7 +28,8 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
-public interface CurrencyContextTesting extends HasCurrencyTesting,
+public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTesting,
+    HasCurrencyTesting,
     TreePrintableTesting {
 
     // availableCurrencies..............................................................................................
@@ -47,36 +48,6 @@ public interface CurrencyContextTesting extends HasCurrencyTesting,
             expected,
             context.availableCurrencies(),
             context::toString
-        );
-    }
-
-    // currencyForCurrencyCode..........................................................................................
-
-    default void currencyForCurrencyCodeAndCheck(final CurrencyContext context,
-                                                 final String currencyCode) {
-        this.currencyForCurrencyCodeAndCheck(
-            context,
-            currencyCode,
-            Optional.empty()
-        );
-    }
-
-    default void currencyForCurrencyCodeAndCheck(final CurrencyContext context,
-                                                 final String currencyCode,
-                                                 final Currency expected) {
-        this.currencyForCurrencyCodeAndCheck(
-            context,
-            currencyCode,
-            Optional.of(expected)
-        );
-    }
-
-    default void currencyForCurrencyCodeAndCheck(final CurrencyContext context,
-                                                 final String currencyCode,
-                                                 final Optional<Currency> expected) {
-        this.checkEquals(
-            expected,
-            context.currencyForCurrencyCode(currencyCode)
         );
     }
     
