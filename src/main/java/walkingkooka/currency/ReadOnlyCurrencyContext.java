@@ -71,6 +71,11 @@ final class ReadOnlyCurrencyContext implements CurrencyContext {
     }
 
     @Override
+    public Optional<String> currencyText(final Currency currency) {
+        return this.context.currencyText(currency);
+    }
+
+    @Override
     public Set<Currency> findByCurrencyText(final String text,
                                             final int offset,
                                             final int count) {

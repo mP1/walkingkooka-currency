@@ -49,6 +49,12 @@ public interface CurrencyContext extends Context,
     Set<Currency> currencyForLocale(final Locale locale);
 
     /**
+     * Returns text to display for the given {@link Currency} if it exists.
+     * This is necessary because {@link Currency#getDisplayName()} is not implemented in GWT.
+     */
+    Optional<String> currencyText(final Currency currency);
+
+    /**
      * Returns all {@link Currency} that have display or local text beginning with the given search text.
      */
     Set<Currency> findByCurrencyText(final String text,
