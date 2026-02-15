@@ -2,7 +2,7 @@ package walkingkooka.currency;
 
 import java.util.Currency;
 
-class JdkCurrencyContextGetDisplayNameGwt {
+class JreCurrencyContextGetDisplayNameGwt {
 
     // Currency#GetDisplayName is not emulated
     static String getDisplayName(final Currency currency) {

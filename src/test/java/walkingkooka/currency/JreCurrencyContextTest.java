@@ -26,7 +26,7 @@ import java.util.function.BiFunction;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class JdkCurrencyContextTest implements CurrencyContextTesting2<JdkCurrencyContext> {
+public final class JreCurrencyContextTest implements CurrencyContextTesting2<JreCurrencyContext> {
 
     private final static Currency CURRENCY = Currency.getInstance("AUD");
 
@@ -36,7 +36,7 @@ public final class JdkCurrencyContextTest implements CurrencyContextTesting2<Jdk
     public void testWithNullCurrencyFails() {
         assertThrows(
             NullPointerException.class,
-            () -> JdkCurrencyContext.with(
+            () -> JreCurrencyContext.with(
                 null,
                 EXCHANGE
             )
@@ -47,7 +47,7 @@ public final class JdkCurrencyContextTest implements CurrencyContextTesting2<Jdk
     public void testWithNullExchangeRatesFails() {
         assertThrows(
             NullPointerException.class,
-            () -> JdkCurrencyContext.with(
+            () -> JreCurrencyContext.with(
                 null,
                 EXCHANGE
             )
@@ -133,8 +133,8 @@ public final class JdkCurrencyContextTest implements CurrencyContextTesting2<Jdk
     }
 
     @Override
-    public JdkCurrencyContext createContext() {
-        return JdkCurrencyContext.with(
+    public JreCurrencyContext createContext() {
+        return JreCurrencyContext.with(
             CURRENCY,
             EXCHANGE
         );
@@ -143,7 +143,7 @@ public final class JdkCurrencyContextTest implements CurrencyContextTesting2<Jdk
     // class............................................................................................................
 
     @Override
-    public Class<JdkCurrencyContext> type() {
-        return JdkCurrencyContext.class;
+    public Class<JreCurrencyContext> type() {
+        return JreCurrencyContext.class;
     }
 }

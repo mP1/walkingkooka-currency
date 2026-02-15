@@ -4,7 +4,7 @@ import javaemul.internal.annotations.GwtIncompatible;
 
 import java.util.Currency;
 
-class JdkCurrencyContextGetDisplayName extends JdkCurrencyContextGetDisplayNameGwt {
+class JreCurrencyContextGetDisplayName extends JreCurrencyContextGetDisplayNameGwt {
 
     @GwtIncompatible
     static String getDisplayName(final Currency currency) {
