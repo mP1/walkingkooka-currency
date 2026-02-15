@@ -84,6 +84,36 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
         );
     }
 
+    // currencyText.....................................................................................................
+
+    default void currencyTextAndCheck(final CurrencyContext context,
+                                      final Currency currency) {
+        this.currencyTextAndCheck(
+            context,
+            currency,
+            Optional.empty()
+        );
+    }
+
+    default void currencyTextAndCheck(final CurrencyContext context,
+                                      final Currency currency,
+                                      final String expected) {
+        this.currencyTextAndCheck(
+            context,
+            currency,
+            Optional.of(expected)
+        );
+    }
+
+    default void currencyTextAndCheck(final CurrencyContext context,
+                                      final Currency currency,
+                                      final Optional<String> expected) {
+        this.checkEquals(
+            expected,
+            context.currencyText(currency)
+        );
+    }
+    
     // findByCurrencyText...............................................................................................
 
     default void findByCurrencyTextAndCheck(final CurrencyContext context,

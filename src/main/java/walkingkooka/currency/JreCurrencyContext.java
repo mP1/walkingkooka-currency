@@ -96,6 +96,21 @@ final class JreCurrencyContext implements CurrencyContext {
     }
 
     @Override
+    public Optional<String> currencyText(final Currency currency) {
+        Objects.requireNonNull(currency, "currency");
+
+        String text;
+
+        try {
+            text = JreCurrencyContextGetDisplayName.getDisplayName(currency);
+        } catch (final RuntimeException exception) {
+            text = null;
+        }
+
+        return Optional.ofNullable(text);
+    }
+
+    @Override
     public Set<Currency> findByCurrencyText(final String text,
                                             final int offset,
                                             final int count) {

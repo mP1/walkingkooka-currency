@@ -61,6 +61,17 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
         );
     }
 
+    // currencyText.....................................................................................................
+
+    @Test
+    default void testCurrencyTextWithNullFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .currencyText(null)
+        );
+    }
+
     // findByCurrencyText...............................................................................................
 
     @Test

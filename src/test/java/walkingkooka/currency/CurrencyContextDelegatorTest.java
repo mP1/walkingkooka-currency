@@ -17,6 +17,7 @@
 
 package walkingkooka.currency;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.currency.CurrencyContextDelegatorTest.TestCurrencyContextDelegator;
 
@@ -28,6 +29,17 @@ import java.util.Optional;
 import java.util.Set;
 
 public final class CurrencyContextDelegatorTest implements CurrencyContextTesting2<TestCurrencyContextDelegator> {
+
+    @Test
+    public void testCurrencyText() {
+        final Currency currency = Currency.getInstance("AUD");
+
+        this.currencyTextAndCheck(
+            this.createContext(),
+            currency,
+            "***" + currency.getDisplayName()
+        );
+    }
 
     @Override
     public TestCurrencyContextDelegator createContext() {
@@ -89,6 +101,15 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
                 Currency.getInstance(
                     Locale.forLanguageTag("en-AU")
                 )
+            );
+        }
+
+        @Override
+        public Optional<String> currencyText(final Currency currency) {
+            Objects.requireNonNull(currency, "currency");
+
+            return Optional.of(
+                "***" + currency.getDisplayName()
             );
         }
 
