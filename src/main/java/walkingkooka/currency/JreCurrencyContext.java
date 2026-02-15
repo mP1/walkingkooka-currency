@@ -28,17 +28,17 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiFunction;
 
-final class JdkCurrencyContext implements CurrencyContext {
+final class JreCurrencyContext implements CurrencyContext {
 
-    static JdkCurrencyContext with(final Currency currency,
+    static JreCurrencyContext with(final Currency currency,
                                    final BiFunction<Currency, Currency, Number> exchangeRates) {
-        return new JdkCurrencyContext(
+        return new JreCurrencyContext(
             Objects.requireNonNull(currency, "currency"),
             Objects.requireNonNull(exchangeRates, "exchangeRates")
         );
     }
 
-    private JdkCurrencyContext(final Currency currency,
+    private JreCurrencyContext(final Currency currency,
                                final BiFunction<Currency, Currency, Number> exchangeRates) {
         this.currency = currency;
         this.exchangeRates = exchangeRates;
@@ -110,7 +110,7 @@ final class JdkCurrencyContext implements CurrencyContext {
         return this.availableCurrencies()
             .stream()
             .filter(
-                c -> JdkCurrencyContextGetDisplayName.getDisplayName(c)
+                c -> JreCurrencyContextGetDisplayName.getDisplayName(c)
                 .startsWith(text)
             ).skip(offset)
             .limit(count)
@@ -132,6 +132,6 @@ final class JdkCurrencyContext implements CurrencyContext {
 
     @Override
     public String toString() {
-        return "JDK";
+        return "JRE";
     }
 }

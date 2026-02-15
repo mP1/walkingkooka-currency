@@ -32,11 +32,11 @@ public final class CurrencyContexts implements PublicStaticHelper {
     }
 
     /**
-     * {@see JdkCurrencyContext}
+     * {@see JreCurrencyContext}
      */
-    public static CurrencyContext jdk(final Currency currency,
+    public static CurrencyContext jre(final Currency currency,
                                       final BiFunction<Currency, Currency, Number> exchangeRates) {
-        return JdkCurrencyContext.with(
+        return JreCurrencyContext.with(
             currency,
             exchangeRates
         );
