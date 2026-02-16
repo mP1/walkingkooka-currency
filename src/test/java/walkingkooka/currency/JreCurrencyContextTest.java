@@ -18,6 +18,7 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.util.HasLocale;
 
 import java.time.LocalDateTime;
 import java.util.Currency;
@@ -32,13 +33,16 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
 
     private final static BiFunction<Currency, Currency, Number> EXCHANGE = (f, t) -> 2;
 
+    private final static HasLocale HAS_LOCALE = () -> Locale.forLanguageTag("en-AU");
+
     @Test
     public void testWithNullCurrencyFails() {
         assertThrows(
             NullPointerException.class,
             () -> JreCurrencyContext.with(
                 null,
-                EXCHANGE
+                EXCHANGE,
+                HAS_LOCALE
             )
         );
     }
@@ -49,7 +53,20 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
             NullPointerException.class,
             () -> JreCurrencyContext.with(
                 null,
-                EXCHANGE
+                EXCHANGE,
+                HAS_LOCALE
+            )
+        );
+    }
+
+    @Test
+    public void testWithNullHasLocaleFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> JreCurrencyContext.with(
+                CURRENCY,
+                EXCHANGE,
+                null
             )
         );
     }
@@ -145,7 +162,8 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     public JreCurrencyContext createContext() {
         return JreCurrencyContext.with(
             CURRENCY,
-            EXCHANGE
+            EXCHANGE,
+            HAS_LOCALE
         );
     }
 
