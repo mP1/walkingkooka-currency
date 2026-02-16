@@ -82,13 +82,11 @@ final class ReadOnlyCurrencyContext implements CurrencyContext {
     @Override
     public Set<Currency> findByCurrencyText(final String text,
                                             final int offset,
-                                            final int count,
-                                            final Locale locale) {
+                                            final int count) {
         return this.context.findByCurrencyText(
             text,
             offset,
-            count,
-            locale
+            count
         );
     }
 

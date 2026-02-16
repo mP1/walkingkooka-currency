@@ -129,7 +129,6 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
             "Australia",
             0,
             2,
-            LOCALE,
             CURRENCY
         );
     }

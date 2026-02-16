@@ -129,14 +129,12 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
                                             final String text,
                                             final int offset,
                                             final int count,
-                                            final Locale requestedLocale,
                                             final Currency... expected) {
         this.findByCurrencyTextAndCheck(
             context,
             text,
             offset,
             count,
-            requestedLocale,
             Sets.of(expected)
         );
     }
@@ -145,17 +143,15 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
                                             final String text,
                                             final int offset,
                                             final int count,
-                                            final Locale requestedLocale,
                                             final Set<Currency> expected) {
         this.checkEquals(
             expected,
             context.findByCurrencyText(
                 text,
                 offset,
-                count,
-                requestedLocale
+                count
             ),
-            () -> "findByCurrencyText text: " + CharSequences.quoteAndEscape(text) + " offset: " + offset + " count: " + count + " " + requestedLocale.toLanguageTag()
+            () -> "findByCurrencyText text: " + CharSequences.quoteAndEscape(text) + " offset: " + offset + " count: " + count
         );
     }
 
