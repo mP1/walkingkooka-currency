@@ -32,6 +32,8 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
 
     private final static BiFunction<Currency, Currency, Number> EXCHANGE = (f, t) -> 2;
 
+    private final static Locale LOCALE = Locale.forLanguageTag("en-AU");
+
     @Test
     public void testWithNullCurrencyFails() {
         assertThrows(
@@ -115,7 +117,8 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
         this.currencyTextAndCheck(
             this.createContext(),
             CURRENCY,
-            CURRENCY.getDisplayName()
+            LOCALE,
+            CURRENCY.getDisplayName(LOCALE)
         );
     }
 
