@@ -1,7 +1,6 @@
 package walkingkooka.currency;
 
 import walkingkooka.test.Testing;
-import walkingkooka.util.HasCurrency;
 
 import java.util.Currency;
 

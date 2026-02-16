@@ -19,7 +19,6 @@ package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
-import walkingkooka.util.HasCurrencyTesting;
 
 import java.util.Currency;
 import java.util.Locale;

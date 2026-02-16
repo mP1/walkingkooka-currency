@@ -20,7 +20,6 @@ package walkingkooka.currency;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.printer.TreePrintableTesting;
-import walkingkooka.util.HasCurrencyTesting;
 
 import java.time.LocalDateTime;
 import java.util.Currency;
