@@ -21,7 +21,6 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.ContextTesting;
 
 import java.util.Currency;
-import java.util.Locale;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -65,26 +64,11 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
     // currencyText.....................................................................................................
 
     @Test
-    default void testCurrencyTextWithNullCurrencyFails() {
+    default void testCurrencyTextWithNullFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createContext()
-                .currencyText(
-                    null,
-                    Locale.ENGLISH
-                )
-        );
-    }
-
-    @Test
-    default void testCurrencyTextWithNullLocaleFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .currencyText(
-                    Currency.getInstance("AUD"),
-                    null
-                )
+                .currencyText(null)
         );
     }
 

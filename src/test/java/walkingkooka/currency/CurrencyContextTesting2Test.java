@@ -33,13 +33,11 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
     @Test
     public void testCurrencyText() {
         final Currency currency = Currency.getInstance("AUD");
-        final Locale locale = Locale.ENGLISH;
 
         this.currencyTextAndCheck(
             this.createContext(),
             currency,
-            locale,
-            "***" + currency.getDisplayName(locale) + "***en"
+            "***" + currency.getDisplayName()
         );
     }
 
@@ -83,12 +81,11 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
         }
 
         @Override
-        public Optional<String> currencyText(final Currency currency,
-                                             final Locale locale) {
+        public Optional<String> currencyText(final Currency currency) {
             Objects.requireNonNull(currency, "currency");
 
             return Optional.of(
-                "***" + currency.getDisplayName() + "***" + locale.toLanguageTag()
+                "***" + currency.getDisplayName()
             );
         }
 

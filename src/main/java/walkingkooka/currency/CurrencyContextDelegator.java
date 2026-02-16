@@ -56,13 +56,9 @@ public interface CurrencyContextDelegator extends CurrencyContext {
     }
 
     @Override
-    default Optional<String> currencyText(final Currency currency,
-                                          final Locale requestedLocale) {
+    default Optional<String> currencyText(final Currency currency) {
         return this.currencyContext()
-            .currencyText(
-                currency,
-                requestedLocale
-            );
+            .currencyText(currency);
     }
 
     @Override

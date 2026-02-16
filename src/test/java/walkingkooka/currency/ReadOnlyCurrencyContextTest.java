@@ -75,8 +75,7 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
         this.currencyTextAndCheck(
             this.createContext(),
             CURRENCY,
-            LOCALE,
-            "***" + CURRENCY.getDisplayName() + "***en-AU"
+            "***" + CURRENCY.getDisplayName()
         );
     }
 
@@ -115,13 +114,11 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
             }
 
             @Override
-            public Optional<String> currencyText(final Currency currency,
-                                                 final Locale locale) {
+            public Optional<String> currencyText(final Currency currency) {
                 Objects.requireNonNull(currency, "currency");
-                Objects.requireNonNull(locale, "locale");
 
                 return Optional.of(
-                    "***" + currency.getDisplayName() + "***" + locale.toLanguageTag()
+                    "***" + currency.getDisplayName()
                 );
             }
 
