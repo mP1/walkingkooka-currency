@@ -60,7 +60,8 @@ public interface CurrencyContext extends Context,
      */
     Set<Currency> findByCurrencyText(final String text,
                                      final int offset,
-                                     final int count);
+                                     final int count,
+                                     final Locale locale);
 
     /**
      * Queries the exchange rate between the two currencies at the given {@link LocalDateTime}.

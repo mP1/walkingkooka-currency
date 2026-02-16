@@ -95,7 +95,8 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
         @Override
         public Set<Currency> findByCurrencyText(final String text,
                                                 final int offset,
-                                                final int count) {
+                                                final int count,
+                                                final Locale locale) {
             Objects.requireNonNull(text, "text");
             if (offset < 0) {
                 throw new IllegalArgumentException("offset " + offset + " < 0");
@@ -104,9 +105,7 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
                 throw new IllegalArgumentException("count " + count + " < 0");
             }
             return Sets.of(
-                Currency.getInstance(
-                    Locale.forLanguageTag("en-AU")
-                )
+                Currency.getInstance(locale)
             );
         }
 

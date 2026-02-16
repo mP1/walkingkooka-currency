@@ -98,7 +98,8 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
                 .findByCurrencyText(
                     null,
                     0,
-                    1
+                    1,
+                    Locale.ENGLISH
                 )
         );
     }
@@ -111,7 +112,8 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
                 .findByCurrencyText(
                     "",
                     -1,
-                    1
+                    1,
+                    Locale.ENGLISH
                 )
         );
     }
@@ -124,7 +126,22 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
                 .findByCurrencyText(
                     "",
                     0,
-                    -1
+                    -1,
+                    Locale.ENGLISH
+                )
+        );
+    }
+
+    @Test
+    default void testFindByCurrencyTextAndCheckWithNullLocaleFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .findByCurrencyText(
+                    "",
+                    0,
+                    1,
+                    null
                 )
         );
     }
