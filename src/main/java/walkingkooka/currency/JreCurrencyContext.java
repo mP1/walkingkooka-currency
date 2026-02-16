@@ -118,7 +118,8 @@ final class JreCurrencyContext implements CurrencyContext {
     @Override
     public Set<Currency> findByCurrencyText(final String text,
                                             final int offset,
-                                            final int count) {
+                                            final int count,
+                                            final Locale locale) {
         Objects.requireNonNull(text, "text");
         if (offset < 0) {
             throw new IllegalArgumentException("Invalid offset " + offset + " < 0");
@@ -126,13 +127,14 @@ final class JreCurrencyContext implements CurrencyContext {
         if (count < 0) {
             throw new IllegalArgumentException("Invalid count " + count + " < 0");
         }
+        Objects.requireNonNull(locale, "locale");
 
         return this.availableCurrencies()
             .stream()
             .filter(
                 c -> JreCurrencyContextGetDisplayName.getDisplayName(
                         c,
-                        Locale.getDefault()
+                        locale
                     )
                     .startsWith(text)
             ).skip(offset)
