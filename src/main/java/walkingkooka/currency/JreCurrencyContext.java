@@ -96,18 +96,13 @@ final class JreCurrencyContext implements CurrencyContext {
     }
 
     @Override
-    public Optional<String> currencyText(final Currency currency,
-                                         final Locale requestedLocale) {
+    public Optional<String> currencyText(final Currency currency) {
         Objects.requireNonNull(currency, "currency");
-        Objects.requireNonNull(requestedLocale, "requestedLocale");
 
         String text;
 
         try {
-            text = JreCurrencyContextGetDisplayName.getDisplayName(
-                currency,
-                requestedLocale
-            );
+            text = JreCurrencyContextGetDisplayName.getDisplayName(currency);
         } catch (final RuntimeException exception) {
             text = null;
         }
@@ -130,11 +125,8 @@ final class JreCurrencyContext implements CurrencyContext {
         return this.availableCurrencies()
             .stream()
             .filter(
-                c -> JreCurrencyContextGetDisplayName.getDisplayName(
-                        c,
-                        Locale.getDefault()
-                    )
-                    .startsWith(text)
+                c -> JreCurrencyContextGetDisplayName.getDisplayName(c)
+                .startsWith(text)
             ).skip(offset)
             .limit(count)
             .collect(ImmutableSet.collector());

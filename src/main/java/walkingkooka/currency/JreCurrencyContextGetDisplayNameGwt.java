@@ -1,13 +1,11 @@
 package walkingkooka.currency;
 
 import java.util.Currency;
-import java.util.Locale;
 
 class JreCurrencyContextGetDisplayNameGwt {
 
     // Currency#GetDisplayName is not emulated
-    static String getDisplayName(final Currency currency,
-                                 final Locale requestedLocale) {
+    static String getDisplayName(final Currency currency) {
         return currency.getCurrencyCode();
     }
 }
