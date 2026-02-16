@@ -18,6 +18,7 @@
 package walkingkooka.currency;
 
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.util.HasLocale;
 
 import java.util.Currency;
 import java.util.function.BiFunction;
@@ -35,10 +36,12 @@ public final class CurrencyContexts implements PublicStaticHelper {
      * {@see JreCurrencyContext}
      */
     public static CurrencyContext jre(final Currency currency,
-                                      final BiFunction<Currency, Currency, Number> exchangeRates) {
+                                      final BiFunction<Currency, Currency, Number> exchangeRates,
+                                      final HasLocale hasLocale) {
         return JreCurrencyContext.with(
             currency,
-            exchangeRates
+            exchangeRates,
+            hasLocale
         );
     }
 

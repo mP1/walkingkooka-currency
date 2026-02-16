@@ -19,6 +19,7 @@ package walkingkooka.currency;
 
 import walkingkooka.collect.set.ImmutableSet;
 import walkingkooka.collect.set.Sets;
+import walkingkooka.util.HasLocale;
 
 import java.time.LocalDateTime;
 import java.util.Currency;
@@ -31,17 +32,21 @@ import java.util.function.BiFunction;
 final class JreCurrencyContext implements CurrencyContext {
 
     static JreCurrencyContext with(final Currency currency,
-                                   final BiFunction<Currency, Currency, Number> exchangeRates) {
+                                   final BiFunction<Currency, Currency, Number> exchangeRates,
+                                   final HasLocale hasLocale) {
         return new JreCurrencyContext(
             Objects.requireNonNull(currency, "currency"),
-            Objects.requireNonNull(exchangeRates, "exchangeRates")
+            Objects.requireNonNull(exchangeRates, "exchangeRates"),
+            Objects.requireNonNull(hasLocale, "hasLocale")
         );
     }
 
     private JreCurrencyContext(final Currency currency,
-                               final BiFunction<Currency, Currency, Number> exchangeRates) {
+                               final BiFunction<Currency, Currency, Number> exchangeRates,
+                               final HasLocale hasLocale) {
         this.currency = currency;
         this.exchangeRates = exchangeRates;
+        this.hasLocale = hasLocale;
     }
 
     @Override
@@ -102,7 +107,10 @@ final class JreCurrencyContext implements CurrencyContext {
         String text;
 
         try {
-            text = JreCurrencyContextGetDisplayName.getDisplayName(currency);
+            text = JreCurrencyContextGetDisplayName.getDisplayName(
+                currency,
+                this.hasLocale.locale()
+            );
         } catch (final RuntimeException exception) {
             text = null;
         }
@@ -122,15 +130,21 @@ final class JreCurrencyContext implements CurrencyContext {
             throw new IllegalArgumentException("Invalid count " + count + " < 0");
         }
 
+        final Locale locale = this.hasLocale.locale();
+
         return this.availableCurrencies()
             .stream()
             .filter(
-                c -> JreCurrencyContextGetDisplayName.getDisplayName(c)
-                .startsWith(text)
+                c -> JreCurrencyContextGetDisplayName.getDisplayName(
+                    c,
+                    locale
+                ).startsWith(text)
             ).skip(offset)
             .limit(count)
             .collect(ImmutableSet.collector());
     }
+
+    private final HasLocale hasLocale;
 
     @Override
     public Number exchangeRate(final Currency from,
