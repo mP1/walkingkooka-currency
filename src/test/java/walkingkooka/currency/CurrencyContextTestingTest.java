@@ -137,19 +137,16 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
         final int count = 23;
         final Currency currency1 = Currency.getInstance("AUD");
         final Currency currency2 = Currency.getInstance("NZD");
-        final Locale locale = Locale.forLanguageTag("en-AU");
 
         this.findByCurrencyTextAndCheck(
             new FakeCurrencyContext() {
                 @Override
                 public Set<Currency> findByCurrencyText(final String t,
                                                         final int o,
-                                                        final int c,
-                                                        final Locale l) {
+                                                        final int c) {
                     checkEquals(text, t, "text");
                     checkEquals(offset, o, "offset");
                     checkEquals(count, c, "count");
-                    checkEquals(l, locale, "locale");
 
                     return Sets.of(
                         currency1,
@@ -160,7 +157,6 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
             text,
             offset,
             count,
-            locale,
             currency1,
             currency2
         );
