@@ -94,10 +94,10 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
         }
 
         @Override
-        public Set<Currency> currencyForLocale(final Locale locale) {
+        public Optional<Currency> currencyForLocale(final Locale locale) {
             Objects.requireNonNull(locale, "locale");
 
-            return Sets.of(
+            return Optional.of(
                 Currency.getInstance(
                     Locale.forLanguageTag("en-AU")
                 )

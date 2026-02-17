@@ -84,7 +84,7 @@ final class JreCurrencyContext implements CurrencyContext {
     }
 
     @Override
-    public Set<Currency> currencyForLocale(final Locale locale) {
+    public Optional<Currency> currencyForLocale(final Locale locale) {
         Objects.requireNonNull(locale, "locale");
 
         Currency currency;
@@ -95,9 +95,7 @@ final class JreCurrencyContext implements CurrencyContext {
             currency = null;
         }
 
-        return null != currency ?
-            Sets.of(currency) :
-            Sets.empty();
+        return Optional.ofNullable(currency);
     }
 
     @Override
