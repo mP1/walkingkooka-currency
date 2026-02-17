@@ -23,11 +23,11 @@ import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.time.LocalDateTime;
 import java.util.Currency;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
 public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTesting,
+    CanCurrencyForLocaleTesting,
     HasCurrencyTesting,
     TreePrintableTesting {
 
@@ -59,27 +59,6 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
             expected,
             context.availableCurrencies(),
             context::toString
-        );
-    }
-
-    // currencyForLocale................................................................................................
-
-    default void currencyForLocaleAndCheck(final CurrencyContext context,
-                                           final Locale locale,
-                                           final Currency... expected) {
-        this.currencyForLocaleAndCheck(
-            context,
-            locale,
-            Sets.of(expected)
-        );
-    }
-
-    default void currencyForLocaleAndCheck(final CurrencyContext context,
-                                           final Locale locale,
-                                           final Set<Currency> expected) {
-        this.checkEquals(
-            expected,
-            context.currencyForLocale(locale)
         );
     }
 
