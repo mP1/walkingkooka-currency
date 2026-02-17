@@ -21,7 +21,6 @@ import walkingkooka.Context;
 
 import java.time.LocalDateTime;
 import java.util.Currency;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
@@ -30,6 +29,7 @@ import java.util.Set;
  */
 public interface CurrencyContext extends Context,
     CanCurrencyForCurrencyCode,
+    CanCurrencyForLocale,
     HasCurrency {
 
     /**
@@ -41,11 +41,6 @@ public interface CurrencyContext extends Context,
      * Returns all available {@link Currency currencies}.
      */
     Set<Currency> availableCurrencies();
-
-    /**
-     * Returns the {@link Currency currencies} for the given {@link Locale}. Note this response may be zero or many.
-     */
-    Set<Currency> currencyForLocale(final Locale locale);
 
     /**
      * Returns text to display for the given {@link Currency} if it exists.
