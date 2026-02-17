@@ -26,6 +26,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface CurrencyContextTesting2<C extends CurrencyContext> extends CurrencyContextTesting,
+    CanCurrencyForCurrencyCodeTesting2<C>,
     ContextTesting<C> {
 
     // setCurrency......................................................................................................
@@ -36,17 +37,6 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
             NullPointerException.class,
             () -> this.createContext()
                 .setCurrency(null)
-        );
-    }
-
-    // currencyForCurrencyCode..........................................................................................
-
-    @Test
-    default void testCurrencyForCurrencyCodeWithNullFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .currencyForCurrencyCode(null)
         );
     }
 
@@ -152,6 +142,11 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
                     null
                 )
         );
+    }
+
+    @Override
+    default C createCanCurrencyForCurrencyCode() {
+        return this.createContext();
     }
 
     // class............................................................................................................
