@@ -29,10 +29,10 @@ public interface CanCurrencyForLocaleTesting2<C extends CanCurrencyForLocale> ex
     default void testCurrencyForLocaleWithNullLocaleFails() {
         assertThrows(
             NullPointerException.class,
-            () -> this.createCanCurrencyForCurrencyCode()
+            () -> this.createCanCurrencyForLocale()
                 .currencyForLocale(null)
         );
     }
 
-    C createCanCurrencyForCurrencyCode();
+    C createCanCurrencyForLocale();
 }
