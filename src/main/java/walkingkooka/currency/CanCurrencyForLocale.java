@@ -19,12 +19,12 @@ package walkingkooka.currency;
 
 import java.util.Currency;
 import java.util.Locale;
-import java.util.Set;
+import java.util.Optional;
 
 public interface CanCurrencyForLocale {
 
     /**
      * Returns the available {@link Currency} for the given code.
      */
-    Set<Currency> currencyForLocale(final Locale locale);
+    Optional<Currency> currencyForLocale(final Locale locale);
 }

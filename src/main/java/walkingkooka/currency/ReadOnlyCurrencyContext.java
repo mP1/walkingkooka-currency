@@ -66,7 +66,7 @@ final class ReadOnlyCurrencyContext implements CurrencyContext {
     }
 
     @Override
-    public Set<Currency> currencyForLocale(final Locale locale) {
+    public Optional<Currency> currencyForLocale(final Locale locale) {
         return this.context.currencyForLocale(locale);
     }
 

@@ -107,24 +107,21 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
     @Test
     public void testCurrencyForLocale() {
         final Locale locale = Locale.ENGLISH;
-        final Currency currency1 = Currency.getInstance("AUD");
-        final Currency currency2 = Currency.getInstance("NZD");
+        final Currency currency = Currency.getInstance("AUD");
 
         this.currencyForLocaleAndCheck(
             new FakeCurrencyContext() {
                 @Override
-                public Set<Currency> currencyForLocale(final Locale l) {
+                public Optional<Currency> currencyForLocale(final Locale l) {
                     checkEquals(locale, l, "locale");
 
-                    return Sets.of(
-                        currency1,
-                        currency2
+                    return Optional.of(
+                        currency
                     );
                 }
             },
             locale,
-            currency1,
-            currency2
+            currency
         );
     }
 

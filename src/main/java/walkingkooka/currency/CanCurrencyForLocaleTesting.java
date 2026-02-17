@@ -17,30 +17,38 @@
 
 package walkingkooka.currency;
 
-import walkingkooka.collect.set.Sets;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Currency;
 import java.util.Locale;
-import java.util.Set;
+import java.util.Optional;
 
 public interface CanCurrencyForLocaleTesting extends TreePrintableTesting {
 
     // currencyForLocale................................................................................................
 
     default void currencyForLocaleAndCheck(final CanCurrencyForLocale can,
-                                           final Locale locale,
-                                           final Currency... expected) {
+                                           final Locale locale) {
         this.currencyForLocaleAndCheck(
             can,
             locale,
-            Sets.of(expected)
+            Optional.empty()
         );
     }
 
     default void currencyForLocaleAndCheck(final CanCurrencyForLocale can,
                                            final Locale locale,
-                                           final Set<Currency> expected) {
+                                           final Currency expected) {
+        this.currencyForLocaleAndCheck(
+            can,
+            locale,
+            Optional.of(expected)
+        );
+    }
+
+    default void currencyForLocaleAndCheck(final CanCurrencyForLocale can,
+                                           final Locale locale,
+                                           final Optional<Currency> expected) {
         this.checkEquals(
             expected,
             can.currencyForLocale(locale)

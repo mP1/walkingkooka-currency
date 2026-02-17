@@ -105,10 +105,10 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
             }
 
             @Override
-            public Set<Currency> currencyForLocale(final Locale locale) {
+            public Optional<Currency> currencyForLocale(final Locale locale) {
                 Objects.requireNonNull(locale, "locale");
 
-                return Sets.of(
+                return Optional.of(
                     Currency.getInstance(locale)
                 );
             }
