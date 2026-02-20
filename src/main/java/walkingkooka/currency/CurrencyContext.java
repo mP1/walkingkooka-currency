@@ -18,6 +18,7 @@
 package walkingkooka.currency;
 
 import walkingkooka.Context;
+import walkingkooka.locale.LocaleContext;
 
 import java.time.LocalDateTime;
 import java.util.Currency;
@@ -61,4 +62,14 @@ public interface CurrencyContext extends Context,
     Number exchangeRate(final Currency from,
                         final Currency to,
                         final Optional<LocalDateTime> dateTime);
+
+    /**
+     * Helper that returns a {@link CurrencyLocaleContext} combining this {@link CurrencyContext} and the given {@link LocaleContext}.
+     */
+    default CurrencyLocaleContext setLocaleContext(final LocaleContext context) {
+        return CurrencyContextCurrencyLocaleContext.with(
+            this,
+            context
+        );
+    }
 }
