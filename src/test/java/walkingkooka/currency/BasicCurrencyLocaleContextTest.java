@@ -31,9 +31,9 @@ import java.util.Objects;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class CurrencyContextCurrencyLocaleContextTest implements CurrencyLocaleContextTesting2<CurrencyContextCurrencyLocaleContext>,
-    ClassTesting2<CurrencyContextCurrencyLocaleContext>,
-    ToStringTesting<CurrencyContextCurrencyLocaleContext> {
+public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleContextTesting2<BasicCurrencyLocaleContext>,
+    ClassTesting2<BasicCurrencyLocaleContext>,
+    ToStringTesting<BasicCurrencyLocaleContext> {
 
     private final static LocaleContext LOCALE_CONTEXT = LocaleContexts.jre(
         Locale.forLanguageTag("en-AU")
@@ -56,7 +56,7 @@ public final class CurrencyContextCurrencyLocaleContextTest implements CurrencyL
     public void testWithNullCurrencyContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> CurrencyContextCurrencyLocaleContext.with(
+            () -> BasicCurrencyLocaleContext.with(
                 null,
                 LOCALE_CONTEXT
             )
@@ -67,7 +67,7 @@ public final class CurrencyContextCurrencyLocaleContextTest implements CurrencyL
     public void testWithNullLocaleContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> CurrencyContextCurrencyLocaleContext.with(
+            () -> BasicCurrencyLocaleContext.with(
                 CURRENCY_CONTEXT,
                 null
             )
@@ -76,10 +76,10 @@ public final class CurrencyContextCurrencyLocaleContextTest implements CurrencyL
 
     @Test
     public void testWithCurrencyLocaleContext() {
-        final CurrencyContextCurrencyLocaleContext context = this.createContext();
+        final BasicCurrencyLocaleContext context = this.createContext();
         assertSame(
             context,
-            CurrencyContextCurrencyLocaleContext.with(
+            BasicCurrencyLocaleContext.with(
                 context,
                 context
             )
@@ -87,9 +87,9 @@ public final class CurrencyContextCurrencyLocaleContextTest implements CurrencyL
     }
 
     @Override
-    public CurrencyContextCurrencyLocaleContext createContext() {
-        return (CurrencyContextCurrencyLocaleContext)
-            CurrencyContextCurrencyLocaleContext.with(
+    public BasicCurrencyLocaleContext createContext() {
+        return (BasicCurrencyLocaleContext)
+            BasicCurrencyLocaleContext.with(
                 CURRENCY_CONTEXT,
                 LOCALE_CONTEXT
             );
@@ -108,8 +108,8 @@ public final class CurrencyContextCurrencyLocaleContextTest implements CurrencyL
     // class............................................................................................................
 
     @Override
-    public Class<CurrencyContextCurrencyLocaleContext> type() {
-        return CurrencyContextCurrencyLocaleContext.class;
+    public Class<BasicCurrencyLocaleContext> type() {
+        return BasicCurrencyLocaleContext.class;
     }
 
     @Override

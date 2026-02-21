@@ -17,9 +17,21 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.locale.LocaleContext;
 import walkingkooka.reflect.PublicStaticHelper;
 
 public final class CurrencyLocaleContexts implements PublicStaticHelper {
+
+    /**
+     * {@see BasicCurrencyLocaleContext}
+     */
+    public static CurrencyLocaleContext basic(final CurrencyContext currencyContext,
+                                              final LocaleContext localeContext) {
+        return BasicCurrencyLocaleContext.with(
+            currencyContext,
+            localeContext
+        );
+    }
 
     /**
      * {@see FakeCurrencyLocaleContext}

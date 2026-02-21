@@ -22,7 +22,7 @@ import walkingkooka.locale.LocaleContextDelegator;
 
 import java.util.Objects;
 
-final class CurrencyContextCurrencyLocaleContext implements CurrencyLocaleContext,
+final class BasicCurrencyLocaleContext implements CurrencyLocaleContext,
     CurrencyContextDelegator, 
     LocaleContextDelegator {
 
@@ -30,14 +30,14 @@ final class CurrencyContextCurrencyLocaleContext implements CurrencyLocaleContex
                                       final LocaleContext localeContext) {
         return currencyContext == localeContext ?
             (CurrencyLocaleContext) currencyContext :
-            new CurrencyContextCurrencyLocaleContext(
+            new BasicCurrencyLocaleContext(
                 Objects.requireNonNull(currencyContext, "currencyContext"),
                 Objects.requireNonNull(localeContext, "localeContext")
             );
     }
 
-    private CurrencyContextCurrencyLocaleContext(final CurrencyContext currencyContext,
-                                                 final LocaleContext localeContext) {
+    private BasicCurrencyLocaleContext(final CurrencyContext currencyContext,
+                                       final LocaleContext localeContext) {
         super();
 
         this.currencyContext = currencyContext;
