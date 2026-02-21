@@ -17,12 +17,43 @@
 
 package walkingkooka.currency;
 
+import org.junit.jupiter.api.Test;
+import walkingkooka.collect.list.Lists;
+import walkingkooka.collect.set.SortedSets;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
+import java.util.Currency;
+import java.util.Set;
 
 public final class CurrencyContextsTest implements PublicStaticHelperTesting<CurrencyContexts> {
+
+    // CURRENCY_CODE_COMPARATOR..........................................................................................
+
+    @Test
+    public void testCurrencyCodeComparatorSort() {
+        final Currency aud = Currency.getInstance("AUD");
+        final Currency nzd = Currency.getInstance("NZD");
+        final Currency usd = Currency.getInstance("USD");
+
+        final Set<Currency> sortedByCurrencyCode = SortedSets.tree(CurrencyContexts.CURRENCY_CODE_COMPARATOR);
+        sortedByCurrencyCode.add(usd);
+        sortedByCurrencyCode.add(aud);
+        sortedByCurrencyCode.add(nzd);
+
+        this.checkEquals(
+            Lists.of(
+                aud,
+                nzd,
+                usd
+            ),
+            Lists.of(
+                sortedByCurrencyCode.toArray()
+            )
+        );
+    }
+    
     @Override
     public boolean canHavePublicTypes(final Method method) {
         return false;
