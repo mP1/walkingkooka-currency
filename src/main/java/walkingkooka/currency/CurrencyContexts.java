@@ -18,12 +18,26 @@
 package walkingkooka.currency;
 
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.text.CaseSensitivity;
 import walkingkooka.util.HasLocale;
 
+import java.util.Comparator;
 import java.util.Currency;
+import java.util.Locale;
 import java.util.function.BiFunction;
 
 public final class CurrencyContexts implements PublicStaticHelper {
+
+    public final static CaseSensitivity CASE_SENSITIVITY = CaseSensitivity.INSENSITIVE;
+
+    /**
+     * Helper {@link Comparator} that may be used to sort {@link Locale} by language tag.
+     */
+    public final static Comparator<Currency> CURRENCY_CODE_COMPARATOR = (l, r) -> CaseSensitivity.INSENSITIVE.comparator()
+        .compare(
+            l.getCurrencyCode(),
+            r.getCurrencyCode()
+        );
 
     /**
      * {@see FakeCurrencyContext}
