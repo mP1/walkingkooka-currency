@@ -67,7 +67,7 @@ public interface CurrencyContext extends Context,
      * Helper that returns a {@link CurrencyLocaleContext} combining this {@link CurrencyContext} and the given {@link LocaleContext}.
      */
     default CurrencyLocaleContext setLocaleContext(final LocaleContext context) {
-        return CurrencyContextCurrencyLocaleContext.with(
+        return CurrencyLocaleContexts.basic(
             this,
             context
         );
