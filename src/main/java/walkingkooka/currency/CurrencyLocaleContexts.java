@@ -41,6 +41,13 @@ public final class CurrencyLocaleContexts implements PublicStaticHelper {
     }
 
     /**
+     * {@see ReadOnlyCurrencyLocaleContext}
+     */
+    public static CurrencyLocaleContext readOnly(final CurrencyLocaleContext currencyLocaleContext) {
+        return ReadOnlyCurrencyLocaleContext.with(currencyLocaleContext);
+    }
+
+    /**
      * Stop creation
      */
     private CurrencyLocaleContexts() {
