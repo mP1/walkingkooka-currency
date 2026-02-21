@@ -18,6 +18,7 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.ToStringTesting;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContexts;
@@ -32,6 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleContextTesting2<BasicCurrencyLocaleContext>,
+    HashCodeEqualsDefinedTesting2<BasicCurrencyLocaleContext>,
     ClassTesting2<BasicCurrencyLocaleContext>,
     ToStringTesting<BasicCurrencyLocaleContext> {
 
@@ -93,6 +95,33 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
                 CURRENCY_CONTEXT,
                 LOCALE_CONTEXT
             );
+    }
+
+    // hashCode/equals..................................................................................................
+
+    @Test
+    public void testEqualsDifferentCurrencyContext() {
+        this.checkNotEquals(
+            BasicCurrencyLocaleContext.with(
+                CurrencyContexts.fake(),
+                LOCALE_CONTEXT
+            )
+        );
+    }
+
+    @Test
+    public void testEqualsDifferentLocaleContext() {
+        this.checkNotEquals(
+            BasicCurrencyLocaleContext.with(
+                CURRENCY_CONTEXT,
+                LocaleContexts.fake()
+            )
+        );
+    }
+
+    @Override
+    public BasicCurrencyLocaleContext createObject() {
+        return this.createContext();
     }
 
     // toString.........................................................................................................

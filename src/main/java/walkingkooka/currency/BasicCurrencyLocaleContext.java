@@ -62,6 +62,26 @@ final class BasicCurrencyLocaleContext implements CurrencyLocaleContext,
 
     private final LocaleContext localeContext;
 
+    // Object...........................................................................................................
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+            this.currencyContext,
+            this.localeContext
+        );
+    }
+
+    @Override
+    public boolean equals(final Object other) {
+        return this == other || other instanceof BasicCurrencyLocaleContext && this.equals0((BasicCurrencyLocaleContext) other);
+    }
+
+    private boolean equals0(final BasicCurrencyLocaleContext other) {
+        return this.currencyContext.equals(other.currencyContext) &&
+            this.localeContext.equals(other.localeContext);
+    }
+
     // toString.........................................................................................................
 
     @Override
