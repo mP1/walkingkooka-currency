@@ -18,7 +18,7 @@
 package walkingkooka.currency;
 
 import walkingkooka.collect.set.ImmutableSet;
-import walkingkooka.collect.set.Sets;
+import walkingkooka.collect.set.SortedSets;
 import walkingkooka.util.HasLocale;
 
 import java.time.LocalDateTime;
@@ -27,6 +27,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.function.BiFunction;
 
 final class JreCurrencyContext implements CurrencyContext {
@@ -64,10 +65,18 @@ final class JreCurrencyContext implements CurrencyContext {
 
     @Override
     public Set<Currency> availableCurrencies() {
-        return Sets.readOnly(
-            Currency.getAvailableCurrencies()
-        );
+        if (null == this.availableCurrencies) {
+            final SortedSet<Currency> currencies = SortedSets.tree(CurrencyContexts.CURRENCY_CODE_COMPARATOR);
+            currencies.addAll(
+                Currency.getAvailableCurrencies()
+            );
+
+            this.availableCurrencies = SortedSets.immutable(currencies);
+        }
+        return this.availableCurrencies;
     }
+
+    private Set<Currency> availableCurrencies;
 
     @Override
     public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
