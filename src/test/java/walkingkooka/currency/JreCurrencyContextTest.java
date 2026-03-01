@@ -148,6 +148,17 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     }
 
     @Test
+    public void testFindByCurrencyTextDifferentCaseText() {
+        this.findByCurrencyTextAndCheck(
+            this.createContext(),
+            "AUSTRalia",
+            0,
+            2,
+            CURRENCY
+        );
+    }
+
+    @Test
     public void testExchangeRate() {
         this.exchangeRateAndCheck(
             this.createContext(),
