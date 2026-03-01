@@ -17,8 +17,9 @@
 
 package walkingkooka.currency;
 
-import walkingkooka.collect.set.ImmutableSet;
+import walkingkooka.collect.set.ImmutableSortedSet;
 import walkingkooka.collect.set.SortedSets;
+import walkingkooka.text.CharSequences;
 import walkingkooka.util.HasLocale;
 
 import java.time.LocalDateTime;
@@ -137,18 +138,22 @@ final class JreCurrencyContext implements CurrencyContext {
             throw new IllegalArgumentException("Invalid count " + count + " < 0");
         }
 
-        final Locale locale = this.hasLocale.locale();
-
         return this.availableCurrencies()
             .stream()
-            .filter(
-                c -> JreCurrencyContextGetDisplayName.getDisplayName(
-                    c,
-                    locale
-                ).startsWith(text)
-            ).skip(offset)
+            .filter(currency -> {
+                final String currencyText = this.currencyText(currency)
+                    .orElse(null);
+                return false == CharSequences.isNullOrEmpty(currencyText) &&
+                    CurrencyContexts.CASE_SENSITIVITY.startsWith(
+                        currencyText,
+                        text
+                    );
+            })
+            .skip(offset)
             .limit(count)
-            .collect(ImmutableSet.collector());
+            .collect(
+                ImmutableSortedSet.collector(CurrencyContexts.CURRENCY_CODE_COMPARATOR)
+            );
     }
 
     private final HasLocale hasLocale;
