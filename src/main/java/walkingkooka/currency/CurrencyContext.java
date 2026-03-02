@@ -31,7 +31,7 @@ import java.util.Set;
 public interface CurrencyContext extends Context,
     CanCurrencyForCurrencyCode,
     CanCurrencyForLocale,
-    CanLocaleForCurrencyCode,
+    CanLocalesForCurrencyCode,
     HasCurrency {
 
     /**

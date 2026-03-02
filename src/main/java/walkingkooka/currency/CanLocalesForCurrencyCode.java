@@ -17,22 +17,16 @@
 
 package walkingkooka.currency;
 
-import org.junit.jupiter.api.Test;
+import java.util.Locale;
+import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+/**
+ * Supports querying the {@link Locale} for a given {@link String currencyCode}
+ */
+public interface CanLocalesForCurrencyCode {
 
-public interface CanLocaleForCurrencyCodeTesting2<C extends CanLocaleForCurrencyCode> extends CanLocaleForCurrencyCodeTesting {
-
-    // localesForCurrencyCode...........................................................................................
-
-    @Test
-    default void testLocalesForCurrencyCodeWithNullFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createCanLocalesForCurrencyCode()
-                .localesForCurrencyCode(null)
-        );
-    }
-
-    C createCanLocalesForCurrencyCode();
+    /**
+     * Returns the available {@link Locale} for the given code. Not all currency codes have a single {@link Locale}, eg EURO.
+     */
+    Set<Locale> localesForCurrencyCode(final String currencyCode);
 }
