@@ -41,6 +41,15 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
         );
     }
 
+    @Test
+    public void testLocaleForCurrencyCode() {
+        this.localeForCurrencyCodeAndCheck(
+            this.createContext(),
+            "AUD",
+            Locale.forLanguageTag("en-AU")
+        );
+    }
+
     @Override
     public TestCurrencyContextDelegator createContext() {
         return new TestCurrencyContextDelegator();
@@ -110,6 +119,17 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
 
             return Optional.of(
                 "***" + currency.getDisplayName()
+            );
+        }
+
+        @Override
+        public Optional<Locale> localeForCurrencyCode(final String currencyCode) {
+            Objects.requireNonNull(currencyCode, "currencyCode");
+
+            return Optional.ofNullable(
+                currencyCode.equalsIgnoreCase("AUD") ?
+                    Locale.forLanguageTag("en-AU") :
+                    null
             );
         }
 

@@ -17,14 +17,16 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.ImmutableSortedSet;
 import walkingkooka.collect.set.SortedSets;
+import walkingkooka.locale.LocaleContext;
 import walkingkooka.text.CharSequences;
-import walkingkooka.util.HasLocale;
 
 import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -35,20 +37,20 @@ final class JreCurrencyContext implements CurrencyContext {
 
     static JreCurrencyContext with(final Currency currency,
                                    final BiFunction<Currency, Currency, Number> exchangeRates,
-                                   final HasLocale hasLocale) {
+                                   final LocaleContext localeContext) {
         return new JreCurrencyContext(
             Objects.requireNonNull(currency, "currency"),
             Objects.requireNonNull(exchangeRates, "exchangeRates"),
-            Objects.requireNonNull(hasLocale, "hasLocale")
+            Objects.requireNonNull(localeContext, "localeContext")
         );
     }
 
     private JreCurrencyContext(final Currency currency,
                                final BiFunction<Currency, Currency, Number> exchangeRates,
-                               final HasLocale hasLocale) {
+                               final LocaleContext localeContext) {
         this.currency = currency;
         this.exchangeRates = exchangeRates;
-        this.hasLocale = hasLocale;
+        this.localeContext = localeContext;
     }
 
     @Override
@@ -117,7 +119,7 @@ final class JreCurrencyContext implements CurrencyContext {
         try {
             text = JreCurrencyContextGetDisplayName.getDisplayName(
                 currency,
-                this.hasLocale.locale()
+                this.localeContext.locale()
             );
         } catch (final RuntimeException exception) {
             text = null;
@@ -125,6 +127,39 @@ final class JreCurrencyContext implements CurrencyContext {
 
         return Optional.ofNullable(text);
     }
+
+    @Override
+    public Optional<Locale> localeForCurrencyCode(final String currencyCode) {
+        Objects.requireNonNull(currencyCode, "currencyCode");
+
+        if (null == this.currencyCodeToLocale) {
+            final Map<String, Locale> currencyCodeToLocale = Maps.sorted(
+                CurrencyContexts.CASE_SENSITIVITY.comparator()
+            );
+
+            for (final Locale locale : this.localeContext.availableLocales()) {
+                try {
+                    currencyCodeToLocale.put(
+                        Currency.getInstance(locale)
+                            .getCurrencyCode(),
+                        locale
+                    );
+                } catch (final UnsupportedOperationException rethrow) {
+                    throw rethrow;
+                } catch (final RuntimeException exception) {
+
+                }
+            }
+
+            this.currencyCodeToLocale = currencyCodeToLocale;
+        }
+
+        return Optional.ofNullable(
+            this.currencyCodeToLocale.get(currencyCode)
+        );
+    }
+
+    private Map<String, Locale> currencyCodeToLocale;
 
     @Override
     public Set<Currency> findByCurrencyText(final String text,
@@ -156,7 +191,7 @@ final class JreCurrencyContext implements CurrencyContext {
             );
     }
 
-    private final HasLocale hasLocale;
+    private final LocaleContext localeContext;
 
     @Override
     public Number exchangeRate(final Currency from,

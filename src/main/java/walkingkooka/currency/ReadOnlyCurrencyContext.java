@@ -107,6 +107,11 @@ final class ReadOnlyCurrencyContext implements CurrencyContext {
         return this.context.currencyForCurrencyCodeOrFail(currencyCode);
     }
 
+    @Override
+    public Optional<Locale> localeForCurrencyCode(final String currencyCode) {
+        return this.context.localeForCurrencyCode(currencyCode);
+    }
+
     private final CurrencyContext context;
 
     // Object...........................................................................................................

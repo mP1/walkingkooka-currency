@@ -90,6 +90,17 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
         }
 
         @Override
+        public Optional<Locale> localeForCurrencyCode(final String currencyCode) {
+            Objects.requireNonNull(currencyCode, "currencyCode");
+
+            return Optional.ofNullable(
+                currencyCode.equalsIgnoreCase("AUD") ?
+                    Locale.forLanguageTag("en-AU") :
+                    null
+            );
+        }
+
+        @Override
         public Set<Currency> findByCurrencyText(final String text,
                                                 final int offset,
                                                 final int count) {
