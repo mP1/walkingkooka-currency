@@ -60,7 +60,7 @@ public class FakeCurrencyContext implements CurrencyContext {
     }
 
     @Override
-    public Optional<Locale> localeForCurrencyCode(final String currencyCode) {
+    public Set<Locale> localesForCurrencyCode(final String currencyCode) {
         throw new UnsupportedOperationException();
     }
 

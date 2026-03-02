@@ -18,7 +18,7 @@
 package walkingkooka.currency;
 
 import java.util.Locale;
-import java.util.Optional;
+import java.util.Set;
 
 /**
  * Supports querying the {@link Locale} for a given {@link String currencyCode}
@@ -28,13 +28,5 @@ public interface CanLocaleForCurrencyCode {
     /**
      * Returns the available {@link Locale} for the given code. Not all currency codes have a single {@link Locale}, eg EURO.
      */
-    Optional<Locale> localeForCurrencyCode(final String currencyCode);
-
-    /**
-     * If the currency code is unknown or invalid an {@link IllegalArgumentException} will be thrown.
-     */
-    default Locale localeForCurrencyCodeOrFail(final String currencyCode) {
-        return this.localeForCurrencyCode(currencyCode)
-            .orElseThrow(() -> new MissingCurrencyException(currencyCode));
-    }
+    Set<Locale> localesForCurrencyCode(final String currencyCode);
 }

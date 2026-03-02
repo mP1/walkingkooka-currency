@@ -19,6 +19,7 @@ package walkingkooka.currency;
 
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.ImmutableSortedSet;
+import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.text.CharSequences;
@@ -129,20 +130,30 @@ final class JreCurrencyContext implements CurrencyContext {
     }
 
     @Override
-    public Optional<Locale> localeForCurrencyCode(final String currencyCode) {
+    public Set<Locale> localesForCurrencyCode(final String currencyCode) {
         Objects.requireNonNull(currencyCode, "currencyCode");
 
-        if (null == this.currencyCodeToLocale) {
-            final Map<String, Locale> currencyCodeToLocale = Maps.sorted(
+        if (null == this.currencyCodeToLocales) {
+            final Map<String, Set<Locale>> currencyCodeToLocales = Maps.sorted(
                 CurrencyContexts.CASE_SENSITIVITY.comparator()
             );
 
             for (final Locale locale : this.localeContext.availableLocales()) {
                 try {
-                    currencyCodeToLocale.put(
-                        Currency.getInstance(locale)
-                            .getCurrencyCode(),
-                        locale
+                    final Currency currency = Currency.getInstance(locale);
+                    final String currencyCurrencyCode = currency.getCurrencyCode();
+
+                    Set<Locale> locales = currencyCodeToLocales.get(currencyCurrencyCode);
+                    if (null == locales) {
+                        locales = Sets.of(locale);
+                    } else {
+                        locales = Sets.immutable(locales)
+                            .concat(locale);
+                    }
+
+                    currencyCodeToLocales.put(
+                        currencyCurrencyCode,
+                        locales
                     );
                 } catch (final UnsupportedOperationException rethrow) {
                     throw rethrow;
@@ -151,15 +162,17 @@ final class JreCurrencyContext implements CurrencyContext {
                 }
             }
 
-            this.currencyCodeToLocale = currencyCodeToLocale;
+            this.currencyCodeToLocales = currencyCodeToLocales;
         }
 
-        return Optional.ofNullable(
-            this.currencyCodeToLocale.get(currencyCode)
-        );
+        Set<Locale> locales = this.currencyCodeToLocales.get(currencyCode);
+        if (null == locales) {
+            locales = Sets.empty();
+        }
+        return locales;
     }
 
-    private Map<String, Locale> currencyCodeToLocale;
+    private Map<String, Set<Locale>> currencyCodeToLocales;
 
     @Override
     public Set<Currency> findByCurrencyText(final String text,

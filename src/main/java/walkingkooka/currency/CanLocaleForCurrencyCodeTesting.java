@@ -17,40 +17,45 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.collect.set.Sets;
 import walkingkooka.text.printer.TreePrintableTesting;
 
+import java.util.Arrays;
 import java.util.Locale;
-import java.util.Optional;
+import java.util.Set;
 
 public interface CanLocaleForCurrencyCodeTesting extends TreePrintableTesting {
 
-    // localeForCurrencyCode..........................................................................................
+    // localeForCurrencyCode............................................................................................
 
-    default void localeForCurrencyCodeAndCheck(final CanLocaleForCurrencyCode can,
-                                               final String currencyCode) {
-        this.localeForCurrencyCodeAndCheck(
+    default void localesForCurrencyCodeAndCheck(final CanLocaleForCurrencyCode can,
+                                                final String currencyCode,
+                                                final String expected) {
+        this.localesForCurrencyCodeAndCheck(
             can,
             currencyCode,
-            Optional.empty()
+            Arrays.stream(expected.split("\\s*,\\s*"))
+                .map(Locale::forLanguageTag)
+                .toArray(Locale[]::new)
         );
     }
 
-    default void localeForCurrencyCodeAndCheck(final CanLocaleForCurrencyCode can,
-                                               final String currencyCode,
-                                               final Locale expected) {
-        this.localeForCurrencyCodeAndCheck(
+    default void localesForCurrencyCodeAndCheck(final CanLocaleForCurrencyCode can,
+                                                final String currencyCode,
+                                                final Locale...expected) {
+        this.localesForCurrencyCodeAndCheck(
             can,
             currencyCode,
-            Optional.of(expected)
+            Sets.of(expected)
         );
     }
 
-    default void localeForCurrencyCodeAndCheck(final CanLocaleForCurrencyCode can,
-                                               final String currencyCode,
-                                               final Optional<Locale> expected) {
+    default void localesForCurrencyCodeAndCheck(final CanLocaleForCurrencyCode can,
+                                                final String currencyCode,
+                                                final Set<Locale> expected) {
         this.checkEquals(
             expected,
-            can.localeForCurrencyCode(currencyCode)
+            can.localesForCurrencyCode(currencyCode)
         );
     }
 }

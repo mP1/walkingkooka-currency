@@ -146,7 +146,7 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
     }
 
     @Override
-    default C createCanLocaleForCurrencyCode() {
+    default C createCanLocalesForCurrencyCode() {
         return this.createContext();
     }
 
