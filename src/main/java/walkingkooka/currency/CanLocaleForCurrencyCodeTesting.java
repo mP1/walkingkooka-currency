@@ -19,7 +19,7 @@ package walkingkooka.currency;
 
 import walkingkooka.text.printer.TreePrintableTesting;
 
-import java.util.Currency;
+import java.util.Locale;
 import java.util.Optional;
 
 public interface CanLocaleForCurrencyCodeTesting extends TreePrintableTesting {
@@ -37,7 +37,7 @@ public interface CanLocaleForCurrencyCodeTesting extends TreePrintableTesting {
 
     default void localeForCurrencyCodeAndCheck(final CanLocaleForCurrencyCode can,
                                                final String currencyCode,
-                                               final Currency expected) {
+                                               final Locale expected) {
         this.localeForCurrencyCodeAndCheck(
             can,
             currencyCode,
@@ -47,7 +47,7 @@ public interface CanLocaleForCurrencyCodeTesting extends TreePrintableTesting {
 
     default void localeForCurrencyCodeAndCheck(final CanLocaleForCurrencyCode can,
                                                final String currencyCode,
-                                               final Optional<Currency> expected) {
+                                               final Optional<Locale> expected) {
         this.checkEquals(
             expected,
             can.localeForCurrencyCode(currencyCode)
