@@ -20,6 +20,9 @@ package walkingkooka.currency;
 import java.util.Currency;
 import java.util.Optional;
 
+/**
+ * Supports querying the {@link Currency} for a given {@link String currencyCode}
+ */
 public interface CanCurrencyForCurrencyCode {
 
     /**
