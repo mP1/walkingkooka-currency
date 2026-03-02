@@ -23,16 +23,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface CanLocaleForCurrencyCodeTesting2<C extends CanLocaleForCurrencyCode> extends CanLocaleForCurrencyCodeTesting {
 
-    // localeForCurrencyCode............................................................................................
+    // localesForCurrencyCode...........................................................................................
 
     @Test
-    default void testLocaleForCurrencyCodeWithNullFails() {
+    default void testLocalesForCurrencyCodeWithNullFails() {
         assertThrows(
             NullPointerException.class,
-            () -> this.createCanLocaleForCurrencyCode()
-                .localeForCurrencyCode(null)
+            () -> this.createCanLocalesForCurrencyCode()
+                .localesForCurrencyCode(null)
         );
     }
 
-    C createCanLocaleForCurrencyCode();
+    C createCanLocalesForCurrencyCode();
 }

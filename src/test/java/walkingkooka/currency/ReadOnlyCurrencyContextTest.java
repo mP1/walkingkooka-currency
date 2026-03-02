@@ -80,8 +80,8 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
     }
 
     @Test
-    public void testLocaleForCurrencyCode() {
-        this.localeForCurrencyCodeAndCheck(
+    public void testLocalesForCurrencyCode() {
+        this.localesForCurrencyCodeAndCheck(
             this.createContext(),
             "AUD",
             LOCALE
@@ -132,14 +132,12 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
             }
 
             @Override
-            public Optional<Locale> localeForCurrencyCode(final String currencyCode) {
+            public Set<Locale> localesForCurrencyCode(final String currencyCode) {
                 Objects.requireNonNull(currencyCode, "currencyCode");
 
-                return Optional.ofNullable(
-                    currencyCode.equalsIgnoreCase("AUD") ?
-                        LOCALE :
-                        null
-                );
+                return currencyCode.equalsIgnoreCase("AUD") ?
+                        Sets.of(LOCALE) :
+                        Sets.empty();
             }
 
             @Override

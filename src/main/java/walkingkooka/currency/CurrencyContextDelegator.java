@@ -62,9 +62,9 @@ public interface CurrencyContextDelegator extends CurrencyContext {
     }
 
     @Override
-    default Optional<Locale> localeForCurrencyCode(final String currencyCode) {
+    default Set<Locale> localesForCurrencyCode(final String currencyCode) {
         return this.currencyContext()
-            .localeForCurrencyCode(currencyCode);
+            .localesForCurrencyCode(currencyCode);
     }
 
     @Override
