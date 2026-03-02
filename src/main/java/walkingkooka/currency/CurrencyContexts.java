@@ -17,9 +17,9 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.locale.LocaleContext;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.text.CaseSensitivity;
-import walkingkooka.util.HasLocale;
 
 import java.util.Comparator;
 import java.util.Currency;
@@ -51,11 +51,11 @@ public final class CurrencyContexts implements PublicStaticHelper {
      */
     public static CurrencyContext jre(final Currency currency,
                                       final BiFunction<Currency, Currency, Number> exchangeRates,
-                                      final HasLocale hasLocale) {
+                                      final LocaleContext localeContext) {
         return JreCurrencyContext.with(
             currency,
             exchangeRates,
-            hasLocale
+            localeContext
         );
     }
 

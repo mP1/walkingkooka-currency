@@ -60,6 +60,11 @@ public class FakeCurrencyContext implements CurrencyContext {
     }
 
     @Override
+    public Optional<Locale> localeForCurrencyCode(final String currencyCode) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public Set<Currency> findByCurrencyText(final String text,
                                             final int offset,
                                             final int count) {
