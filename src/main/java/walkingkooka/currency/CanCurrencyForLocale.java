@@ -21,6 +21,9 @@ import java.util.Currency;
 import java.util.Locale;
 import java.util.Optional;
 
+/**
+ * Supports querying the {@link Currency} for a given {@link Locale locale}
+ */
 public interface CanCurrencyForLocale {
 
     /**
