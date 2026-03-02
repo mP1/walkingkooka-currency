@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public interface CurrencyContextTesting2<C extends CurrencyContext> extends CurrencyContextTesting,
     CanCurrencyForCurrencyCodeTesting2<C>,
     CanCurrencyForLocaleTesting2<C>,
-    CanLocaleForCurrencyCodeTesting2<C>,
+    CanLocalesForCurrencyCodeTesting2<C>,
     ContextTesting<C> {
 
     // setCurrency......................................................................................................

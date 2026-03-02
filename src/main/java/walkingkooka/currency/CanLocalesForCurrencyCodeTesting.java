@@ -24,11 +24,11 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Set;
 
-public interface CanLocaleForCurrencyCodeTesting extends TreePrintableTesting {
+public interface CanLocalesForCurrencyCodeTesting extends TreePrintableTesting {
 
     // localeForCurrencyCode............................................................................................
 
-    default void localesForCurrencyCodeAndCheck(final CanLocaleForCurrencyCode can,
+    default void localesForCurrencyCodeAndCheck(final CanLocalesForCurrencyCode can,
                                                 final String currencyCode,
                                                 final String expected) {
         this.localesForCurrencyCodeAndCheck(
@@ -40,7 +40,7 @@ public interface CanLocaleForCurrencyCodeTesting extends TreePrintableTesting {
         );
     }
 
-    default void localesForCurrencyCodeAndCheck(final CanLocaleForCurrencyCode can,
+    default void localesForCurrencyCodeAndCheck(final CanLocalesForCurrencyCode can,
                                                 final String currencyCode,
                                                 final Locale...expected) {
         this.localesForCurrencyCodeAndCheck(
@@ -50,7 +50,7 @@ public interface CanLocaleForCurrencyCodeTesting extends TreePrintableTesting {
         );
     }
 
-    default void localesForCurrencyCodeAndCheck(final CanLocaleForCurrencyCode can,
+    default void localesForCurrencyCodeAndCheck(final CanLocalesForCurrencyCode can,
                                                 final String currencyCode,
                                                 final Set<Locale> expected) {
         this.checkEquals(

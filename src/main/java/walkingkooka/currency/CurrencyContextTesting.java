@@ -28,7 +28,7 @@ import java.util.Set;
 
 public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTesting,
     CanCurrencyForLocaleTesting,
-    CanLocaleForCurrencyCodeTesting,
+    CanLocalesForCurrencyCodeTesting,
     HasCurrencyTesting,
     TreePrintableTesting {
 
