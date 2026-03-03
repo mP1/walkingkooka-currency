@@ -20,5 +20,6 @@ package walkingkooka.currency;
 import walkingkooka.locale.LocaleContextTesting;
 
 public interface CurrencyLocaleContextTesting extends CurrencyContextTesting,
-    LocaleContextTesting {
+    LocaleContextTesting,
+    CurrencyCodeLanguageTagContextTesting {
 }

@@ -20,7 +20,18 @@ package walkingkooka.currency;
 import walkingkooka.locale.LocaleContextTesting2;
 
 public interface CurrencyLocaleContextTesting2<C extends CurrencyLocaleContext> extends CurrencyContextTesting2<C>,
-    LocaleContextTesting2<C> {
+    LocaleContextTesting2<C>,
+    CurrencyCodeLanguageTagContextTesting2<C> {
+
+    @Override
+    default C createCanCurrencyForCurrencyCode() {
+        return this.createContext();
+    }
+
+    @Override
+    default C createCanLocaleForLanguageTag() {
+        return this.createContext();
+    }
 
     @Override
     default String typeNameSuffix() {
