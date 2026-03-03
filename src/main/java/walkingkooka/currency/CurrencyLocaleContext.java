@@ -23,5 +23,6 @@ import walkingkooka.locale.LocaleContext;
  * Combines a {@link CurrencyContext} and {@link walkingkooka.locale.LocaleContext} into a one.
  */
 public interface CurrencyLocaleContext extends CurrencyContext,
-    LocaleContext {
+    LocaleContext,
+    CurrencyCodeLanguageTagContext{
 }
