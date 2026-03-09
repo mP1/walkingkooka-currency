@@ -20,6 +20,7 @@ package walkingkooka.currency;
 import org.junit.jupiter.api.Test;
 
 import java.util.Currency;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -34,7 +35,8 @@ public interface CanCurrencyExchangeRateTesting2<C extends CanCurrencyExchangeRa
             () -> this.createCanCurrencyExchangeRate()
                 .exchangeRate(
                     null,
-                    Currency.getInstance("NZD")
+                    Currency.getInstance("NZD"),
+                    Optional.empty() // dateTime
                 )
         );
     }
@@ -46,7 +48,21 @@ public interface CanCurrencyExchangeRateTesting2<C extends CanCurrencyExchangeRa
             () -> this.createCanCurrencyExchangeRate()
                 .exchangeRate(
                     Currency.getInstance("AUD"),
-                    null
+                    null,
+                    Optional.empty() // dateTime
+                )
+        );
+    }
+
+    @Test
+    default void testExchangeRateWithNullDateTimeFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createCanCurrencyExchangeRate()
+                .exchangeRate(
+                    Currency.getInstance("AUD"),
+                    Currency.getInstance("NZD"),
+                    null // dateTime
                 )
         );
     }

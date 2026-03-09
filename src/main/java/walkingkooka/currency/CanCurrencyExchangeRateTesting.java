@@ -19,21 +19,25 @@ package walkingkooka.currency;
 
 import walkingkooka.text.printer.TreePrintableTesting;
 
+import java.time.LocalDateTime;
 import java.util.Currency;
+import java.util.Optional;
 
 public interface CanCurrencyExchangeRateTesting extends TreePrintableTesting {
 
     default void exchangeRateAndCheck(final CanCurrencyExchangeRate can,
                                       final Currency from,
                                       final Currency to,
+                                      final Optional<LocalDateTime> dateTime,
                                       final Number expected) {
         this.checkEquals(
             expected,
             can.exchangeRate(
                 from,
-                to
+                to,
+                dateTime
             ),
-            "exchangeRate " + from.getCurrencyCode() + " to " + to.getCurrencyCode()
+            "exchangeRate " + from.getCurrencyCode() + " to " + to.getCurrencyCode() + " " + dateTime.map(Object::toString)
         );
     }
 }
