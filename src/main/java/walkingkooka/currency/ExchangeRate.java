@@ -17,6 +17,7 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.props.HasProperties;
 import walkingkooka.props.Properties;
 import walkingkooka.props.PropertiesPath;
 import walkingkooka.text.CharSequences;
@@ -33,7 +34,8 @@ import java.util.function.BiFunction;
  * AUD-NZD=1.1
  * </pre>
  */
-public final class ExchangeRate implements CanCurrencyExchangeRate {
+public final class ExchangeRate implements CanCurrencyExchangeRate,
+    HasProperties {
 
     public static ExchangeRate fromProperties(final Properties properties,
                                               final BiFunction<String, Boolean, Number> numberParser) {
@@ -51,6 +53,13 @@ public final class ExchangeRate implements CanCurrencyExchangeRate {
     }
 
     private final Properties properties;
+
+    // HasProperties....................................................................................................
+
+    @Override
+    public Properties properties() {
+        return this.properties;
+    }
 
     // CanCurrencyExchangeRate..........................................................................................
 

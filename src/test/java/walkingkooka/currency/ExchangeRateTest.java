@@ -20,6 +20,7 @@ package walkingkooka.currency;
 import org.junit.jupiter.api.Test;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.ToStringTesting;
+import walkingkooka.props.HasPropertiesTesting;
 import walkingkooka.props.Properties;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
@@ -31,6 +32,7 @@ import java.util.function.BiFunction;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class ExchangeRateTest implements CanCurrencyExchangeRateTesting2<ExchangeRate>,
+    HasPropertiesTesting,
     HashCodeEqualsDefinedTesting2<ExchangeRate>,
     ToStringTesting<ExchangeRate>,
     ClassTesting<ExchangeRate> {
@@ -69,6 +71,16 @@ public final class ExchangeRateTest implements CanCurrencyExchangeRateTesting2<E
                 Properties.EMPTY,
                 null
             )
+        );
+    }
+
+    // HasProperties....................................................................................................
+
+    @Test
+    public void testProperties() {
+        this.propertiesAndCheck(
+            this.createCanCurrencyExchangeRate(),
+            PROPERTIES
         );
     }
 
