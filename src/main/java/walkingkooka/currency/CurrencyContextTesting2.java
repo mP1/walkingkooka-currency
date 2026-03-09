@@ -26,6 +26,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface CurrencyContextTesting2<C extends CurrencyContext> extends CurrencyContextTesting,
+    CanCurrencyExchangeRateTesting2<C>,
     CanCurrencyForCurrencyCodeTesting2<C>,
     CanCurrencyForLocaleTesting2<C>,
     CanLocalesForCurrencyCodeTesting2<C>,
@@ -133,6 +134,11 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
                     null
                 )
         );
+    }
+
+    @Override
+    default C createCanCurrencyExchangeRate() {
+        return this.createContext();
     }
 
     @Override

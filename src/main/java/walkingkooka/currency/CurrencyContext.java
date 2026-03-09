@@ -29,6 +29,7 @@ import java.util.Set;
  * A {@link Context} with some {@link Currency} operations.
  */
 public interface CurrencyContext extends Context,
+    CanCurrencyExchangeRate,
     CanCurrencyForCurrencyCode,
     CanCurrencyForLocale,
     CanLocalesForCurrencyCode,
