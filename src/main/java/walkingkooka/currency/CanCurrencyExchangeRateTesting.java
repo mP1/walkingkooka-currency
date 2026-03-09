@@ -28,6 +28,33 @@ public interface CanCurrencyExchangeRateTesting extends TreePrintableTesting {
     default void exchangeRateAndCheck(final CanCurrencyExchangeRate can,
                                       final Currency from,
                                       final Currency to,
+                                      final Number expected) {
+        this.exchangeRateAndCheck(
+            can,
+            from,
+            to,
+            Optional.empty(),
+            expected
+        );
+    }
+
+    default void exchangeRateAndCheck(final CanCurrencyExchangeRate can,
+                                      final Currency from,
+                                      final Currency to,
+                                      final LocalDateTime dateTime,
+                                      final Number expected) {
+        this.exchangeRateAndCheck(
+            can,
+            from,
+            to,
+            Optional.of(dateTime),
+            expected
+        );
+    }
+
+    default void exchangeRateAndCheck(final CanCurrencyExchangeRate can,
+                                      final Currency from,
+                                      final Currency to,
                                       final Optional<LocalDateTime> dateTime,
                                       final Number expected) {
         this.checkEquals(
