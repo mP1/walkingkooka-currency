@@ -25,9 +25,11 @@ import walkingkooka.locale.LocaleContexts;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 
+import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -45,9 +47,10 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
         Currency.getInstance(
             LOCALE_CONTEXT.locale()
         ),
-        (Currency from, Currency to) -> {
+        (Currency from, Currency to, Optional<LocalDateTime> dateTime) -> {
             Objects.requireNonNull(from, "from");
             Objects.requireNonNull(to, "to");
+            Objects.requireNonNull(dateTime, "dateTime");
 
             return 2;
         },

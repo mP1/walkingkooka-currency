@@ -24,7 +24,8 @@ import walkingkooka.locale.LocaleContexts;
 import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Locale;
-import java.util.function.BiFunction;
+import java.util.Objects;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -32,7 +33,13 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
 
     private final static Currency CURRENCY = Currency.getInstance("AUD");
 
-    private final static BiFunction<Currency, Currency, Number> EXCHANGE = (f, t) -> 2;
+    private final static CanCurrencyExchangeRate EXCHANGE = (Currency from, Currency to, Optional<LocalDateTime> dateTime) -> {
+        Objects.requireNonNull(from, "from");
+        Objects.requireNonNull(to, "to");
+        Objects.requireNonNull(dateTime, "dateTime");
+
+        return 2;
+    };
 
     private final static LocaleContext LOCALE_CONTEXT = LocaleContexts.jre(
         Locale.forLanguageTag("en-AU")

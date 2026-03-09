@@ -23,9 +23,11 @@ import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
 import walkingkooka.locale.LocaleContexts;
 
+import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 
 public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleContextTesting2<TestCurrencyLocaleContext> {
 
@@ -58,11 +60,12 @@ public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleCo
         public CurrencyContext currencyContext() {
             return CurrencyContexts.jre(
                 Currency.getInstance("AUD"),
-                (Currency from, Currency to) -> {
+                (Currency from, Currency to, Optional<LocalDateTime> dateTime) -> {
                     Objects.requireNonNull(from, "from");
                     Objects.requireNonNull(to, "to");
+                    Objects.requireNonNull(dateTime, "dateTime");
 
-                    throw new UnsupportedOperationException();
+                    return 2;
                 },
                 this.localeContext()
             );
