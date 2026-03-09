@@ -32,12 +32,11 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.SortedSet;
-import java.util.function.BiFunction;
 
 final class JreCurrencyContext implements CurrencyContext {
 
     static JreCurrencyContext with(final Currency currency,
-                                   final BiFunction<Currency, Currency, Number> exchangeRates,
+                                   final CanCurrencyExchangeRate exchangeRates,
                                    final LocaleContext localeContext) {
         return new JreCurrencyContext(
             Objects.requireNonNull(currency, "currency"),
@@ -47,7 +46,7 @@ final class JreCurrencyContext implements CurrencyContext {
     }
 
     private JreCurrencyContext(final Currency currency,
-                               final BiFunction<Currency, Currency, Number> exchangeRates,
+                               final CanCurrencyExchangeRate exchangeRates,
                                final LocaleContext localeContext) {
         this.currency = currency;
         this.exchangeRates = exchangeRates;
@@ -210,14 +209,14 @@ final class JreCurrencyContext implements CurrencyContext {
     public Number exchangeRate(final Currency from,
                                final Currency to,
                                final Optional<LocalDateTime> dateTime) {
-        Objects.requireNonNull(from, "from");
-        Objects.requireNonNull(to, "to");
-        Objects.requireNonNull(dateTime, "dateTime");
-
-        return this.exchangeRates.apply(from, to);
+        return this.exchangeRates.exchangeRate(
+            from,
+            to,
+            dateTime
+        );
     }
 
-    private final BiFunction<Currency, Currency, Number> exchangeRates;
+    private final CanCurrencyExchangeRate exchangeRates;
 
     @Override
     public String toString() {

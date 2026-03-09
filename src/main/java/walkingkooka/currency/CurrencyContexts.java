@@ -24,7 +24,6 @@ import walkingkooka.text.CaseSensitivity;
 import java.util.Comparator;
 import java.util.Currency;
 import java.util.Locale;
-import java.util.function.BiFunction;
 
 public final class CurrencyContexts implements PublicStaticHelper {
 
@@ -50,7 +49,7 @@ public final class CurrencyContexts implements PublicStaticHelper {
      * {@see JreCurrencyContext}
      */
     public static CurrencyContext jre(final Currency currency,
-                                      final BiFunction<Currency, Currency, Number> exchangeRates,
+                                      final CanCurrencyExchangeRate exchangeRates,
                                       final LocaleContext localeContext) {
         return JreCurrencyContext.with(
             currency,
