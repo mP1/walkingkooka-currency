@@ -20,7 +20,6 @@ package walkingkooka.currency;
 import walkingkooka.Context;
 import walkingkooka.locale.LocaleContext;
 
-import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Optional;
 import java.util.Set;
@@ -57,13 +56,6 @@ public interface CurrencyContext extends Context,
     Set<Currency> findByCurrencyText(final String text,
                                      final int offset,
                                      final int count);
-
-    /**
-     * Queries the exchange rate between the two currencies at the given {@link LocalDateTime}.
-     */
-    Number exchangeRate(final Currency from,
-                        final Currency to,
-                        final Optional<LocalDateTime> dateTime);
 
     /**
      * Helper that returns a {@link CurrencyLocaleContext} combining this {@link CurrencyContext} and the given {@link LocaleContext}.
