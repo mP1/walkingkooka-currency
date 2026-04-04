@@ -17,6 +17,8 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.locale.LocaleLanguageTag;
+
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Optional;
@@ -30,7 +32,7 @@ public interface CurrencyCodeLanguageTagContextDelegator extends CurrencyCodeLan
     }
 
     @Override
-    default Optional<Locale> localeForLanguageTag(final String languageTag) {
+    default Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
         return this.currencyCodeLanguageTagContext()
             .localeForLanguageTag(languageTag);
     }

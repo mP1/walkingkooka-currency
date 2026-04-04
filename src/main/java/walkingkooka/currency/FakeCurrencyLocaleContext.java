@@ -18,6 +18,7 @@
 package walkingkooka.currency;
 
 import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberSymbols;
 
 import java.util.Locale;
@@ -55,7 +56,7 @@ public class FakeCurrencyLocaleContext extends FakeCurrencyContext implements Cu
     }
 
     @Override
-    public Optional<Locale> localeForLanguageTag(final String languageTag) {
+    public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
         throw new UnsupportedOperationException();
     }
 
