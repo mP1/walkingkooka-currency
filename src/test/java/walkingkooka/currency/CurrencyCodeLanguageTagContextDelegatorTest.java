@@ -18,6 +18,7 @@
 package walkingkooka.currency;
 
 import walkingkooka.currency.CurrencyCodeLanguageTagContextDelegatorTest.TestCurrencyCodeLanguageTagContextDelegator;
+import walkingkooka.locale.LocaleLanguageTag;
 
 import java.util.Currency;
 import java.util.Locale;
@@ -61,7 +62,7 @@ public final class CurrencyCodeLanguageTagContextDelegatorTest implements Curren
         }
 
         @Override
-        public Optional<Locale> localeForLanguageTag(final String languageTag) {
+        public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
             Objects.requireNonNull(languageTag, "languageTag");
             throw new UnsupportedOperationException();
         }
