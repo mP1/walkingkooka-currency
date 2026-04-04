@@ -28,12 +28,12 @@ public interface CanCurrencyForCurrencyCode {
     /**
      * Returns the available {@link Currency} for the given code.
      */
-    Optional<Currency> currencyForCurrencyCode(final String currencyCode);
+    Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode);
 
     /**
      * If the currency code is unknown or invalid an {@link IllegalArgumentException} will be thrown.
      */
-    default Currency currencyForCurrencyCodeOrFail(final String currencyCode) {
+    default Currency currencyForCurrencyCodeOrFail(final CurrencyCode currencyCode) {
         return this.currencyForCurrencyCode(currencyCode)
             .orElseThrow(() -> new MissingCurrencyException(currencyCode));
     }

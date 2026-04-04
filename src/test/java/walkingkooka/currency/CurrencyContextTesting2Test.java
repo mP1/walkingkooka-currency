@@ -59,7 +59,7 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
         }
 
         @Override
-        public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+        public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
             Objects.requireNonNull(currencyCode, "currencyCode");
 
             return Optional.of(

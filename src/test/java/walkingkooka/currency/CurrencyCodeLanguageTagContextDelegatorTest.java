@@ -55,7 +55,7 @@ public final class CurrencyCodeLanguageTagContextDelegatorTest implements Curren
 
     static final class TestCurrencyCodeLanguageTagContext implements CurrencyCodeLanguageTagContext {
         @Override
-        public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+        public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
             Objects.requireNonNull(currencyCode, "currencyCode");
             throw new UnsupportedOperationException();
         }

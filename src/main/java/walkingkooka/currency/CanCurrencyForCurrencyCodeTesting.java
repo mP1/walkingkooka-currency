@@ -27,7 +27,7 @@ public interface CanCurrencyForCurrencyCodeTesting extends TreePrintableTesting 
     // currencyForCurrencyCode..........................................................................................
 
     default void currencyForCurrencyCodeAndCheck(final CanCurrencyForCurrencyCode can,
-                                                 final String currencyCode) {
+                                                 final CurrencyCode currencyCode) {
         this.currencyForCurrencyCodeAndCheck(
             can,
             currencyCode,
@@ -36,7 +36,7 @@ public interface CanCurrencyForCurrencyCodeTesting extends TreePrintableTesting 
     }
 
     default void currencyForCurrencyCodeAndCheck(final CanCurrencyForCurrencyCode can,
-                                                 final String currencyCode,
+                                                 final CurrencyCode currencyCode,
                                                  final Currency expected) {
         this.currencyForCurrencyCodeAndCheck(
             can,
@@ -46,7 +46,7 @@ public interface CanCurrencyForCurrencyCodeTesting extends TreePrintableTesting 
     }
 
     default void currencyForCurrencyCodeAndCheck(final CanCurrencyForCurrencyCode can,
-                                                 final String currencyCode,
+                                                 final CurrencyCode currencyCode,
                                                  final Optional<Currency> expected) {
         this.checkEquals(
             expected,

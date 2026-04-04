@@ -82,12 +82,14 @@ final class JreCurrencyContext implements CurrencyContext {
     private Set<Currency> availableCurrencies;
 
     @Override
-    public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+    public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
         Objects.requireNonNull(currencyCode, "currencyCode");
 
         Currency currency;
         try {
-            currency = Currency.getInstance(currencyCode);
+            currency = Currency.getInstance(
+                currencyCode.value()
+            );
         } catch (final RuntimeException exception) {
             currency = null;
         }

@@ -107,7 +107,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     public void testCurrencyForCurrencyCode() {
         this.currencyForCurrencyCodeAndCheck(
             this.createContext(),
-            "AUD",
+            CurrencyCode.fromCurrency(CURRENCY),
             CURRENCY
         );
     }
@@ -116,7 +116,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     public void testCurrencyForUnknownCurrencyCode() {
         this.currencyForCurrencyCodeAndCheck(
             this.createContext(),
-            "BAD!!"
+            CurrencyCode.parse("BAD")
         );
     }
 

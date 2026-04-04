@@ -37,7 +37,8 @@ public class MissingCurrencyExceptionTest implements ThrowableTesting2<MissingCu
 
     @Test
     public void testWith() {
-        final String currencyCode = "AUD";
+        final CurrencyCode currencyCode = CurrencyCode.parse("AUD");
+
         this.checkEquals(
             currencyCode,
             new MissingCurrencyException(currencyCode)
@@ -50,7 +51,9 @@ public class MissingCurrencyExceptionTest implements ThrowableTesting2<MissingCu
     @Test
     public void testGetMessage() {
         this.checkMessage(
-            new MissingCurrencyException("AUD"),
+            new MissingCurrencyException(
+                CurrencyCode.parse("AUD")
+            ),
             "Missing currency code \"AUD\""
         );
     }
