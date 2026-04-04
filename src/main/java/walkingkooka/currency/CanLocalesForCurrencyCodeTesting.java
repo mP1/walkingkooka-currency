@@ -29,7 +29,7 @@ public interface CanLocalesForCurrencyCodeTesting extends TreePrintableTesting {
     // localeForCurrencyCode............................................................................................
 
     default void localesForCurrencyCodeAndCheck(final CanLocalesForCurrencyCode can,
-                                                final String currencyCode,
+                                                final CurrencyCode currencyCode,
                                                 final String expected) {
         this.localesForCurrencyCodeAndCheck(
             can,
@@ -41,7 +41,7 @@ public interface CanLocalesForCurrencyCodeTesting extends TreePrintableTesting {
     }
 
     default void localesForCurrencyCodeAndCheck(final CanLocalesForCurrencyCode can,
-                                                final String currencyCode,
+                                                final CurrencyCode currencyCode,
                                                 final Locale...expected) {
         this.localesForCurrencyCodeAndCheck(
             can,
@@ -51,7 +51,7 @@ public interface CanLocalesForCurrencyCodeTesting extends TreePrintableTesting {
     }
 
     default void localesForCurrencyCodeAndCheck(final CanLocalesForCurrencyCode can,
-                                                final String currencyCode,
+                                                final CurrencyCode currencyCode,
                                                 final Set<Locale> expected) {
         this.checkEquals(
             expected,

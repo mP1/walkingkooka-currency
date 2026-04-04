@@ -131,7 +131,7 @@ final class JreCurrencyContext implements CurrencyContext {
     }
 
     @Override
-    public Set<Locale> localesForCurrencyCode(final String currencyCode) {
+    public Set<Locale> localesForCurrencyCode(final CurrencyCode currencyCode) {
         Objects.requireNonNull(currencyCode, "currencyCode");
 
         if (null == this.currencyCodeToLocales) {
@@ -166,7 +166,9 @@ final class JreCurrencyContext implements CurrencyContext {
             this.currencyCodeToLocales = currencyCodeToLocales;
         }
 
-        Set<Locale> locales = this.currencyCodeToLocales.get(currencyCode);
+        Set<Locale> locales = this.currencyCodeToLocales.get(
+            currencyCode.value()
+        );
         if (null == locales) {
             locales = Sets.empty();
         }
