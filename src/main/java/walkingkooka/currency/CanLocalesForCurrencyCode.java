@@ -28,5 +28,5 @@ public interface CanLocalesForCurrencyCode {
     /**
      * Returns the available {@link Locale} for the given code. Not all currency codes have a single {@link Locale}, eg EURO.
      */
-    Set<Locale> localesForCurrencyCode(final String currencyCode);
+    Set<Locale> localesForCurrencyCode(final CurrencyCode currencyCode);
 }

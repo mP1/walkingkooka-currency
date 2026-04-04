@@ -45,7 +45,7 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
     public void testLocalesForCurrencyCode() {
         this.localesForCurrencyCodeAndCheck(
             this.createContext(),
-            "AUD",
+            CurrencyCode.parse("AUD"),
             Locale.forLanguageTag("en-AU")
         );
     }
@@ -123,10 +123,10 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
         }
 
         @Override
-        public Set<Locale> localesForCurrencyCode(final String currencyCode) {
+        public Set<Locale> localesForCurrencyCode(final CurrencyCode currencyCode) {
             Objects.requireNonNull(currencyCode, "currencyCode");
 
-            return currencyCode.equalsIgnoreCase("AUD") ?
+            return currencyCode.value().equalsIgnoreCase("AUD") ?
                 Sets.of(
                     Locale.forLanguageTag("en-AU")
                 ) :

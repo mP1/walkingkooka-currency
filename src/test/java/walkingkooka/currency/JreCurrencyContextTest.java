@@ -150,7 +150,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     public void testLocalesForCurrencyCode() {
         this.localesForCurrencyCodeAndCheck(
             this.createContext(),
-            "CAD",
+            CurrencyCode.parse("CAD"),
             "en-CA, fr-CA"
         );
     }
@@ -159,7 +159,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     public void testLocalesForCurrencyCodeWithMany() {
         this.localesForCurrencyCodeAndCheck(
             this.createContext(),
-            "AUD",
+            CurrencyCode.parse("AUD"),
             "en-CX, en-AU, en-NR, en-CC, en-TV, en-KI, en-NF"
         );
     }
@@ -168,7 +168,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     public void testLocalesForCurrencyCodeWithUnknownCurrencyCode() {
         this.localesForCurrencyCodeAndCheck(
             this.createContext(),
-            "ZZZ"
+            CurrencyCode.parse("ZZZ")
         );
     }
 
