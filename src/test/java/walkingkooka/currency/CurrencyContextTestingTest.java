@@ -91,13 +91,17 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
         this.currencyForCurrencyCodeAndCheck(
             new FakeCurrencyContext() {
                 @Override
-                public Optional<Currency> currencyForCurrencyCode(final String c) {
-                    checkEquals(currency.getCurrencyCode(), c, "currencyCode");
+                public Optional<Currency> currencyForCurrencyCode(final CurrencyCode c) {
+                    checkEquals(
+                        currency.getCurrencyCode(),
+                        c.value(),
+                        "currencyCode"
+                    );
 
                     return Optional.of(currency);
                 }
             },
-            currency.getCurrencyCode(),
+            CurrencyCode.fromCurrency(currency),
             currency
         );
     }

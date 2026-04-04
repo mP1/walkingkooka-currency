@@ -56,7 +56,7 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
     public void testCurrencyForCurrencyCode() {
         this.currencyForCurrencyCodeAndCheck(
             this.createContext(),
-            CURRENCY.getCurrencyCode(),
+            CurrencyCode.fromCurrency(CURRENCY),
             CURRENCY
         );
     }
@@ -105,11 +105,13 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
             new FakeCurrencyContext() {
 
             @Override
-            public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+            public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
                 Objects.requireNonNull(currencyCode, "currencyCode");
 
                 return Optional.of(
-                    Currency.getInstance(currencyCode)
+                    Currency.getInstance(
+                        currencyCode.value()
+                    )
                 );
             }
 

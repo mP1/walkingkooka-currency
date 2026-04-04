@@ -22,27 +22,28 @@ import walkingkooka.text.CharSequences;
 import java.util.Objects;
 
 /**
- * The exception that should be thrown when a {@link String} currency code is not found by all {@link CanCurrencyForCurrencyCode}.
+ * The exception that should be thrown when a {@link CurrencyCode} currency code is not found by all {@link CanCurrencyForCurrencyCode}.
  */
 public final class MissingCurrencyException extends IllegalArgumentException {
 
     private static final long serialVersionUID = 1L;
 
-    public MissingCurrencyException(final String currencyCode) {
+    public MissingCurrencyException(final CurrencyCode currencyCode) {
         super(
             "Missing currency code " +
                 CharSequences.quoteAndEscape(
                     Objects.requireNonNull(currencyCode, "currencyCode")
+                        .value()
                 )
         );
         this.currencyCode = currencyCode;
     }
 
-    public String currencyCode() {
+    public CurrencyCode currencyCode() {
         return this.currencyCode;
     }
 
-    private final String currencyCode;
+    private final CurrencyCode currencyCode;
 
     // hashCode/equals..................................................................................................
 
