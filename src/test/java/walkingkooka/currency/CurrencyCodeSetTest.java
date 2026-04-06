@@ -22,7 +22,7 @@ import walkingkooka.collect.set.ImmutableSortedSetTesting;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.test.ParseStringTesting;
-import walkingkooka.text.HasTextTesting;
+import walkingkooka.text.HasTextWithSeparatorTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Currency;
@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<CurrencyCodeSet, CurrencyCode>,
-    HasTextTesting,
+    HasTextWithSeparatorTesting,
     ParseStringTesting<CurrencyCodeSet>,
     TreePrintableTesting {
 
@@ -192,7 +192,7 @@ public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<Curr
         );
     }
 
-    // HasText..........................................................................................................
+    // HasTextWithSeparator.............................................................................................
 
     @Test
     public void testTextWhenEmpty() {
@@ -207,6 +207,15 @@ public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<Curr
         this.textAndCheck(
             this.createSet(),
             "AUD,NZD"
+        );
+    }
+
+    @Test
+    public void testTextWithSeparatorNotCommaWhenNotEmpty() {
+        this.textWithSeparatorAndCheck(
+            this.createSet(),
+            ';',
+            "AUD;NZD"
         );
     }
 
