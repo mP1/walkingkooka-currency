@@ -5,6 +5,7 @@ import walkingkooka.compare.ComparableTesting2;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.test.ParseStringTesting;
+import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Currency;
 
@@ -12,7 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyCodeTest implements ComparableTesting2<CurrencyCode>,
     ClassTesting2<CurrencyCode>,
-    ParseStringTesting<CurrencyCode> {
+    ParseStringTesting<CurrencyCode>,
+    TreePrintableTesting {
 
     private final static Currency CURRENCY = Currency.getInstance("AUD");
 
@@ -77,6 +79,16 @@ public final class CurrencyCodeTest implements ComparableTesting2<CurrencyCode>,
     @Override
     public CurrencyCode createComparable() {
         return CurrencyCode.fromCurrency(CURRENCY);
+    }
+
+    // TreePrintable....................................................................................................
+
+    @Test
+    public void testPrintTree() {
+        this.treePrintAndCheck(
+            this.createObject(),
+            "AUD\n"
+        );
     }
 
     // class............................................................................................................
