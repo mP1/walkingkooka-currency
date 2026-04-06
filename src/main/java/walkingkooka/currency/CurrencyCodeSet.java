@@ -22,6 +22,7 @@ import walkingkooka.collect.set.ImmutableSortedSetDefaults;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.text.CharacterConstant;
+import walkingkooka.text.HasText;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
 
@@ -40,6 +41,7 @@ import java.util.TreeSet;
  */
 public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
     implements ImmutableSortedSetDefaults<CurrencyCodeSet, CurrencyCode>,
+    HasText,
     TreePrintable {
 
     /**
@@ -179,6 +181,21 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
     public void elementCheck(final CurrencyCode locale) {
         Objects.requireNonNull(locale, "locale");
     }
+
+    // HasText....................................................................................................
+
+    @Override
+    public String text() {
+        if (null == this.text) {
+            this.text = SEPARATOR.toSeparatedString(
+                this,
+                CurrencyCode::value
+            );
+        }
+        return this.text;
+    }
+
+    private String text;
 
     // TreePrintable....................................................................................................
 
