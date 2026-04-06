@@ -182,7 +182,7 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
         Objects.requireNonNull(locale, "locale");
     }
 
-    // HasText....................................................................................................
+    // HasText..........................................................................................................
 
     @Override
     public String text() {
