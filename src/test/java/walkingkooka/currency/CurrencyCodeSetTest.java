@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.set.ImmutableSortedSetTesting;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
+import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.HasTextTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
 
@@ -34,6 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<CurrencyCodeSet, CurrencyCode>,
     HasTextTesting,
+    ParseStringTesting<CurrencyCodeSet>,
     TreePrintableTesting {
 
     private final static CurrencyCode AUD = CurrencyCode.fromCurrency(
@@ -206,6 +208,52 @@ public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<Curr
             this.createSet(),
             "AUD,NZD"
         );
+    }
+
+    // parse............................................................................................................
+
+    @Override
+    public void testParseStringEmptyFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Test
+    public void testParseEmpty() {
+        this.parseStringAndCheck(
+            "",
+            CurrencyCodeSet.EMPTY
+        );
+    }
+
+    @Test
+    public void testParse() {
+        this.parseStringAndCheck(
+            "AUD,NZD",
+            this.createSet()
+        );
+    }
+
+    @Test
+    public void testParseWhitespaceIgnored() {
+        this.parseStringAndCheck(
+            " AUD , NZD ",
+            this.createSet()
+        );
+    }
+
+    @Override
+    public CurrencyCodeSet parseString(final String text) {
+        return CurrencyCodeSet.parse(text);
+    }
+
+    @Override
+    public Class<? extends RuntimeException> parseStringFailedExpected(final Class<? extends RuntimeException> thrown) {
+        return thrown;
+    }
+
+    @Override
+    public RuntimeException parseStringFailedExpected(final RuntimeException thrown) {
+        return thrown;
     }
 
     // TreePrintable....................................................................................................
