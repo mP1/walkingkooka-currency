@@ -22,6 +22,7 @@ import walkingkooka.collect.set.ImmutableSortedSetDefaults;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.text.CharacterConstant;
+import walkingkooka.text.Csv;
 import walkingkooka.text.HasText;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
@@ -180,6 +181,23 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
     @Override
     public void elementCheck(final CurrencyCode locale) {
         Objects.requireNonNull(locale, "locale");
+    }
+
+    // parse............................................................................................................
+
+    public static CurrencyCodeSet parse(final String text) {
+        final SortedSet<CurrencyCode> currencyCodes = SortedSets.tree();
+
+        Csv.parse(
+            text,
+            (final String currencyCode) -> currencyCodes.add(
+                CurrencyCode.parse(
+                    currencyCode.trim()
+                )
+            )
+        );
+
+        return withCopy(currencyCodes);
     }
 
     // HasText..........................................................................................................
