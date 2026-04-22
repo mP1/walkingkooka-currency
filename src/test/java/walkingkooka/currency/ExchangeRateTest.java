@@ -30,7 +30,7 @@ import java.util.function.BiFunction;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ExchangeRateTest implements CanCurrencyExchangeRateTesting2<ExchangeRate>,
+public final class ExchangeRateTest implements CurrencyExchangeRaterTesting2<ExchangeRate>,
     HasPropertiesTesting,
     HashCodeEqualsDefinedTesting2<ExchangeRate>,
     ToStringTesting<ExchangeRate>,
@@ -78,7 +78,7 @@ public final class ExchangeRateTest implements CanCurrencyExchangeRateTesting2<E
     @Test
     public void testProperties() {
         this.propertiesAndCheck(
-            this.createCanCurrencyExchangeRate(),
+            this.createCurrencyExchangeRater(),
             PROPERTIES
         );
     }
@@ -88,7 +88,7 @@ public final class ExchangeRateTest implements CanCurrencyExchangeRateTesting2<E
     @Test
     public void testExchangeRate() {
         this.exchangeRateAndCheck(
-            this.createCanCurrencyExchangeRate(),
+            this.createCurrencyExchangeRater(),
             CurrencyCode.parse("AUD"),
             CurrencyCode.parse("NZD"),
             new BigDecimal("1.1")
@@ -98,7 +98,7 @@ public final class ExchangeRateTest implements CanCurrencyExchangeRateTesting2<E
     @Test
     public void testExchangeRateInverted() {
         this.exchangeRateAndCheck(
-            this.createCanCurrencyExchangeRate(),
+            this.createCurrencyExchangeRater(),
             CurrencyCode.parse("NZD"),
             CurrencyCode.parse("AUD"),
             new BigDecimal("0.91")
@@ -106,7 +106,7 @@ public final class ExchangeRateTest implements CanCurrencyExchangeRateTesting2<E
     }
 
     @Override
-    public ExchangeRate createCanCurrencyExchangeRate() {
+    public ExchangeRate createCurrencyExchangeRater() {
         return ExchangeRate.fromProperties(
             PROPERTIES,
             NUMBER_PARSER
@@ -139,7 +139,7 @@ public final class ExchangeRateTest implements CanCurrencyExchangeRateTesting2<E
 
     @Override
     public ExchangeRate createObject() {
-        return this.createCanCurrencyExchangeRate();
+        return this.createCurrencyExchangeRater();
     }
 
     // toString.........................................................................................................
@@ -147,7 +147,7 @@ public final class ExchangeRateTest implements CanCurrencyExchangeRateTesting2<E
     @Test
     public void testToString() {
         this.toStringAndCheck(
-            this.createCanCurrencyExchangeRate(),
+            this.createCurrencyExchangeRater(),
             PROPERTIES.toString()
         );
     }

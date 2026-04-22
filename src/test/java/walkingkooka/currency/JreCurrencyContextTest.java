@@ -33,7 +33,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
 
     private final static Currency CURRENCY = Currency.getInstance("AUD");
 
-    private final static CanCurrencyExchangeRate EXCHANGE = (CurrencyCode from, CurrencyCode to, Optional<LocalDateTime> dateTime) -> {
+    private final static CurrencyExchangeRater EXCHANGE = (CurrencyCode from, CurrencyCode to, Optional<LocalDateTime> dateTime) -> {
         Objects.requireNonNull(from, "from");
         Objects.requireNonNull(to, "to");
         Objects.requireNonNull(dateTime, "dateTime");

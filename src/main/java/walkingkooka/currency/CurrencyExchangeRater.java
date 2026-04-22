@@ -20,7 +20,7 @@ package walkingkooka.currency;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public interface CanCurrencyExchangeRate {
+public interface CurrencyExchangeRater {
 
     Number exchangeRate(final CurrencyCode from,
                         final CurrencyCode to,

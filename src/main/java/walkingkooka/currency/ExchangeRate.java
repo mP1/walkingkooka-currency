@@ -33,7 +33,7 @@ import java.util.function.BiFunction;
  * AUD-NZD=1.1
  * </pre>
  */
-public final class ExchangeRate implements CanCurrencyExchangeRate,
+public final class ExchangeRate implements CurrencyExchangeRater,
     HasProperties {
 
     public static ExchangeRate fromProperties(final Properties properties,
@@ -60,7 +60,7 @@ public final class ExchangeRate implements CanCurrencyExchangeRate,
         return this.properties;
     }
 
-    // CanCurrencyExchangeRate..........................................................................................
+    // CurrencyExchangeRater..........................................................................................
 
     @Override
     public Number exchangeRate(final CurrencyCode from,

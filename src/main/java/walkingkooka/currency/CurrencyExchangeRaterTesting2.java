@@ -23,15 +23,15 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public interface CanCurrencyExchangeRateTesting2<C extends CanCurrencyExchangeRate> extends CanCurrencyExchangeRateTesting {
+public interface CurrencyExchangeRaterTesting2<C extends CurrencyExchangeRater> extends CurrencyExchangeRaterTesting {
 
-    // currencyExchangeRate.............................................................................................
+    // exchangeRate.....................................................................................................
 
     @Test
     default void testExchangeRateWithNullFromFails() {
         assertThrows(
             NullPointerException.class,
-            () -> this.createCanCurrencyExchangeRate()
+            () -> this.createCurrencyExchangeRater()
                 .exchangeRate(
                     null,
                     CurrencyCode.parse("NZD"),
@@ -44,7 +44,7 @@ public interface CanCurrencyExchangeRateTesting2<C extends CanCurrencyExchangeRa
     default void testExchangeRateWithNullToFails() {
         assertThrows(
             NullPointerException.class,
-            () -> this.createCanCurrencyExchangeRate()
+            () -> this.createCurrencyExchangeRater()
                 .exchangeRate(
                     CurrencyCode.parse("AUD"),
                     null,
@@ -57,7 +57,7 @@ public interface CanCurrencyExchangeRateTesting2<C extends CanCurrencyExchangeRa
     default void testExchangeRateWithNullDateTimeFails() {
         assertThrows(
             NullPointerException.class,
-            () -> this.createCanCurrencyExchangeRate()
+            () -> this.createCurrencyExchangeRater()
                 .exchangeRate(
                     CurrencyCode.parse("AUD"),
                     CurrencyCode.parse("NZD"),
@@ -66,5 +66,5 @@ public interface CanCurrencyExchangeRateTesting2<C extends CanCurrencyExchangeRa
         );
     }
 
-    C createCanCurrencyExchangeRate();
+    C createCurrencyExchangeRater();
 }

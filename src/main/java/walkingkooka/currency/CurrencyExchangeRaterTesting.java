@@ -22,9 +22,9 @@ import walkingkooka.text.printer.TreePrintableTesting;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public interface CanCurrencyExchangeRateTesting extends TreePrintableTesting {
+public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
 
-    default void exchangeRateAndCheck(final CanCurrencyExchangeRate can,
+    default void exchangeRateAndCheck(final CurrencyExchangeRater can,
                                       final CurrencyCode from,
                                       final CurrencyCode to,
                                       final Number expected) {
@@ -37,7 +37,7 @@ public interface CanCurrencyExchangeRateTesting extends TreePrintableTesting {
         );
     }
 
-    default void exchangeRateAndCheck(final CanCurrencyExchangeRate can,
+    default void exchangeRateAndCheck(final CurrencyExchangeRater can,
                                       final CurrencyCode from,
                                       final CurrencyCode to,
                                       final LocalDateTime dateTime,
@@ -51,7 +51,7 @@ public interface CanCurrencyExchangeRateTesting extends TreePrintableTesting {
         );
     }
 
-    default void exchangeRateAndCheck(final CanCurrencyExchangeRate can,
+    default void exchangeRateAndCheck(final CurrencyExchangeRater can,
                                       final CurrencyCode from,
                                       final CurrencyCode to,
                                       final Optional<LocalDateTime> dateTime,

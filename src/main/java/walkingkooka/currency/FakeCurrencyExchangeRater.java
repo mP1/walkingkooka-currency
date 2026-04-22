@@ -20,9 +20,9 @@ package walkingkooka.currency;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public class FakeCanCurrencyExchangeRate implements CanCurrencyExchangeRate {
+public class FakeCurrencyExchangeRater implements CurrencyExchangeRater {
 
-    public FakeCanCurrencyExchangeRate() {
+    public FakeCurrencyExchangeRater() {
         super();
     }
 
