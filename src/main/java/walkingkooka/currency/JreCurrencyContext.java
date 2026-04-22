@@ -36,20 +36,20 @@ import java.util.SortedSet;
 final class JreCurrencyContext implements CurrencyContext {
 
     static JreCurrencyContext with(final Currency currency,
-                                   final CurrencyExchangeRater exchangeRates,
+                                   final CurrencyExchangeRater currencyExchangeRater,
                                    final LocaleContext localeContext) {
         return new JreCurrencyContext(
             Objects.requireNonNull(currency, "currency"),
-            Objects.requireNonNull(exchangeRates, "exchangeRates"),
+            Objects.requireNonNull(currencyExchangeRater, "currencyExchangeRater"),
             Objects.requireNonNull(localeContext, "localeContext")
         );
     }
 
     private JreCurrencyContext(final Currency currency,
-                               final CurrencyExchangeRater exchangeRates,
+                               final CurrencyExchangeRater currencyExchangeRater,
                                final LocaleContext localeContext) {
         this.currency = currency;
-        this.exchangeRates = exchangeRates;
+        this.currencyExchangeRater = currencyExchangeRater;
         this.localeContext = localeContext;
     }
 
@@ -213,14 +213,14 @@ final class JreCurrencyContext implements CurrencyContext {
     public Number exchangeRate(final CurrencyCode from,
                                final CurrencyCode to,
                                final Optional<LocalDateTime> dateTime) {
-        return this.exchangeRates.exchangeRate(
+        return this.currencyExchangeRater.exchangeRate(
             from,
             to,
             dateTime
         );
     }
 
-    private final CurrencyExchangeRater exchangeRates;
+    private final CurrencyExchangeRater currencyExchangeRater;
 
     @Override
     public String toString() {

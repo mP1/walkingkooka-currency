@@ -33,7 +33,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
 
     private final static Currency CURRENCY = Currency.getInstance("AUD");
 
-    private final static CurrencyExchangeRater EXCHANGE = (CurrencyCode from, CurrencyCode to, Optional<LocalDateTime> dateTime) -> {
+    private final static CurrencyExchangeRater CURRENCY_EXCHANGE_RATER = (CurrencyCode from, CurrencyCode to, Optional<LocalDateTime> dateTime) -> {
         Objects.requireNonNull(from, "from");
         Objects.requireNonNull(to, "to");
         Objects.requireNonNull(dateTime, "dateTime");
@@ -51,19 +51,19 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
             NullPointerException.class,
             () -> JreCurrencyContext.with(
                 null,
-                EXCHANGE,
+                CURRENCY_EXCHANGE_RATER,
                 LOCALE_CONTEXT
             )
         );
     }
 
     @Test
-    public void testWithNullExchangeRatesFails() {
+    public void testWithNullCurrencyExchangeRaterFails() {
         assertThrows(
             NullPointerException.class,
             () -> JreCurrencyContext.with(
                 null,
-                EXCHANGE,
+                CURRENCY_EXCHANGE_RATER,
                 LOCALE_CONTEXT
             )
         );
@@ -75,7 +75,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
             NullPointerException.class,
             () -> JreCurrencyContext.with(
                 CURRENCY,
-                EXCHANGE,
+                CURRENCY_EXCHANGE_RATER,
                 null
             )
         );
@@ -209,7 +209,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     public JreCurrencyContext createContext() {
         return JreCurrencyContext.with(
             CURRENCY,
-            EXCHANGE,
+            CURRENCY_EXCHANGE_RATER,
             LOCALE_CONTEXT
         );
     }

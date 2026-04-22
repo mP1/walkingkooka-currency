@@ -49,11 +49,11 @@ public final class CurrencyContexts implements PublicStaticHelper {
      * {@see JreCurrencyContext}
      */
     public static CurrencyContext jre(final Currency currency,
-                                      final CurrencyExchangeRater exchangeRates,
+                                      final CurrencyExchangeRater currencyExchangeRater,
                                       final LocaleContext localeContext) {
         return JreCurrencyContext.with(
             currency,
-            exchangeRates,
+            currencyExchangeRater,
             localeContext
         );
     }
