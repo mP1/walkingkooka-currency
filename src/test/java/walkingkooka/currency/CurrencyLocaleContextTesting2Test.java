@@ -60,7 +60,7 @@ public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleCo
         public CurrencyContext currencyContext() {
             return CurrencyContexts.jre(
                 Currency.getInstance("AUD"),
-                (Currency from, Currency to, Optional<LocalDateTime> dateTime) -> {
+                (CurrencyCode from, CurrencyCode to, Optional<LocalDateTime> dateTime) -> {
                     Objects.requireNonNull(from, "from");
                     Objects.requireNonNull(to, "to");
                     Objects.requireNonNull(dateTime, "dateTime");

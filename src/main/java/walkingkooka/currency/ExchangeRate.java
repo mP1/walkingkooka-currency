@@ -23,7 +23,6 @@ import walkingkooka.props.PropertiesPath;
 import walkingkooka.text.CharSequences;
 
 import java.time.LocalDateTime;
-import java.util.Currency;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.BiFunction;
@@ -64,15 +63,15 @@ public final class ExchangeRate implements CanCurrencyExchangeRate,
     // CanCurrencyExchangeRate..........................................................................................
 
     @Override
-    public Number exchangeRate(final Currency from,
-                               final Currency to,
+    public Number exchangeRate(final CurrencyCode from,
+                               final CurrencyCode to,
                                final Optional<LocalDateTime> dateTime) {
         Objects.requireNonNull(from, "from");
         Objects.requireNonNull(to, "to");
         Objects.requireNonNull(dateTime, "dateTime");
 
-        final String fromCurrencyCode = from.getCurrencyCode();
-        final String toCurrencyCode = to.getCurrencyCode();
+        final String fromCurrencyCode = from.value();
+        final String toCurrencyCode = to.value();
 
         final Properties properties = this.properties;
 

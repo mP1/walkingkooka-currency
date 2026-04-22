@@ -33,7 +33,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
 
     private final static Currency CURRENCY = Currency.getInstance("AUD");
 
-    private final static CanCurrencyExchangeRate EXCHANGE = (Currency from, Currency to, Optional<LocalDateTime> dateTime) -> {
+    private final static CanCurrencyExchangeRate EXCHANGE = (CurrencyCode from, CurrencyCode to, Optional<LocalDateTime> dateTime) -> {
         Objects.requireNonNull(from, "from");
         Objects.requireNonNull(to, "to");
         Objects.requireNonNull(dateTime, "dateTime");
@@ -198,8 +198,8 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     public void testExchangeRate() {
         this.exchangeRateAndCheck(
             this.createContext(),
-            Currency.getInstance("AUD"),
-            Currency.getInstance("NZD"),
+            CurrencyCode.parse("AUD"),
+            CurrencyCode.parse("NZD"),
             LocalDateTime.MIN,
             2
         );

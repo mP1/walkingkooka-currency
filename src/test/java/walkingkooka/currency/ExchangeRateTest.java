@@ -26,7 +26,6 @@ import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 
 import java.math.BigDecimal;
-import java.util.Currency;
 import java.util.function.BiFunction;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -90,8 +89,8 @@ public final class ExchangeRateTest implements CanCurrencyExchangeRateTesting2<E
     public void testExchangeRate() {
         this.exchangeRateAndCheck(
             this.createCanCurrencyExchangeRate(),
-            Currency.getInstance("AUD"),
-            Currency.getInstance("NZD"),
+            CurrencyCode.parse("AUD"),
+            CurrencyCode.parse("NZD"),
             new BigDecimal("1.1")
         );
     }
@@ -100,8 +99,8 @@ public final class ExchangeRateTest implements CanCurrencyExchangeRateTesting2<E
     public void testExchangeRateInverted() {
         this.exchangeRateAndCheck(
             this.createCanCurrencyExchangeRate(),
-            Currency.getInstance("NZD"),
-            Currency.getInstance("AUD"),
+            CurrencyCode.parse("NZD"),
+            CurrencyCode.parse("AUD"),
             new BigDecimal("0.91")
         );
     }
