@@ -94,11 +94,10 @@ public final class ExchangeRate implements CanCurrencyExchangeRate,
             );
 
             valueOrNull = properties.get(key)
-                .orElseThrow(() -> new IllegalArgumentException(
-                        "Missing exchange rate for currencies " +
-                            CharSequences.quoteAndEscape(fromCurrencyCode) +
-                            " " +
-                            CharSequences.quoteAndEscape(toCurrencyCode)
+                .orElseThrow(() -> UnsupportedCurrencyExchangeException.with(
+                        from,
+                        to,
+                        dateTime
                     )
                 );
 
