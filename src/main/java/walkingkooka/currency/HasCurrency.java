@@ -22,10 +22,17 @@ import java.util.Currency;
 /**
  * Declares a {@link Currency} getter.
  */
-public interface HasCurrency {
+public interface HasCurrency extends HasCurrencyCode {
 
     /**
      * The {@link Currency}
      */
     Currency currency();
+
+    @Override
+    default CurrencyCode currencyCode() {
+        return CurrencyCode.fromCurrency(
+            this.currency()
+        );
+    }
 }
