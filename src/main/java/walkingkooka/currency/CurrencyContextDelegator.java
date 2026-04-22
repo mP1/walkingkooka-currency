@@ -38,6 +38,12 @@ public interface CurrencyContextDelegator extends CurrencyContext {
     }
 
     @Override
+    default CurrencyCode currencyCode() {
+        return this.currencyContext()
+            .currencyCode();
+    }
+
+    @Override
     default Set<Currency> availableCurrencies() {
         return this.currencyContext()
             .availableCurrencies();
