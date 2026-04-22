@@ -18,11 +18,11 @@
 package walkingkooka.currency.sample;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.ExchangeRate;
 import walkingkooka.props.Properties;
 
 import java.math.BigDecimal;
-import java.util.Currency;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -51,8 +51,8 @@ public class Sample {
                         value;
                 }
             ).exchangeRate(
-                Currency.getInstance("AUD"),
-                Currency.getInstance("NZD"),
+                CurrencyCode.parse("AUD"),
+                CurrencyCode.parse("NZD"),
                 Optional.empty()
             ),
             "AUD-NZD"

@@ -167,8 +167,8 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
 
     @Test
     public void testExchangeRate() {
-        final Currency from = Currency.getInstance("AUD");
-        final Currency to = Currency.getInstance("NZD");
+        final CurrencyCode from = CurrencyCode.parse("AUD");
+        final CurrencyCode to = CurrencyCode.parse("NZD");
         final Optional<LocalDateTime> dateTime = Optional.of(
             LocalDateTime.now()
         );
@@ -177,8 +177,8 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
         this.exchangeRateAndCheck(
             new FakeCurrencyContext() {
                 @Override
-                public Number exchangeRate(final Currency f,
-                                           final Currency t,
+                public Number exchangeRate(final CurrencyCode f,
+                                           final CurrencyCode t,
                                            final Optional<LocalDateTime> d) {
                     checkEquals(from, f, "from");
                     checkEquals(to, t, "to");

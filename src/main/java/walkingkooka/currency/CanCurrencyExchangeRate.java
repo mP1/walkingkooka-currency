@@ -18,12 +18,11 @@
 package walkingkooka.currency;
 
 import java.time.LocalDateTime;
-import java.util.Currency;
 import java.util.Optional;
 
 public interface CanCurrencyExchangeRate {
 
-    Number exchangeRate(final Currency from,
-                        final Currency to,
+    Number exchangeRate(final CurrencyCode from,
+                        final CurrencyCode to,
                         final Optional<LocalDateTime> dateTime);
 }

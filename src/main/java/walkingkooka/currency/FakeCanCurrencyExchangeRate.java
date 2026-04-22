@@ -18,7 +18,6 @@
 package walkingkooka.currency;
 
 import java.time.LocalDateTime;
-import java.util.Currency;
 import java.util.Optional;
 
 public class FakeCanCurrencyExchangeRate implements CanCurrencyExchangeRate {
@@ -28,8 +27,8 @@ public class FakeCanCurrencyExchangeRate implements CanCurrencyExchangeRate {
     }
 
     @Override
-    public Number exchangeRate(final Currency from,
-                               final Currency to,
+    public Number exchangeRate(final CurrencyCode from,
+                               final CurrencyCode to,
                                final Optional<LocalDateTime> dateTime) {
         throw new UnsupportedOperationException();
     }

@@ -47,7 +47,7 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
         Currency.getInstance(
             LOCALE_CONTEXT.locale()
         ),
-        (Currency from, Currency to, Optional<LocalDateTime> dateTime) -> {
+        (CurrencyCode from, CurrencyCode to, Optional<LocalDateTime> dateTime) -> {
             Objects.requireNonNull(from, "from");
             Objects.requireNonNull(to, "to");
             Objects.requireNonNull(dateTime, "dateTime");

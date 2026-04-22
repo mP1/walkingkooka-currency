@@ -20,7 +20,6 @@ package walkingkooka.currency;
 import org.junit.jupiter.api.Test;
 import walkingkooka.ContextTesting;
 
-import java.util.Currency;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -104,7 +103,7 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
             () -> this.createContext()
                 .exchangeRate(
                     null,
-                    Currency.getInstance("AUD"),
+                    CurrencyCode.parse("AUD"),
                     Optional.empty()
                 )
         );
@@ -116,7 +115,7 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
             NullPointerException.class,
             () -> this.createContext()
                 .exchangeRate(
-                    Currency.getInstance("AUD"),
+                    CurrencyCode.parse("AUD"),
                     null,
                     Optional.empty()
                 )
@@ -129,8 +128,8 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
             NullPointerException.class,
             () -> this.createContext()
                 .exchangeRate(
-                    Currency.getInstance("AUD"),
-                    Currency.getInstance("NZD"),
+                    CurrencyCode.parse("AUD"),
+                    CurrencyCode.parse("NZD"),
                     null
                 )
         );

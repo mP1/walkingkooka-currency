@@ -5,11 +5,11 @@ import com.google.j2cl.junit.apt.J2clTestInput;
 import org.junit.Assert;
 import org.junit.Test;
 
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.ExchangeRate;
 import walkingkooka.props.Properties;
 
 import java.math.BigDecimal;
-import java.util.Currency;
 import java.util.Optional;
 
 // copied parse Sample
@@ -33,8 +33,8 @@ public class J2clTest {
                         value;
                 }
             ).exchangeRate(
-                Currency.getInstance("AUD"),
-                Currency.getInstance("NZD"),
+                CurrencyCode.parse("AUD"),
+                CurrencyCode.parse("NZD"),
                 Optional.empty()
             ),
             "AUD-NZD"

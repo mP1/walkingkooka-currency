@@ -2,11 +2,11 @@ package test;
 
 import com.google.gwt.junit.client.GWTTestCase;
 
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.ExchangeRate;
 import walkingkooka.props.Properties;
 
 import java.math.BigDecimal;
-import java.util.Currency;
 import java.util.Optional;
 
 @walkingkooka.j2cl.locale.LocaleAware
@@ -33,8 +33,8 @@ public class TestGwtTest extends GWTTestCase {
                         value;
                 }
             ).exchangeRate(
-                Currency.getInstance("AUD"),
-                Currency.getInstance("NZD"),
+                CurrencyCode.parse("AUD"),
+                CurrencyCode.parse("NZD"),
                 Optional.empty()
             ),
             "AUD-NZD"
