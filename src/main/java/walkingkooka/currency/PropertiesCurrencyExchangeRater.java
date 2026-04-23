@@ -33,19 +33,19 @@ import java.util.function.BiFunction;
  * AUD-NZD=1.1
  * </pre>
  */
-public final class ExchangeRate implements CurrencyExchangeRater,
+public final class PropertiesCurrencyExchangeRater implements CurrencyExchangeRater,
     HasProperties {
 
-    public static ExchangeRate fromProperties(final Properties properties,
-                                              final BiFunction<String, Boolean, Number> numberParser) {
-        return new ExchangeRate(
+    public static PropertiesCurrencyExchangeRater fromProperties(final Properties properties,
+                                                                 final BiFunction<String, Boolean, Number> numberParser) {
+        return new PropertiesCurrencyExchangeRater(
             Objects.requireNonNull(properties, "properties"),
             Objects.requireNonNull(numberParser, "numberParser")
         );
     }
 
-    private ExchangeRate(final Properties properties,
-                         final BiFunction<String, Boolean, Number> numberParser) {
+    private PropertiesCurrencyExchangeRater(final Properties properties,
+                                            final BiFunction<String, Boolean, Number> numberParser) {
         super();
         this.properties = properties;
         this.numberParser = numberParser;
@@ -129,11 +129,11 @@ public final class ExchangeRate implements CurrencyExchangeRater,
     @Override
     public boolean equals(final Object other) {
         return this == other ||
-            (other instanceof ExchangeRate &&
-                this.equals0((ExchangeRate) other));
+            (other instanceof PropertiesCurrencyExchangeRater &&
+                this.equals0((PropertiesCurrencyExchangeRater) other));
     }
 
-    private boolean equals0(final ExchangeRate other) {
+    private boolean equals0(final PropertiesCurrencyExchangeRater other) {
         return this.properties.equals(other.properties) &&
             this.numberParser.equals(other.numberParser);
     }
