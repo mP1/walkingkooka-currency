@@ -20,8 +20,6 @@ package walkingkooka.currency;
 import org.junit.jupiter.api.Test;
 import walkingkooka.ContextTesting;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface CurrencyContextTesting2<C extends CurrencyContext> extends CurrencyContextTesting,
@@ -90,47 +88,6 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
                     "",
                     0,
                     -1
-                )
-        );
-    }
-
-    // exchangeRate.....................................................................................................
-
-    @Test
-    default void testExchangeRateWithNullFromFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .exchangeRate(
-                    null,
-                    CurrencyCode.parse("AUD"),
-                    Optional.empty()
-                )
-        );
-    }
-
-    @Test
-    default void testExchangeRateWithNullToFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .exchangeRate(
-                    CurrencyCode.parse("AUD"),
-                    null,
-                    Optional.empty()
-                )
-        );
-    }
-
-    @Test
-    default void testExchangeRateWithNullDateTimeFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .exchangeRate(
-                    CurrencyCode.parse("AUD"),
-                    CurrencyCode.parse("NZD"),
-                    null
                 )
         );
     }
