@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import walkingkooka.currency.CurrencyCode;
-import walkingkooka.currency.ExchangeRate;
+import walkingkooka.currency.CurrencyExchangeRaters;
 import walkingkooka.props.Properties;
 
 import java.math.BigDecimal;
@@ -20,7 +20,7 @@ public class J2clTest {
     public void testExchangeRate() {
         checkEquals(
             new BigDecimal("1.1"),
-            ExchangeRate.fromProperties(
+            CurrencyExchangeRaters.properties(
                 Properties.parse("AUD-NZD=1.1"),
                 (String text, Boolean invert) -> {
                     final BigDecimal value = new BigDecimal(text);

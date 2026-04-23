@@ -19,7 +19,7 @@ package walkingkooka.currency.sample;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.currency.CurrencyCode;
-import walkingkooka.currency.PropertiesCurrencyExchangeRater;
+import walkingkooka.currency.CurrencyExchangeRaters;
 import walkingkooka.props.Properties;
 
 import java.math.BigDecimal;
@@ -38,7 +38,7 @@ public class Sample {
     public void testExchangeRate() {
         checkEquals(
             new BigDecimal("1.1"),
-            PropertiesCurrencyExchangeRater.fromProperties(
+            CurrencyExchangeRaters.properties(
                 Properties.parse("AUD-NZD=1.1"),
                 (String text, Boolean invert) -> {
                     final BigDecimal value = new BigDecimal(text);
