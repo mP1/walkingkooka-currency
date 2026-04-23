@@ -17,6 +17,8 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.text.CharSequences;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -48,11 +50,18 @@ public final class UnsupportedCurrencyExchangeException extends IllegalArgumentE
         final LocalDateTime dateTime = this.dateTime
             .orElse(null);
 
-        return "Unsupported currency exchange " + this.from + " to " + this.to +
+        return "Unsupported currency exchange " +
+            quote(this.from) +
+            " to " +
+            quote(this.to) +
             (null != dateTime ?
                 " " + dateTime :
                 ""
             );
+    }
+
+    private static CharSequence quote(final CurrencyCode currencyCode) {
+        return CharSequences.quote(currencyCode.value());
     }
 
     public CurrencyCode from() {

@@ -76,7 +76,7 @@ public final class UnsupportedCurrencyExchangeExceptionTest implements Throwable
                 CurrencyCode.parse("NZD"),
                 Optional.empty()
             ),
-            "Unsupported currency exchange AUD to NZD"
+            "Unsupported currency exchange \"AUD\" to \"NZD\""
         );
     }
 
@@ -97,7 +97,7 @@ public final class UnsupportedCurrencyExchangeExceptionTest implements Throwable
                     )
                 )
             ),
-            "Unsupported currency exchange AUD to NZD 1999-12-31T12:58:59"
+            "Unsupported currency exchange \"AUD\" to \"NZD\" 1999-12-31T12:58:59"
         );
     }
 
