@@ -33,11 +33,11 @@ import java.util.function.BiFunction;
  * AUD-NZD=1.1
  * </pre>
  */
-public final class PropertiesCurrencyExchangeRater implements CurrencyExchangeRater,
+final class PropertiesCurrencyExchangeRater implements CurrencyExchangeRater,
     HasProperties {
 
-    public static PropertiesCurrencyExchangeRater fromProperties(final Properties properties,
-                                                                 final BiFunction<String, Boolean, Number> numberParser) {
+    static PropertiesCurrencyExchangeRater fromProperties(final Properties properties,
+                                                          final BiFunction<String, Boolean, Number> numberParser) {
         return new PropertiesCurrencyExchangeRater(
             Objects.requireNonNull(properties, "properties"),
             Objects.requireNonNull(numberParser, "numberParser")
