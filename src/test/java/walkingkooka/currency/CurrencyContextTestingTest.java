@@ -18,6 +18,7 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.ValueTesting;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
@@ -31,7 +32,8 @@ import java.util.Optional;
 import java.util.Set;
 
 public final class CurrencyContextTestingTest implements CurrencyContextTesting,
-    ClassTesting<CurrencyContextTesting> {
+    ClassTesting<CurrencyContextTesting>,
+    ValueTesting {
 
     // setCurrency......................................................................................................
 
@@ -92,10 +94,9 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
             new FakeCurrencyContext() {
                 @Override
                 public Optional<Currency> currencyForCurrencyCode(final CurrencyCode c) {
-                    checkEquals(
-                        currency.getCurrencyCode(),
-                        c.value(),
-                        "currencyCode"
+                    valueAndCheck(
+                        c,
+                        currency.getCurrencyCode()
                     );
 
                     return Optional.of(currency);

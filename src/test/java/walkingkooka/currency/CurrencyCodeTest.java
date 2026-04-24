@@ -18,6 +18,7 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.ValueTesting;
 import walkingkooka.compare.ComparableTesting2;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
@@ -31,7 +32,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class CurrencyCodeTest implements ComparableTesting2<CurrencyCode>,
     ClassTesting2<CurrencyCode>,
     ParseStringTesting<CurrencyCode>,
-    TreePrintableTesting {
+    TreePrintableTesting,
+    ValueTesting {
 
     private final static Currency CURRENCY = Currency.getInstance("AUD");
 
@@ -46,9 +48,9 @@ public final class CurrencyCodeTest implements ComparableTesting2<CurrencyCode>,
     @Test
     public void testFromCurrency() {
         final CurrencyCode currencyCode = CurrencyCode.fromCurrency(CURRENCY);
-        this.checkEquals(
-            CURRENCY.getCurrencyCode(),
-            currencyCode.value()
+        this.valueAndCheck(
+            currencyCode,
+            CURRENCY.getCurrencyCode()
         );
     }
 
