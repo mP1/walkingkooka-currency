@@ -50,7 +50,7 @@ public class MissingCurrencyExceptionTest implements ThrowableTesting2<MissingCu
 
     @Test
     public void testGetMessage() {
-        this.checkMessage(
+        this.getMessageAndCheck(
             new MissingCurrencyException(
                 CurrencyCode.parse("AUD")
             ),

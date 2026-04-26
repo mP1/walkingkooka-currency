@@ -70,7 +70,7 @@ public final class UnsupportedCurrencyExchangeExceptionTest implements Throwable
 
     @Test
     public void testGetMessage() {
-        this.checkMessage(
+        this.getMessageAndCheck(
             UnsupportedCurrencyExchangeException.with(
                 CurrencyCode.parse("AUD"),
                 CurrencyCode.parse("NZD"),
@@ -82,7 +82,7 @@ public final class UnsupportedCurrencyExchangeExceptionTest implements Throwable
 
     @Test
     public void testGetMessageWithDateTime() {
-        this.checkMessage(
+        this.getMessageAndCheck(
             UnsupportedCurrencyExchangeException.with(
                 CurrencyCode.parse("AUD"),
                 CurrencyCode.parse("NZD"),
