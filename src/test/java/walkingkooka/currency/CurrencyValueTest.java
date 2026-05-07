@@ -18,9 +18,9 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.HasValueTesting;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.ToStringTesting;
-import walkingkooka.ValueTesting;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.printer.TreePrintableTesting;
@@ -32,7 +32,7 @@ public final class CurrencyValueTest implements HashCodeEqualsDefinedTesting2<Cu
     ToStringTesting<CurrencyValue>,
     HasCurrencyCodeTesting,
     ClassTesting<CurrencyValue>,
-    ValueTesting {
+    HasValueTesting {
 
     private final static Number NUMBER = 1;
 

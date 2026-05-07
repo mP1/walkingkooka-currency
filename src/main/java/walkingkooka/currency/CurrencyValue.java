@@ -18,7 +18,7 @@
 package walkingkooka.currency;
 
 import walkingkooka.Cast;
-import walkingkooka.Value;
+import walkingkooka.HasValue;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
 
@@ -27,7 +27,7 @@ import java.util.Objects;
 /**
  * A composite {@link Number} value that includes a number and {@link CurrencyCode}.
  */
-public final class CurrencyValue implements Value<Number>,
+public final class CurrencyValue implements HasValue<Number>,
     HasCurrencyCode,
     TreePrintable {
 

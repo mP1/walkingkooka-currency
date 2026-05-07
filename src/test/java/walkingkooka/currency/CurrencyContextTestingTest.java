@@ -18,7 +18,7 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.ValueTesting;
+import walkingkooka.HasValueTesting;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
@@ -33,7 +33,7 @@ import java.util.Set;
 
 public final class CurrencyContextTestingTest implements CurrencyContextTesting,
     ClassTesting<CurrencyContextTesting>,
-    ValueTesting {
+    HasValueTesting {
 
     // setCurrency......................................................................................................
 
