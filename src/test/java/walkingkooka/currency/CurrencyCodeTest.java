@@ -18,7 +18,7 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.ValueTesting;
+import walkingkooka.HasValueTesting;
 import walkingkooka.compare.ComparableTesting2;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
@@ -33,7 +33,7 @@ public final class CurrencyCodeTest implements ComparableTesting2<CurrencyCode>,
     ClassTesting2<CurrencyCode>,
     ParseStringTesting<CurrencyCode>,
     TreePrintableTesting,
-    ValueTesting {
+    HasValueTesting {
 
     private final static Currency CURRENCY = Currency.getInstance("AUD");
 
