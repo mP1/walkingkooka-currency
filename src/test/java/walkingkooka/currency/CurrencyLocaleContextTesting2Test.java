@@ -65,7 +65,7 @@ public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleCo
                     Objects.requireNonNull(to, "to");
                     Objects.requireNonNull(dateTime, "dateTime");
 
-                    return 2;
+                    return Optional.of(2);
                 },
                 this.localeContext()
             );

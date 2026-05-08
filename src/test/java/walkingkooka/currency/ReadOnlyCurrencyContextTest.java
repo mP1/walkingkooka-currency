@@ -156,16 +156,16 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
                 return Sets.of(CURRENCY);
             }
 
-            @Override
-            public Number exchangeRate(final CurrencyCode from,
-                                       final CurrencyCode to,
-                                       final Optional<LocalDateTime> dateTime) {
-                Objects.requireNonNull(from, "currency");
-                Objects.requireNonNull(to, "currency");
-                Objects.requireNonNull(dateTime, "currency");
+                @Override
+                public Optional<Number> exchangeRate(final CurrencyCode from,
+                                                     final CurrencyCode to,
+                                                     final Optional<LocalDateTime> dateTime) {
+                    Objects.requireNonNull(from, "currency");
+                    Objects.requireNonNull(to, "currency");
+                    Objects.requireNonNull(dateTime, "currency");
 
-                return 2;
-            }
+                    return Optional.of(2);
+                }
 
             @Override
             public String toString() {

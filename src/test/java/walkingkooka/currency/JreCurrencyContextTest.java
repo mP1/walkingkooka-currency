@@ -38,7 +38,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
         Objects.requireNonNull(to, "to");
         Objects.requireNonNull(dateTime, "dateTime");
 
-        return 2;
+        return Optional.of(2);
     };
 
     private final static LocaleContext LOCALE_CONTEXT = LocaleContexts.jre(

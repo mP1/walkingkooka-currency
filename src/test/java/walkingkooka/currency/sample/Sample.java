@@ -37,7 +37,9 @@ public class Sample {
     @Test
     public void testExchangeRate() {
         checkEquals(
-            new BigDecimal("1.1"),
+            Optional.of(
+                new BigDecimal("1.1")
+            ),
             CurrencyExchangeRaters.properties(
                 Properties.parse("AUD-NZD=1.1"),
                 (String text, Boolean invert) -> {

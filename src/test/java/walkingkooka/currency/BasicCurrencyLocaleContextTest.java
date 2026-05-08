@@ -52,7 +52,7 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
             Objects.requireNonNull(to, "to");
             Objects.requireNonNull(dateTime, "dateTime");
 
-            return 2;
+            return Optional.of(2);
         },
         LOCALE_CONTEXT
     );
