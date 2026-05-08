@@ -178,14 +178,14 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
         this.exchangeRateAndCheck(
             new FakeCurrencyContext() {
                 @Override
-                public Number exchangeRate(final CurrencyCode f,
-                                           final CurrencyCode t,
-                                           final Optional<LocalDateTime> d) {
+                public Optional<Number> exchangeRate(final CurrencyCode f,
+                                                     final CurrencyCode t,
+                                                     final Optional<LocalDateTime> d) {
                     checkEquals(from, f, "from");
                     checkEquals(to, t, "to");
                     checkEquals(dateTime, d, "dateTime");
 
-                    return expected;
+                    return Optional.of(expected);
                 }
             },
             from,

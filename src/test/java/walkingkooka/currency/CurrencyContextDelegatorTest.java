@@ -152,14 +152,14 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
         }
 
         @Override
-        public Number exchangeRate(final CurrencyCode from,
-                                   final CurrencyCode to,
-                                   final Optional<LocalDateTime> dateTime) {
+        public Optional<Number> exchangeRate(final CurrencyCode from,
+                                             final CurrencyCode to,
+                                             final Optional<LocalDateTime> dateTime) {
             Objects.requireNonNull(from, "currency");
             Objects.requireNonNull(to, "currency");
             Objects.requireNonNull(dateTime, "currency");
 
-            return 1;
+            return Optional.of(1);
         }
 
         @Override

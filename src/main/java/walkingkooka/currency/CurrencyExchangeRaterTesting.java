@@ -26,6 +26,18 @@ public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
 
     default void exchangeRateAndCheck(final CurrencyExchangeRater can,
                                       final CurrencyCode from,
+                                      final CurrencyCode to) {
+        this.exchangeRateAndCheck(
+            can,
+            from,
+            to,
+            Optional.empty(),
+            Optional.empty()
+        );
+    }
+
+    default void exchangeRateAndCheck(final CurrencyExchangeRater can,
+                                      final CurrencyCode from,
                                       final CurrencyCode to,
                                       final Number expected) {
         this.exchangeRateAndCheck(
@@ -33,7 +45,7 @@ public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
             from,
             to,
             Optional.empty(),
-            expected
+            Optional.of(expected)
         );
     }
 
@@ -47,7 +59,7 @@ public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
             from,
             to,
             Optional.of(dateTime),
-            expected
+            Optional.of(expected)
         );
     }
 
@@ -56,6 +68,20 @@ public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
                                       final CurrencyCode to,
                                       final Optional<LocalDateTime> dateTime,
                                       final Number expected) {
+        this.exchangeRateAndCheck(
+            can,
+            from,
+            to,
+            dateTime,
+            Optional.of(expected)
+        );
+    }
+
+    default void exchangeRateAndCheck(final CurrencyExchangeRater can,
+                                      final CurrencyCode from,
+                                      final CurrencyCode to,
+                                      final Optional<LocalDateTime> dateTime,
+                                      final Optional<Number> expected) {
         this.checkEquals(
             expected,
             can.exchangeRate(

@@ -138,7 +138,7 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
             from,
             to,
             Optional.of(dateTime),
-            expected
+            Optional.of(expected)
         );
     }
 
@@ -146,7 +146,7 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
                                       final CurrencyCode from,
                                       final CurrencyCode to,
                                       final Optional<LocalDateTime> dateTime,
-                                      final Number expected) {
+                                      final Optional<Number> expected) {
         this.checkEquals(
             context.exchangeRate(
                 from,

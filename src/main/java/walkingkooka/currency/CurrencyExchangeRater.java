@@ -17,12 +17,33 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.text.CharSequences;
+
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 public interface CurrencyExchangeRater {
 
-    Number exchangeRate(final CurrencyCode from,
-                        final CurrencyCode to,
-                        final Optional<LocalDateTime> dateTime);
+    Optional<Number> exchangeRate(final CurrencyCode from,
+                                  final CurrencyCode to,
+                                  final Optional<LocalDateTime> dateTime);
+
+    default Number exchangeRateOrFail(final CurrencyCode from,
+                                      final CurrencyCode to,
+                                      final Optional<LocalDateTime> dateTime) {
+        return this.exchangeRate(
+            from,
+            to,
+            dateTime
+        ).orElseThrow(() -> new IllegalArgumentException(
+            "Invalid exchange rate " +
+                CharSequences.quote(from.value()) +
+                " to " +
+                CharSequences.quote(from.value()) +
+                (
+                    dateTime.map(dt -> " " + dt)
+                )
+            )
+        );
+    }
 }

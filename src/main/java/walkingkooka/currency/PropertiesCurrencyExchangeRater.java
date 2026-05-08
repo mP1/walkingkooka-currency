@@ -60,12 +60,12 @@ final class PropertiesCurrencyExchangeRater implements CurrencyExchangeRater,
         return this.properties;
     }
 
-    // CurrencyExchangeRater..........................................................................................
+    // CurrencyExchangeRater............................................................................................
 
     @Override
-    public Number exchangeRate(final CurrencyCode from,
-                               final CurrencyCode to,
-                               final Optional<LocalDateTime> dateTime) {
+    public Optional<Number> exchangeRate(final CurrencyCode from,
+                                         final CurrencyCode to,
+                                         final Optional<LocalDateTime> dateTime) {
         Objects.requireNonNull(from, "from");
         Objects.requireNonNull(to, "to");
         Objects.requireNonNull(dateTime, "dateTime");
@@ -94,24 +94,27 @@ final class PropertiesCurrencyExchangeRater implements CurrencyExchangeRater,
             );
 
             valueOrNull = properties.get(key)
-                .orElseThrow(() -> UnsupportedCurrencyExchangeException.with(
-                        from,
-                        to,
-                        dateTime
-                    )
-                );
+                .orElse(null);
 
             invert = true;
         }
 
-        try {
-            return this.numberParser.apply(
-                valueOrNull,
-                invert
-            );
-        } catch (final RuntimeException invalid) {
-            throw new IllegalArgumentException("Invalid exchange rate " + CharSequences.quoteAndEscape(valueOrNull), invalid);
+        final Number number;
+
+        if (null != valueOrNull) {
+            try {
+                number = this.numberParser.apply(
+                    valueOrNull,
+                    invert
+                );
+            } catch (final RuntimeException invalid) {
+                throw new IllegalArgumentException("Invalid exchange rate " + CharSequences.quoteAndEscape(valueOrNull), invalid);
+            }
+        } else {
+            number = null;
         }
+
+        return Optional.ofNullable(number);
     }
 
     private final BiFunction<String, Boolean, Number> numberParser;
