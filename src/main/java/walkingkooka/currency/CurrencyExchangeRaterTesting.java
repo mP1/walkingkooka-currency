@@ -102,7 +102,7 @@ public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
                 currencyExchange,
                 dateTime
             ),
-            "exchangeRate " + currencyExchange + " " + dateTime.map(Object::toString)
+            () -> rater + " exchangeRate " + currencyExchange + " " + dateTime.map(Object::toString)
         );
     }
 }
