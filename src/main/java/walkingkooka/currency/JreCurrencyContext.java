@@ -116,14 +116,16 @@ final class JreCurrencyContext implements CurrencyContext {
     }
 
     @Override
-    public Optional<String> currencyText(final Currency currency) {
+    public Optional<String> currencyText(final CurrencyCode currency) {
         Objects.requireNonNull(currency, "currency");
 
         String text;
 
         try {
             text = JreCurrencyContextGetDisplayName.getDisplayName(
-                currency,
+                Currency.getInstance(
+                    currency.value()
+                ),
                 this.localeContext.locale()
             );
         } catch (final RuntimeException exception) {
@@ -195,11 +197,8 @@ final class JreCurrencyContext implements CurrencyContext {
         return this.availableCurrencies()
             .stream()
             .filter(currency -> {
-                final String currencyText = this.currencyText(
-                    Currency.getInstance(
-                        currency.value()
-                    )
-                ).orElse(null);
+                final String currencyText = this.currencyText(currency)
+                    .orElse(null);
                 return false == CharSequences.isNullOrEmpty(currencyText) &&
                     CurrencyContexts.CASE_SENSITIVITY.startsWith(
                         currencyText,

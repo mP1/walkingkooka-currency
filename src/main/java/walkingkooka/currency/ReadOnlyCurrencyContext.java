@@ -71,7 +71,7 @@ final class ReadOnlyCurrencyContext implements CurrencyContext {
     }
 
     @Override
-    public Optional<String> currencyText(final Currency currency) {
+    public Optional<String> currencyText(final CurrencyCode currency) {
         return this.context.currencyText(currency);
     }
 

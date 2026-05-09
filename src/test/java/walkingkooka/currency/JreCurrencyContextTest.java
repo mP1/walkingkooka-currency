@@ -141,7 +141,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     public void testCurrencyForText() {
         this.currencyTextAndCheck(
             this.createContext(),
-            CURRENCY,
+            CURRENCY.getCurrencyCode(),
             CURRENCY.getDisplayName()
         );
     }

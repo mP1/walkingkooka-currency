@@ -43,7 +43,7 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
 
         this.currencyTextAndCheck(
             this.createContext(),
-            currency,
+            CURRENCY_CODE,
             "***" + currency.getDisplayName()
         );
     }
@@ -119,11 +119,13 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
         }
 
         @Override
-        public Optional<String> currencyText(final Currency currency) {
+        public Optional<String> currencyText(final CurrencyCode currency) {
             Objects.requireNonNull(currency, "currency");
 
             return Optional.of(
-                "***" + currency.getDisplayName()
+                "***" +
+                    Currency.getInstance(currency.value())
+                        .getDisplayName()
             );
         }
 

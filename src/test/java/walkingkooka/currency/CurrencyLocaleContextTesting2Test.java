@@ -37,7 +37,7 @@ public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleCo
 
         this.currencyTextAndCheck(
             this.createContext(),
-            currency,
+            currency.getCurrencyCode(),
             currency.getDisplayName()
         );
     }

@@ -50,7 +50,7 @@ public class FakeCurrencyContext implements CurrencyContext {
     }
 
     @Override
-    public Optional<String> currencyText(final Currency currency) {
+    public Optional<String> currencyText(final CurrencyCode currency) {
         throw new UnsupportedOperationException();
     }
 
