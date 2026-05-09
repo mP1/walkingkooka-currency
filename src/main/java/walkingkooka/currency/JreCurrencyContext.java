@@ -117,15 +117,15 @@ final class JreCurrencyContext implements CurrencyContext {
     }
 
     @Override
-    public Optional<String> currencyText(final CurrencyCode currency) {
-        Objects.requireNonNull(currency, "currency");
+    public Optional<String> currencyText(final CurrencyCode currencyCode) {
+        Objects.requireNonNull(currencyCode, "currencyCode");
 
         String text;
 
         try {
             text = JreCurrencyContextGetDisplayName.getDisplayName(
                 Currency.getInstance(
-                    currency.value()
+                    currencyCode.value()
                 ),
                 this.localeContext.locale()
             );
