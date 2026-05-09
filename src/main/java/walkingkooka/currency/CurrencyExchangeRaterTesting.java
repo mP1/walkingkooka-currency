@@ -28,77 +28,77 @@ public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
 
     // currencyExchanges................................................................................................
 
-    default void currencyExchangesAndCheck(final CurrencyExchangeRater can,
+    default void currencyExchangesAndCheck(final CurrencyExchangeRater rater,
                                            final CurrencyExchange... expected) {
         this.currencyExchangesAndCheck(
-            can,
+            rater,
             Sets.of(expected)
         );
     }
 
-    default void currencyExchangesAndCheck(final CurrencyExchangeRater can,
+    default void currencyExchangesAndCheck(final CurrencyExchangeRater rater,
                                            final Set<CurrencyExchange> expected) {
         this.checkEquals(
             expected,
-            can.currencyExchanges(),
-            can::toString
+            rater.currencyExchanges(),
+            rater::toString
         );
     }
 
     // exchangeRate.....................................................................................................
 
-    default void exchangeRateAndCheck(final CurrencyExchangeRater can,
+    default void exchangeRateAndCheck(final CurrencyExchangeRater rater,
                                       final CurrencyExchange currencyExchange) {
         this.exchangeRateAndCheck(
-            can,
+            rater,
             currencyExchange,
             Optional.empty(),
             Optional.empty()
         );
     }
 
-    default void exchangeRateAndCheck(final CurrencyExchangeRater can,
+    default void exchangeRateAndCheck(final CurrencyExchangeRater rater,
                                       final CurrencyExchange currencyExchange,
                                       final Number expected) {
         this.exchangeRateAndCheck(
-            can,
+            rater,
             currencyExchange,
             Optional.empty(),
             Optional.of(expected)
         );
     }
 
-    default void exchangeRateAndCheck(final CurrencyExchangeRater can,
+    default void exchangeRateAndCheck(final CurrencyExchangeRater rater,
                                       final CurrencyExchange currencyExchange,
                                       final LocalDateTime dateTime,
                                       final Number expected) {
         this.exchangeRateAndCheck(
-            can,
+            rater,
             currencyExchange,
             Optional.of(dateTime),
             Optional.of(expected)
         );
     }
 
-    default void exchangeRateAndCheck(final CurrencyExchangeRater can,
+    default void exchangeRateAndCheck(final CurrencyExchangeRater rater,
                                       final CurrencyExchange currencyExchange,
                                       final Optional<LocalDateTime> dateTime,
                                       final Number expected) {
         this.exchangeRateAndCheck(
-            can,
+            rater,
             currencyExchange,
             dateTime,
             Optional.of(expected)
         );
     }
 
-    default void exchangeRateAndCheck(final CurrencyExchangeRater can,
+    default void exchangeRateAndCheck(final CurrencyExchangeRater rater,
                                       final CurrencyExchange currencyExchange,
                                       final Optional<LocalDateTime> dateTime,
                                       final Optional<Number> expected) {
         this.checkEquals(
             expected,
-            can.exchangeRate(
+            rater.exchangeRate(
                 currencyExchange,
                 dateTime
             ),
