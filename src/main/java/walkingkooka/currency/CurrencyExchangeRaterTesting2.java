@@ -28,25 +28,11 @@ public interface CurrencyExchangeRaterTesting2<C extends CurrencyExchangeRater> 
     // exchangeRate.....................................................................................................
 
     @Test
-    default void testExchangeRateWithNullFromFails() {
+    default void testExchangeRateWithNullCurrencyExchangeFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createCurrencyExchangeRater()
                 .exchangeRate(
-                    null,
-                    CurrencyCode.parse("NZD"),
-                    Optional.empty() // dateTime
-                )
-        );
-    }
-
-    @Test
-    default void testExchangeRateWithNullToFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createCurrencyExchangeRater()
-                .exchangeRate(
-                    CurrencyCode.parse("AUD"),
                     null,
                     Optional.empty() // dateTime
                 )
@@ -59,8 +45,10 @@ public interface CurrencyExchangeRaterTesting2<C extends CurrencyExchangeRater> 
             NullPointerException.class,
             () -> this.createCurrencyExchangeRater()
                 .exchangeRate(
-                    CurrencyCode.parse("AUD"),
-                    CurrencyCode.parse("NZD"),
+                    CurrencyExchange.with(
+                        CurrencyCode.parse("AUD"),
+                        CurrencyCode.parse("NZD")
+                    ),
                     null // dateTime
                 )
         );

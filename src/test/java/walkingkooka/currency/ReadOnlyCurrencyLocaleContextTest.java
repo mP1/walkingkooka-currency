@@ -44,9 +44,8 @@ public final class ReadOnlyCurrencyLocaleContextTest implements CurrencyLocaleCo
         Currency.getInstance(
             LOCALE_CONTEXT.locale()
         ),
-        (CurrencyCode from, CurrencyCode to, Optional<LocalDateTime> dateTime) -> {
-            Objects.requireNonNull(from, "from");
-            Objects.requireNonNull(to, "to");
+        (final CurrencyExchange currencyExchange, final Optional<LocalDateTime> dateTime) -> {
+            Objects.requireNonNull(currencyExchange, "currencyExchange");
             Objects.requireNonNull(dateTime, "dateTime");
 
             return Optional.of(2);

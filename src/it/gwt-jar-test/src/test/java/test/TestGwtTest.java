@@ -3,6 +3,7 @@ package test;
 import com.google.gwt.junit.client.GWTTestCase;
 
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.currency.CurrencyExchangeRaters;
 import walkingkooka.props.Properties;
 
@@ -35,8 +36,10 @@ public class TestGwtTest extends GWTTestCase {
                         value;
                 }
             ).exchangeRate(
-                CurrencyCode.parse("AUD"),
-                CurrencyCode.parse("NZD"),
+                CurrencyExchange.with(
+                    CurrencyCode.parse("AUD"),
+                    CurrencyCode.parse("NZD")
+                ),
                 Optional.empty()
             ),
             "AUD-NZD"

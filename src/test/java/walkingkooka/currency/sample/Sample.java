@@ -19,6 +19,7 @@ package walkingkooka.currency.sample;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.currency.CurrencyExchangeRaters;
 import walkingkooka.props.Properties;
 
@@ -53,8 +54,10 @@ public class Sample {
                         value;
                 }
             ).exchangeRate(
-                CurrencyCode.parse("AUD"),
-                CurrencyCode.parse("NZD"),
+                CurrencyExchange.with(
+                    CurrencyCode.parse("AUD"),
+                    CurrencyCode.parse("NZD")
+                ),
                 Optional.empty()
             ),
             "AUD-NZD"

@@ -63,15 +63,15 @@ final class PropertiesCurrencyExchangeRater implements CurrencyExchangeRater,
     // CurrencyExchangeRater............................................................................................
 
     @Override
-    public Optional<Number> exchangeRate(final CurrencyCode from,
-                                         final CurrencyCode to,
+    public Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
                                          final Optional<LocalDateTime> dateTime) {
-        Objects.requireNonNull(from, "from");
-        Objects.requireNonNull(to, "to");
+        Objects.requireNonNull(currencyExchange, "currencyExchange");
         Objects.requireNonNull(dateTime, "dateTime");
 
-        final String fromCurrencyCode = from.value();
-        final String toCurrencyCode = to.value();
+        final String fromCurrencyCode = currencyExchange.from()
+            .value();
+        final String toCurrencyCode = currencyExchange.to()
+            .value();
 
         final Properties properties = this.properties;
 

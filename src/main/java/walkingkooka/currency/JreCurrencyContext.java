@@ -216,12 +216,10 @@ final class JreCurrencyContext implements CurrencyContext {
     private final LocaleContext localeContext;
 
     @Override
-    public Optional<Number> exchangeRate(final CurrencyCode from,
-                                         final CurrencyCode to,
+    public Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
                                          final Optional<LocalDateTime> dateTime) {
         return this.currencyExchangeRater.exchangeRate(
-            from,
-            to,
+            currencyExchange,
             dateTime
         );
     }

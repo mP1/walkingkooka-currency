@@ -86,13 +86,11 @@ public interface CurrencyContextDelegator extends CurrencyContext {
     }
 
     @Override
-    default Optional<Number> exchangeRate(final CurrencyCode from,
-                                          final CurrencyCode to,
+    default Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
                                           final Optional<LocalDateTime> dateTime) {
         return this.currencyContext()
             .exchangeRate(
-                from,
-                to,
+                currencyExchange,
                 dateTime
             );
     }
