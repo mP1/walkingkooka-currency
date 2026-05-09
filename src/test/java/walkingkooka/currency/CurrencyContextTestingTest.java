@@ -137,30 +137,30 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
         final String text = "text1";
         final int offset = 1;
         final int count = 23;
-        final Currency currency1 = Currency.getInstance("AUD");
-        final Currency currency2 = Currency.getInstance("NZD");
+        final String currencyCode1 = "AUD";
+        final String currencyCode2 = "NZD";
 
         this.findByCurrencyTextAndCheck(
             new FakeCurrencyContext() {
                 @Override
-                public Set<Currency> findByCurrencyText(final String t,
-                                                        final int o,
-                                                        final int c) {
+                public Set<CurrencyCode> findByCurrencyText(final String t,
+                                                            final int o,
+                                                            final int c) {
                     checkEquals(text, t, "text");
                     checkEquals(offset, o, "offset");
                     checkEquals(count, c, "count");
 
                     return Sets.of(
-                        currency1,
-                        currency2
+                        CurrencyCode.parse(currencyCode1),
+                        CurrencyCode.parse(currencyCode2)
                     );
                 }
             },
             text,
             offset,
             count,
-            currency1,
-            currency2
+            currencyCode1,
+            currencyCode2
         );
     }
 

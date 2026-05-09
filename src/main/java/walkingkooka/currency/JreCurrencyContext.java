@@ -25,6 +25,7 @@ import walkingkooka.locale.LocaleContext;
 import walkingkooka.text.CharSequences;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Map;
@@ -183,9 +184,9 @@ final class JreCurrencyContext implements CurrencyContext {
     private Map<String, Set<Locale>> currencyCodeToLocales;
 
     @Override
-    public Set<Currency> findByCurrencyText(final String text,
-                                            final int offset,
-                                            final int count) {
+    public Set<CurrencyCode> findByCurrencyText(final String text,
+                                                final int offset,
+                                                final int count) {
         Objects.requireNonNull(text, "text");
         if (offset < 0) {
             throw new IllegalArgumentException("Invalid offset " + offset + " < 0");
@@ -207,12 +208,8 @@ final class JreCurrencyContext implements CurrencyContext {
             })
             .skip(offset)
             .limit(count)
-            .map(
-                (CurrencyCode currencyCode) -> Currency.getInstance(
-                    currencyCode.value()
-                )
-            ).collect(
-                    ImmutableSortedSet.collector(CurrencyContexts.CURRENCY_CODE_COMPARATOR)
+            .collect(
+                    ImmutableSortedSet.collector(Comparator.naturalOrder())
             );
     }
 

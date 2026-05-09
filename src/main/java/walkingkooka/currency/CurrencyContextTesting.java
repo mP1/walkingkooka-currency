@@ -130,7 +130,23 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
                                             final String text,
                                             final int offset,
                                             final int count,
-                                            final Currency... expected) {
+                                            final String... expected) {
+        this.findByCurrencyTextAndCheck(
+            context,
+            text,
+            offset,
+            count,
+            Arrays.stream(expected)
+                .map(CurrencyCode::parse)
+                .toArray(CurrencyCode[]::new)
+        );
+    }
+
+    default void findByCurrencyTextAndCheck(final CurrencyContext context,
+                                            final String text,
+                                            final int offset,
+                                            final int count,
+                                            final CurrencyCode... expected) {
         this.findByCurrencyTextAndCheck(
             context,
             text,
@@ -144,7 +160,7 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
                                             final String text,
                                             final int offset,
                                             final int count,
-                                            final Set<Currency> expected) {
+                                            final Set<CurrencyCode> expected) {
         this.checkEquals(
             expected,
             context.findByCurrencyText(
