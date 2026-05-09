@@ -40,9 +40,9 @@ public interface CurrencyContext extends Context,
     void setCurrency(final Currency currency);
 
     /**
-     * Returns all available {@link Currency currencies}.
+     * Returns all available {@link CurrencyCode currencies}.
      */
-    Set<Currency> availableCurrencies();
+    Set<CurrencyCode> availableCurrencies();
 
     /**
      * Returns text to display for the given {@link Currency} if it exists.

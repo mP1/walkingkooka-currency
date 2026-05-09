@@ -61,7 +61,7 @@ final class ReadOnlyCurrencyContext implements CurrencyContext {
     }
 
     @Override
-    public Set<Currency> availableCurrencies() {
+    public Set<CurrencyCode> availableCurrencies() {
         return this.context.availableCurrencies();
     }
 

@@ -22,6 +22,7 @@ import walkingkooka.text.CharSequences;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Currency;
 import java.util.Optional;
 import java.util.Set;
@@ -48,7 +49,17 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
     // availableCurrencies..............................................................................................
 
     default void availableCurrenciesAndCheck(final CurrencyContext context,
-                                             final Currency... expected) {
+                                             final String... expected) {
+        this.availableCurrenciesAndCheck(
+            context,
+            Arrays.stream(expected)
+                .map(CurrencyCode::parse)
+                .toArray(CurrencyCode[]::new)
+        );
+    }
+
+    default void availableCurrenciesAndCheck(final CurrencyContext context,
+                                             final CurrencyCode... expected) {
         this.availableCurrenciesAndCheck(
             context,
             Sets.of(expected)
@@ -56,7 +67,7 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
     }
 
     default void availableCurrenciesAndCheck(final CurrencyContext context,
-                                             final Set<Currency> expected) {
+                                             final Set<CurrencyCode> expected) {
         this.checkEquals(
             expected,
             context.availableCurrencies(),

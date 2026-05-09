@@ -66,16 +66,16 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
 
     @Test
     public void testAvailableCurrencies() {
-        final Currency currency1 = Currency.getInstance("AUD");
-        final Currency currency2 = Currency.getInstance("NZD");
+        final String currency1 = "AUD";
+        final String currency2 = "NZD";
 
         this.availableCurrenciesAndCheck(
             new FakeCurrencyContext() {
                 @Override
-                public Set<Currency> availableCurrencies() {
+                public Set<CurrencyCode> availableCurrencies() {
                     return Sets.of(
-                        currency1,
-                        currency2
+                        CurrencyCode.parse(currency1),
+                        CurrencyCode.parse(currency2)
                     );
                 }
             },

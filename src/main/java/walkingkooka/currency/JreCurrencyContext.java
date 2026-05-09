@@ -67,19 +67,22 @@ final class JreCurrencyContext implements CurrencyContext {
     private Currency currency;
 
     @Override
-    public Set<Currency> availableCurrencies() {
+    public Set<CurrencyCode> availableCurrencies() {
         if (null == this.availableCurrencies) {
-            final SortedSet<Currency> currencies = SortedSets.tree(CurrencyContexts.CURRENCY_CODE_COMPARATOR);
-            currencies.addAll(
-                Currency.getAvailableCurrencies()
-            );
+            final SortedSet<CurrencyCode> currencies = SortedSets.tree();
+
+            for (final Currency currency : Currency.getAvailableCurrencies()) {
+                currencies.add(
+                    CurrencyCode.fromCurrency(currency)
+                );
+            }
 
             this.availableCurrencies = SortedSets.immutable(currencies);
         }
         return this.availableCurrencies;
     }
 
-    private Set<Currency> availableCurrencies;
+    private Set<CurrencyCode> availableCurrencies;
 
     @Override
     public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
@@ -192,8 +195,11 @@ final class JreCurrencyContext implements CurrencyContext {
         return this.availableCurrencies()
             .stream()
             .filter(currency -> {
-                final String currencyText = this.currencyText(currency)
-                    .orElse(null);
+                final String currencyText = this.currencyText(
+                    Currency.getInstance(
+                        currency.value()
+                    )
+                ).orElse(null);
                 return false == CharSequences.isNullOrEmpty(currencyText) &&
                     CurrencyContexts.CASE_SENSITIVITY.startsWith(
                         currencyText,
@@ -202,8 +208,12 @@ final class JreCurrencyContext implements CurrencyContext {
             })
             .skip(offset)
             .limit(count)
-            .collect(
-                ImmutableSortedSet.collector(CurrencyContexts.CURRENCY_CODE_COMPARATOR)
+            .map(
+                (CurrencyCode currencyCode) -> Currency.getInstance(
+                    currencyCode.value()
+                )
+            ).collect(
+                    ImmutableSortedSet.collector(CurrencyContexts.CURRENCY_CODE_COMPARATOR)
             );
     }
 
