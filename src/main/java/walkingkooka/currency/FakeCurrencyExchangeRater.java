@@ -19,11 +19,17 @@ package walkingkooka.currency;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Set;
 
 public class FakeCurrencyExchangeRater implements CurrencyExchangeRater {
 
     public FakeCurrencyExchangeRater() {
         super();
+    }
+
+    @Override
+    public Set<CurrencyExchange> currencyExchanges() {
+        throw new UnsupportedOperationException();
     }
 
     @Override

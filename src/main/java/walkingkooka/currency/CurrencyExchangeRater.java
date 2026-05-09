@@ -19,11 +19,14 @@ package walkingkooka.currency;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * An oracle that returns the exchange rate between {@link CurrencyCode} for a given {@link LocalDateTime}.
  */
 public interface CurrencyExchangeRater {
+
+    Set<CurrencyExchange> currencyExchanges();
 
     Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
                                   final Optional<LocalDateTime> dateTime);

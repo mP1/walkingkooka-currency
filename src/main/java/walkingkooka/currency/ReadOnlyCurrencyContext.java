@@ -87,6 +87,11 @@ final class ReadOnlyCurrencyContext implements CurrencyContext {
     }
 
     @Override
+    public Set<CurrencyExchange> currencyExchanges() {
+        return this.context.currencyExchanges();
+    }
+
+    @Override
     public Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
                                          final Optional<LocalDateTime> dateTime) {
         return this.context.exchangeRate(

@@ -19,8 +19,15 @@ package walkingkooka.currency;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Set;
 
 public interface CurrencyExchangeRaterDelegator extends CurrencyExchangeRater {
+
+    @Override
+    default Set<CurrencyExchange> currencyExchanges() {
+        return this.currencyExchangeRater()
+            .currencyExchanges();
+    }
 
     @Override
     default Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,

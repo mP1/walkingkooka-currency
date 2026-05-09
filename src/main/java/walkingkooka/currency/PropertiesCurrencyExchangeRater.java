@@ -17,6 +17,7 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.collect.set.ImmutableSet;
 import walkingkooka.props.HasProperties;
 import walkingkooka.props.Properties;
 import walkingkooka.props.PropertiesPath;
@@ -25,6 +26,7 @@ import walkingkooka.text.CharSequences;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.BiFunction;
 
 /**
@@ -49,6 +51,37 @@ final class PropertiesCurrencyExchangeRater implements CurrencyExchangeRater,
         super();
         this.properties = properties;
         this.numberParser = numberParser;
+
+        this.currencyExchanges = properties.keys()
+            .stream()
+            .map((PropertiesPath propertiesPath) -> {
+                final String value = propertiesPath.value();
+
+                final int separator = value.indexOf('-');
+                if (-1 == separator) {
+                    throw new IllegalArgumentException("Properties: Invalid currency exchange rate " + CharSequences.quoteIfChars(value));
+                }
+
+                final CurrencyCode from = CurrencyCode.parse(
+                    value.substring(
+                        0,
+                        separator
+                    )
+                );
+
+                final CurrencyCode to = CurrencyCode.parse(
+                    value.substring(
+                        separator + 1
+                    )
+                );
+
+                return CurrencyExchange.with(
+                    from,
+                    to
+                );
+            }).collect(
+                ImmutableSet.collector()
+            );
     }
 
     private final Properties properties;
@@ -61,6 +94,13 @@ final class PropertiesCurrencyExchangeRater implements CurrencyExchangeRater,
     }
 
     // CurrencyExchangeRater............................................................................................
+
+    @Override
+    public Set<CurrencyExchange> currencyExchanges() {
+        return this.currencyExchanges;
+    }
+
+    private final Set<CurrencyExchange> currencyExchanges;
 
     @Override
     public Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,

@@ -44,11 +44,16 @@ public final class ReadOnlyCurrencyLocaleContextTest implements CurrencyLocaleCo
         Currency.getInstance(
             LOCALE_CONTEXT.locale()
         ),
-        (final CurrencyExchange currencyExchange, final Optional<LocalDateTime> dateTime) -> {
-            Objects.requireNonNull(currencyExchange, "currencyExchange");
-            Objects.requireNonNull(dateTime, "dateTime");
+        new FakeCurrencyExchangeRater() {
 
-            return Optional.of(2);
+            @Override
+            public Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
+                                                 final Optional<LocalDateTime> dateTime) {
+                Objects.requireNonNull(currencyExchange, "currencyExchange");
+                Objects.requireNonNull(dateTime, "dateTime");
+
+                return Optional.of(2);
+            }
         },
         LOCALE_CONTEXT
     );
