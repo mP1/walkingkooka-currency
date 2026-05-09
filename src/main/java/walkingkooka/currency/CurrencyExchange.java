@@ -58,6 +58,17 @@ public final class CurrencyExchange implements TreePrintable {
 
     private final CurrencyCode to;
 
+    public CurrencyExchange swap() {
+        final CurrencyCode from = this.from;
+        final CurrencyCode to = this.to;
+        return from.equals(to) ?
+            this :
+            new CurrencyExchange(
+                to,
+                from
+            );
+    }
+
     // Object...........................................................................................................
 
     @Override
