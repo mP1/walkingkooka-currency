@@ -24,6 +24,8 @@ import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.printer.TreePrintableTesting;
 
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2<CurrencyExchange>,
@@ -80,6 +82,60 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
             ),
             from,
             to
+        );
+    }
+
+    // swap.............................................................................................................
+
+    @Test
+    public void testSwapSame() {
+        final CurrencyCode from = CurrencyCode.parse("AUD");
+        final CurrencyCode to = from;
+
+        final CurrencyExchange currencyExchange = CurrencyExchange.with(
+            from,
+            to
+        );
+
+        this.fromAndToCheck(
+            currencyExchange,
+            from,
+            to
+        );
+
+        assertSame(
+            currencyExchange,
+            currencyExchange.swap()
+        );
+    }
+
+    @Test
+    public void testSwap() {
+        final CurrencyCode from = CurrencyCode.parse("AUD");
+        final CurrencyCode to = CurrencyCode.parse("NZD");
+
+        final CurrencyExchange currencyExchange = CurrencyExchange.with(
+            from,
+            to
+        );
+
+        this.fromAndToCheck(
+            currencyExchange,
+            from,
+            to
+        );
+
+        final CurrencyExchange swapped = currencyExchange.swap();
+
+        assertNotSame(
+            currencyExchange,
+            swapped
+        );
+
+        this.fromAndToCheck(
+            swapped,
+            to,
+            from
         );
     }
 
