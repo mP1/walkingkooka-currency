@@ -28,6 +28,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiFunction;
+import java.util.stream.Stream;
 
 /**
  * Wraps a {@link Properties} where multiple exchange rates are defined.
@@ -54,7 +55,7 @@ final class PropertiesCurrencyExchangeRater implements CurrencyExchangeRater,
 
         this.currencyExchanges = properties.keys()
             .stream()
-            .map((PropertiesPath propertiesPath) -> {
+            .flatMap((PropertiesPath propertiesPath) -> {
                 final String value = propertiesPath.value();
 
                 final int separator = value.indexOf('-');
@@ -75,9 +76,14 @@ final class PropertiesCurrencyExchangeRater implements CurrencyExchangeRater,
                     )
                 );
 
-                return CurrencyExchange.with(
+                final CurrencyExchange currencyExchange = CurrencyExchange.with(
                     from,
                     to
+                );
+
+                return Stream.of(
+                    currencyExchange,
+                    currencyExchange.swap()
                 );
             }).collect(
                 ImmutableSet.collector()
