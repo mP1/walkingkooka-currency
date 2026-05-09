@@ -7,4 +7,8 @@
 [![J2CL compatible](https://img.shields.io/badge/J2CL-compatible-brightgreen.svg)](https://github.com/mP1/j2cl-central)
 
 # walkingkooka-currency
-Some basic functionality around currencies and money type values
+Some basic functionality around currencies and money type values, such as 
+
+- gathering all available currencies,
+- searching/filter/querying currencies by currency-code and other metadata
+- performing currency exchanges between different currencies.
