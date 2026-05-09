@@ -30,6 +30,7 @@ import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -47,11 +48,25 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
         Currency.getInstance(
             LOCALE_CONTEXT.locale()
         ),
-        (CurrencyExchange currencyExchange, Optional<LocalDateTime> dateTime) -> {
-            Objects.requireNonNull(currencyExchange, "currencyExchange");
-            Objects.requireNonNull(dateTime, "dateTime");
+        new FakeCurrencyExchangeRater() {
+            @Override
+            public Set<CurrencyExchange> currencyExchanges() {
+                return Set.of(
+                    CurrencyExchange.with(
+                        CurrencyCode.parse("AUD"),
+                        CurrencyCode.parse("NZD")
+                    )
+                );
+            }
 
-            return Optional.of(2);
+            @Override
+            public Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
+                                                 final Optional<LocalDateTime> dateTime) {
+                Objects.requireNonNull(currencyExchange, "currencyExchange");
+                Objects.requireNonNull(dateTime, "dateTime");
+
+                return Optional.of(2);
+            }
         },
         LOCALE_CONTEXT
     );

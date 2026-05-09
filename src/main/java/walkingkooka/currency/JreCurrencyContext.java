@@ -24,7 +24,6 @@ import walkingkooka.collect.set.SortedSets;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.text.CharSequences;
 
-import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.Currency;
 import java.util.Locale;
@@ -34,7 +33,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.SortedSet;
 
-final class JreCurrencyContext implements CurrencyContext {
+final class JreCurrencyContext implements CurrencyContext,
+    CurrencyExchangeRaterDelegator {
 
     static JreCurrencyContext with(final Currency currency,
                                    final CurrencyExchangeRater currencyExchangeRater,
@@ -215,13 +215,11 @@ final class JreCurrencyContext implements CurrencyContext {
 
     private final LocaleContext localeContext;
 
+    // CurrencyExchangeRaterDelegator...................................................................................
+
     @Override
-    public Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
-                                         final Optional<LocalDateTime> dateTime) {
-        return this.currencyExchangeRater.exchangeRate(
-            currencyExchange,
-            dateTime
-        );
+    public CurrencyExchangeRater currencyExchangeRater() {
+        return this.currencyExchangeRater;
     }
 
     private final CurrencyExchangeRater currencyExchangeRater;

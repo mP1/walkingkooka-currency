@@ -28,6 +28,7 @@ import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleContextTesting2<TestCurrencyLocaleContext> {
 
@@ -60,11 +61,25 @@ public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleCo
         public CurrencyContext currencyContext() {
             return CurrencyContexts.jre(
                 Currency.getInstance("AUD"),
-                (final CurrencyExchange currencyExchange, final Optional<LocalDateTime> dateTime) -> {
-                    Objects.requireNonNull(currencyExchange, "currencyExchange");
-                    Objects.requireNonNull(dateTime, "dateTime");
+                new FakeCurrencyExchangeRater() {
+                    @Override
+                    public Set<CurrencyExchange> currencyExchanges() {
+                        return Set.of(
+                            CurrencyExchange.with(
+                                CurrencyCode.parse("AUD"),
+                                CurrencyCode.parse("NZD")
+                            )
+                        );
+                    }
 
-                    return Optional.of(2);
+                    @Override
+                    public Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
+                                                         final Optional<LocalDateTime> dateTime) {
+                        Objects.requireNonNull(currencyExchange, "currencyExchange");
+                        Objects.requireNonNull(dateTime, "dateTime");
+
+                        return Optional.of(2);
+                    }
                 },
                 this.localeContext()
             );

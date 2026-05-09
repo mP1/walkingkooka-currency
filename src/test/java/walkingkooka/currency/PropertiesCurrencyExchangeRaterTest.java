@@ -83,6 +83,23 @@ public final class PropertiesCurrencyExchangeRaterTest implements CurrencyExchan
         );
     }
 
+    // currencyExchanges................................................................................................
+
+    @Test
+    public void testCurrencyExchanges() {
+        this.currencyExchangesAndCheck(
+            this.createCurrencyExchangeRater(),
+            CurrencyExchange.with(
+                CurrencyCode.parse("AUD"),
+                CurrencyCode.parse("NZD")
+            ),
+            CurrencyExchange.with(
+                CurrencyCode.parse("AUD"),
+                CurrencyCode.parse("CAD")
+            )
+        );
+    }
+
     // exchangeRate.....................................................................................................
 
     @Test

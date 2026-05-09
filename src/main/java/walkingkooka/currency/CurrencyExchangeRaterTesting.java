@@ -17,12 +17,35 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.collect.set.Sets;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Set;
 
 public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
+
+    // currencyExchanges................................................................................................
+
+    default void currencyExchangesAndCheck(final CurrencyExchangeRater can,
+                                           final CurrencyExchange... expected) {
+        this.currencyExchangesAndCheck(
+            can,
+            Sets.of(expected)
+        );
+    }
+
+    default void currencyExchangesAndCheck(final CurrencyExchangeRater can,
+                                           final Set<CurrencyExchange> expected) {
+        this.checkEquals(
+            expected,
+            can.currencyExchanges(),
+            can::toString
+        );
+    }
+
+    // exchangeRate.....................................................................................................
 
     default void exchangeRateAndCheck(final CurrencyExchangeRater can,
                                       final CurrencyExchange currencyExchange) {
