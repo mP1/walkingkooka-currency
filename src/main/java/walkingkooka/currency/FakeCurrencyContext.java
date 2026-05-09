@@ -17,13 +17,13 @@
 
 package walkingkooka.currency;
 
-import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
-public class FakeCurrencyContext implements CurrencyContext {
+public class FakeCurrencyContext extends FakeCurrencyExchangeRater
+    implements CurrencyContext {
 
     public FakeCurrencyContext() {
         super();
@@ -68,17 +68,6 @@ public class FakeCurrencyContext implements CurrencyContext {
     public Set<CurrencyCode> findByCurrencyText(final String text,
                                                 final int offset,
                                                 final int count) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Set<CurrencyExchange> currencyExchanges() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
-                                         final Optional<LocalDateTime> dateTime) {
         throw new UnsupportedOperationException();
     }
 }
