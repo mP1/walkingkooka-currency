@@ -22,6 +22,9 @@ import walkingkooka.text.CharSequences;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ * An oracle that returns the exchange rate between {@link CurrencyCode} for a given {@link LocalDateTime}.
+ */
 public interface CurrencyExchangeRater {
 
     Optional<Number> exchangeRate(final CurrencyCode from,
