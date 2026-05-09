@@ -74,7 +74,7 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
     public void testCurrencyText() {
         this.currencyTextAndCheck(
             this.createContext(),
-            CURRENCY,
+            CURRENCY.getCurrencyCode(),
             "***" + CURRENCY.getDisplayName()
         );
     }
@@ -125,11 +125,13 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
             }
 
             @Override
-            public Optional<String> currencyText(final Currency currency) {
+            public Optional<String> currencyText(final CurrencyCode currency) {
                 Objects.requireNonNull(currency, "currency");
 
                 return Optional.of(
-                    "***" + currency.getDisplayName()
+                    "***" +
+                        Currency.getInstance(currency.value())
+                            .getDisplayName()
                 );
             }
 

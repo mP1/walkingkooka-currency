@@ -48,7 +48,7 @@ public interface CurrencyContext extends Context,
      * Returns text to display for the given {@link Currency} if it exists.
      * This is necessary because {@link Currency#getDisplayName()} is not implemented in GWT.
      */
-    Optional<String> currencyText(final Currency currency);
+    Optional<String> currencyText(final CurrencyCode currency);
 
     /**
      * Returns all {@link Currency} that have display or local text beginning with the given search text.
