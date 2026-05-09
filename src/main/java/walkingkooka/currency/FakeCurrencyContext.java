@@ -40,7 +40,7 @@ public class FakeCurrencyContext implements CurrencyContext {
     }
 
     @Override
-    public Set<Currency> availableCurrencies() {
+    public Set<CurrencyCode> availableCurrencies() {
         throw new UnsupportedOperationException();
     }
 
