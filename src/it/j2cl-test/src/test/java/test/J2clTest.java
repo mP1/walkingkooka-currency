@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.currency.CurrencyExchangeRaters;
 import walkingkooka.props.Properties;
 
@@ -35,8 +36,10 @@ public class J2clTest {
                         value;
                 }
             ).exchangeRate(
-                CurrencyCode.parse("AUD"),
-                CurrencyCode.parse("NZD"),
+                CurrencyExchange.with(
+                    CurrencyCode.parse("AUD"),
+                    CurrencyCode.parse("NZD")
+                ),
                 Optional.empty()
             ),
             "AUD-NZD"

@@ -89,8 +89,10 @@ public final class PropertiesCurrencyExchangeRaterTest implements CurrencyExchan
     public void testExchangeRate() {
         this.exchangeRateAndCheck(
             this.createCurrencyExchangeRater(),
-            CurrencyCode.parse("AUD"),
-            CurrencyCode.parse("NZD"),
+            CurrencyExchange.with(
+                CurrencyCode.parse("AUD"),
+                CurrencyCode.parse("NZD")
+            ),
             new BigDecimal("1.1")
         );
     }
@@ -99,8 +101,10 @@ public final class PropertiesCurrencyExchangeRaterTest implements CurrencyExchan
     public void testExchangeRateInverted() {
         this.exchangeRateAndCheck(
             this.createCurrencyExchangeRater(),
-            CurrencyCode.parse("NZD"),
-            CurrencyCode.parse("AUD"),
+            CurrencyExchange.with(
+                CurrencyCode.parse("NZD"),
+                CurrencyCode.parse("AUD")
+            ),
             new BigDecimal("0.91")
         );
     }

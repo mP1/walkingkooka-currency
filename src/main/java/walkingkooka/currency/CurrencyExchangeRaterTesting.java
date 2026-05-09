@@ -25,71 +25,61 @@ import java.util.Optional;
 public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
 
     default void exchangeRateAndCheck(final CurrencyExchangeRater can,
-                                      final CurrencyCode from,
-                                      final CurrencyCode to) {
+                                      final CurrencyExchange currencyExchange) {
         this.exchangeRateAndCheck(
             can,
-            from,
-            to,
+            currencyExchange,
             Optional.empty(),
             Optional.empty()
         );
     }
 
     default void exchangeRateAndCheck(final CurrencyExchangeRater can,
-                                      final CurrencyCode from,
-                                      final CurrencyCode to,
+                                      final CurrencyExchange currencyExchange,
                                       final Number expected) {
         this.exchangeRateAndCheck(
             can,
-            from,
-            to,
+            currencyExchange,
             Optional.empty(),
             Optional.of(expected)
         );
     }
 
     default void exchangeRateAndCheck(final CurrencyExchangeRater can,
-                                      final CurrencyCode from,
-                                      final CurrencyCode to,
+                                      final CurrencyExchange currencyExchange,
                                       final LocalDateTime dateTime,
                                       final Number expected) {
         this.exchangeRateAndCheck(
             can,
-            from,
-            to,
+            currencyExchange,
             Optional.of(dateTime),
             Optional.of(expected)
         );
     }
 
     default void exchangeRateAndCheck(final CurrencyExchangeRater can,
-                                      final CurrencyCode from,
-                                      final CurrencyCode to,
+                                      final CurrencyExchange currencyExchange,
                                       final Optional<LocalDateTime> dateTime,
                                       final Number expected) {
         this.exchangeRateAndCheck(
             can,
-            from,
-            to,
+            currencyExchange,
             dateTime,
             Optional.of(expected)
         );
     }
 
     default void exchangeRateAndCheck(final CurrencyExchangeRater can,
-                                      final CurrencyCode from,
-                                      final CurrencyCode to,
+                                      final CurrencyExchange currencyExchange,
                                       final Optional<LocalDateTime> dateTime,
                                       final Optional<Number> expected) {
         this.checkEquals(
             expected,
             can.exchangeRate(
-                from,
-                to,
+                currencyExchange,
                 dateTime
             ),
-            "exchangeRate " + from + " to " + to + " " + dateTime.map(Object::toString)
+            "exchangeRate " + currencyExchange + " " + dateTime.map(Object::toString)
         );
     }
 }

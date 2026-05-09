@@ -175,28 +175,24 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
     // exchangeRateAndCheck.............................................................................................
 
     default void exchangeRateAndCheck(final CurrencyContext context,
-                                      final CurrencyCode from,
-                                      final CurrencyCode to,
+                                      final CurrencyExchange currencyExchange,
                                       final LocalDateTime dateTime,
                                       final Number expected) {
         this.exchangeRateAndCheck(
             context,
-            from,
-            to,
+            currencyExchange,
             Optional.of(dateTime),
             Optional.of(expected)
         );
     }
 
     default void exchangeRateAndCheck(final CurrencyContext context,
-                                      final CurrencyCode from,
-                                      final CurrencyCode to,
+                                      final CurrencyExchange currencyExchange,
                                       final Optional<LocalDateTime> dateTime,
                                       final Optional<Number> expected) {
         this.checkEquals(
             context.exchangeRate(
-                from,
-                to,
+                currencyExchange,
                 dateTime
             ),
             expected

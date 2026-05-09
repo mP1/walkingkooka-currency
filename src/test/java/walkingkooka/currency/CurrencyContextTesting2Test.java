@@ -123,11 +123,9 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
         }
 
         @Override
-        public Optional<Number> exchangeRate(final CurrencyCode from,
-                                             final CurrencyCode to,
+        public Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
                                              final Optional<LocalDateTime> dateTime) {
-            Objects.requireNonNull(from, "currency");
-            Objects.requireNonNull(to, "currency");
+            Objects.requireNonNull(currencyExchange, "currencyExchange");
             Objects.requireNonNull(dateTime, "currency");
 
             return Optional.of(1);
