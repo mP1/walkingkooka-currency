@@ -179,7 +179,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
             "Australia",
             0,
             2,
-            CURRENCY
+            CURRENCY.getCurrencyCode()
         );
     }
 
@@ -190,7 +190,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
             "AUSTRalia",
             0,
             2,
-            CURRENCY
+            CURRENCY.getCurrencyCode()
         );
     }
 

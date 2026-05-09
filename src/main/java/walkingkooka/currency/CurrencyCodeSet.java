@@ -30,7 +30,6 @@ import walkingkooka.text.printer.TreePrintable;
 import java.util.AbstractSet;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.Currency;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
@@ -63,19 +62,16 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
 
         final Set<CurrencyCode> matched = Sets.ordered();
 
-        for (final Currency currency : context.findByCurrencyText(
+        for (final CurrencyCode currencyCode : context.findByCurrencyText(
             startsWith,
             0,
             Integer.MAX_VALUE
         )) {
-            final String currencyText = context.currencyText(
-                CurrencyCode.fromCurrency(currency)
-            ).orElse(null);
+            final String currencyText = context.currencyText(currencyCode)
+                .orElse(null);
 
             if (null != currencyText && (CurrencyContexts.CASE_SENSITIVITY.startsWith(currencyText, startsWith) || CurrencyContexts.CASE_SENSITIVITY.equals(currencyText, startsWith))) {
-                matched.add(
-                    CurrencyCode.fromCurrency(currency)
-                );
+                matched.add(currencyCode);
             }
         }
 

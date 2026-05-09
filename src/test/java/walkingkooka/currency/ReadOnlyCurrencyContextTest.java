@@ -95,7 +95,7 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
             "",
             0,
             1,
-            CURRENCY
+            CURRENCY.getCurrencyCode()
         );
     }
 
@@ -145,9 +145,9 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
             }
 
             @Override
-            public Set<Currency> findByCurrencyText(final String text,
-                                                    final int offset,
-                                                    final int count) {
+            public Set<CurrencyCode> findByCurrencyText(final String text,
+                                                        final int offset,
+                                                        final int count) {
                 Objects.requireNonNull(text, "text");
                 if(offset < 0) {
                     throw new IllegalArgumentException("offset " + offset + " < 0");
@@ -155,7 +155,9 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
                 if(count < 0) {
                     throw new IllegalArgumentException("count " + count + " < 0");
                 }
-                return Sets.of(CURRENCY);
+                return Sets.of(
+                    CurrencyCode.fromCurrency(CURRENCY)
+                );
             }
 
                 @Override

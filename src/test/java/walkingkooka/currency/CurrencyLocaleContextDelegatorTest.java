@@ -139,9 +139,9 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
         }
 
         @Override
-        public Set<Currency> findByCurrencyText(final String text,
-                                                final int offset,
-                                                final int count) {
+        public Set<CurrencyCode> findByCurrencyText(final String text,
+                                                    final int offset,
+                                                    final int count) {
             Objects.requireNonNull(text, "text");
             if (offset < 0) {
                 throw new IllegalArgumentException("offset " + offset + " < 0");
@@ -150,8 +150,10 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
                 throw new IllegalArgumentException("count " + count + " < 0");
             }
             return Sets.of(
-                Currency.getInstance(
-                    Locale.forLanguageTag("en-AU")
+                CurrencyCode.fromCurrency(
+                    Currency.getInstance(
+                        Locale.forLanguageTag("en-AU")
+                    )
                 )
             );
         }
