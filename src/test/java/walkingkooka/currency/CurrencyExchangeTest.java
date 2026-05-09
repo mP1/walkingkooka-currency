@@ -58,19 +58,13 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
         final CurrencyCode from = CurrencyCode.parse("AUD");
         final CurrencyCode to = CurrencyCode.parse("NZD");
 
-        final CurrencyExchange currencyExchange = CurrencyExchange.with(
+        this.fromAndToCheck(
+            CurrencyExchange.with(
+                from,
+                to
+            ),
             from,
             to
-        );
-        this.checkEquals(
-            from,
-            currencyExchange.from(),
-            "from"
-        );
-        this.checkEquals(
-            to,
-            currencyExchange.to(),
-            "to"
         );
     }
 
@@ -79,10 +73,19 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
         final CurrencyCode from = CurrencyCode.parse("AUD");
         final CurrencyCode to = from;
 
-        final CurrencyExchange currencyExchange = CurrencyExchange.with(
+        this.fromAndToCheck(
+            CurrencyExchange.with(
+                from,
+                to
+            ),
             from,
             to
         );
+    }
+
+    private void fromAndToCheck(final CurrencyExchange currencyExchange,
+                                final CurrencyCode from,
+                                final CurrencyCode to) {
         this.checkEquals(
             from,
             currencyExchange.from(),
