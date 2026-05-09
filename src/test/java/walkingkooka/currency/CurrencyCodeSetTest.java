@@ -131,13 +131,13 @@ public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<Curr
         }
 
         @Override
-        public Optional<String> currencyText(final CurrencyCode currency) {
+        public Optional<String> currencyText(final CurrencyCode currencyCode) {
             return Optional.ofNullable(
-                equals(AUD_CURRENCY, currency) ?
+                equals(AUD_CURRENCY, currencyCode) ?
                     AUD_TEXT :
-                    equals(NZD_CURRENCY, currency) ?
+                    equals(NZD_CURRENCY, currencyCode) ?
                         NZD_TEXT :
-                        equals(EUR_CURRENCY, currency) ?
+                        equals(EUR_CURRENCY, currencyCode) ?
                             EUR_TEXT :
                             null
             );
