@@ -17,7 +17,6 @@
 
 package walkingkooka.currency;
 
-import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
 
@@ -28,8 +27,6 @@ import java.util.Objects;
  * An id that uniquely identifies a {@link Currency}.
  */
 public final class CurrencyExchange implements TreePrintable {
-
-    private final static CaseSensitivity CASE_SENSITIVITY = CaseSensitivity.INSENSITIVE;
 
     public static CurrencyExchange with(final CurrencyCode from,
                                         final CurrencyCode to) {
