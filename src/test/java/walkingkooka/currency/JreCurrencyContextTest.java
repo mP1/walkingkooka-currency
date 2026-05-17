@@ -46,8 +46,8 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
         }
 
         @Override
-        public Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
-                                             final Optional<LocalDateTime> dateTime) {
+        public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                     final Optional<LocalDateTime> dateTime) {
             Objects.requireNonNull(currencyExchange, "currencyExchange");
             Objects.requireNonNull(dateTime, "dateTime");
 
@@ -209,8 +209,8 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     }
 
     @Test
-    public void testExchangeRate() {
-        this.exchangeRateAndCheck(
+    public void testCurrencyExchangeRate() {
+        this.currencyExchangeRateAndCheck(
             this.createContext(),
             CurrencyExchange.with(
                 CurrencyCode.parse("AUD"),

@@ -32,11 +32,11 @@ public class Sample {
 
     public static void main(final String[] args) {
         final Sample sample = new Sample();
-        sample.testExchangeRate();
+        sample.testCurrencyExchangeRate();
     }
 
     @Test
-    public void testExchangeRate() {
+    public void testCurrencyExchangeRate() {
         checkEquals(
             Optional.of(
                 new BigDecimal("1.1")
@@ -53,7 +53,7 @@ public class Sample {
                         ) :
                         value;
                 }
-            ).exchangeRate(
+            ).currencyExchangeRate(
                 CurrencyExchange.with(
                     CurrencyCode.parse("AUD"),
                     CurrencyCode.parse("NZD")

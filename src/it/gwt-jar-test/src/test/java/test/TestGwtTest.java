@@ -18,7 +18,7 @@ public class TestGwtTest extends GWTTestCase {
         return "test.Test";
     }
 
-    public void testExchangeRate() {
+    public void testCurrencyExchangeRate() {
         checkEquals(
             Optional.of(
                 new BigDecimal("1.1")
