@@ -112,11 +112,11 @@ public final class PropertiesCurrencyExchangeRaterTest implements CurrencyExchan
         );
     }
 
-    // exchangeRate.....................................................................................................
+    // currencyExchangeRate.............................................................................................
 
     @Test
-    public void testExchangeRate() {
-        this.exchangeRateAndCheck(
+    public void testCurrencyExchangeRate() {
+        this.currencyExchangeRateAndCheck(
             this.createCurrencyExchangeRater(),
             CurrencyExchange.with(
                 CurrencyCode.parse("AUD"),
@@ -127,8 +127,8 @@ public final class PropertiesCurrencyExchangeRaterTest implements CurrencyExchan
     }
 
     @Test
-    public void testExchangeRateInverted() {
-        this.exchangeRateAndCheck(
+    public void testCurrencyExchangeRateInverted() {
+        this.currencyExchangeRateAndCheck(
             this.createCurrencyExchangeRater(),
             CurrencyExchange.with(
                 CurrencyCode.parse("NZD"),

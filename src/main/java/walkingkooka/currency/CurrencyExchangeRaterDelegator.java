@@ -30,10 +30,10 @@ public interface CurrencyExchangeRaterDelegator extends CurrencyExchangeRater {
     }
 
     @Override
-    default Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
-                                          final Optional<LocalDateTime> dateTime) {
+    default Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                  final Optional<LocalDateTime> dateTime) {
         return this.currencyExchangeRater()
-            .exchangeRate(
+            .currencyExchangeRate(
                 currencyExchange,
                 dateTime
             );

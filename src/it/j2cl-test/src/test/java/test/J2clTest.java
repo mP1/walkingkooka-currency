@@ -18,7 +18,7 @@ import java.util.Optional;
 public class J2clTest {
 
     @Test
-    public void testExchangeRate() {
+    public void testCurrencyExchangeRate() {
         checkEquals(
             Optional.of(
                 new BigDecimal("1.1")

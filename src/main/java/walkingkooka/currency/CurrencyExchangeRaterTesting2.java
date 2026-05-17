@@ -25,14 +25,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface CurrencyExchangeRaterTesting2<C extends CurrencyExchangeRater> extends CurrencyExchangeRaterTesting {
 
-    // exchangeRate.....................................................................................................
+    // currencyExchangeRate.............................................................................................
 
     @Test
-    default void testExchangeRateWithNullCurrencyExchangeFails() {
+    default void testCurrencyExchangeRateWithNullCurrencyExchangeFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createCurrencyExchangeRater()
-                .exchangeRate(
+                .currencyExchangeRate(
                     null,
                     Optional.empty() // dateTime
                 )
@@ -40,11 +40,11 @@ public interface CurrencyExchangeRaterTesting2<C extends CurrencyExchangeRater> 
     }
 
     @Test
-    default void testExchangeRateWithNullDateTimeFails() {
+    default void testCurrencyExchangeRateWithNullDateTimeFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createCurrencyExchangeRater()
-                .exchangeRate(
+                .currencyExchangeRate(
                     CurrencyExchange.with(
                         CurrencyCode.parse("AUD"),
                         CurrencyCode.parse("NZD")

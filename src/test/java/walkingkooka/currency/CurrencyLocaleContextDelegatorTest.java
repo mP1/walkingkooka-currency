@@ -159,8 +159,8 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
         }
 
         @Override
-        public Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
-                                             final Optional<LocalDateTime> dateTime) {
+        public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                     final Optional<LocalDateTime> dateTime) {
             Objects.requireNonNull(currencyExchange, "currencyExchange");
             Objects.requireNonNull(dateTime, "currency");
 

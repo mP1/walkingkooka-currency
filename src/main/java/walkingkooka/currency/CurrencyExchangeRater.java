@@ -28,12 +28,12 @@ public interface CurrencyExchangeRater {
 
     Set<CurrencyExchange> currencyExchanges();
 
-    Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
-                                  final Optional<LocalDateTime> dateTime);
+    Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                          final Optional<LocalDateTime> dateTime);
 
-    default Number exchangeRateOrFail(final CurrencyExchange currencyExchange,
-                                      final Optional<LocalDateTime> dateTime) {
-        return this.exchangeRate(
+    default Number currencyExchangeRateOrFail(final CurrencyExchange currencyExchange,
+                                              final Optional<LocalDateTime> dateTime) {
+        return this.currencyExchangeRate(
             currencyExchange,
             dateTime
         ).orElseThrow(() -> new IllegalArgumentException(
