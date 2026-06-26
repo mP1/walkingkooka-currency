@@ -35,7 +35,7 @@ public class J2clTest {
                         ) :
                         value;
                 }
-            ).exchangeRate(
+            ).currencyExchangeRate(
                 CurrencyExchange.with(
                     CurrencyCode.parse("AUD"),
                     CurrencyCode.parse("NZD")
