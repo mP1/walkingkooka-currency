@@ -199,7 +199,7 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
     // HasTextWithSeparator.............................................................................................
 
     @Override
-    public char defaultTextSeparator() {
+    public char separator() {
         return SEPARATOR.character();
     }
 
