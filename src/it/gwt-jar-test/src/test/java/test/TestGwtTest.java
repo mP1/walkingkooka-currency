@@ -35,7 +35,7 @@ public class TestGwtTest extends GWTTestCase {
                         ) :
                         value;
                 }
-            ).exchangeRate(
+            ).currencyExchangeRate(
                 CurrencyExchange.with(
                     CurrencyCode.parse("AUD"),
                     CurrencyCode.parse("NZD")
