@@ -22,7 +22,6 @@ import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContexts;
 
 import java.time.LocalDateTime;
-import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
@@ -31,8 +30,6 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JreCurrencyContextTest implements CurrencyContextTesting2<JreCurrencyContext> {
-
-    private final static Currency CURRENCY = Currency.getInstance("AUD");
 
     private final static CurrencyExchangeRater CURRENCY_EXCHANGE_RATER = new CurrencyExchangeRater() {
         @Override
