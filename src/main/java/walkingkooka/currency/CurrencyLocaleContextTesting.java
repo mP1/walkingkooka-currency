@@ -22,4 +22,6 @@ import walkingkooka.locale.LocaleContextTesting;
 public interface CurrencyLocaleContextTesting extends CurrencyContextTesting,
     LocaleContextTesting,
     CurrencyCodeLanguageTagContextTesting {
+
+    CurrencyLocaleContext CURRENCY_LOCALE_CONTEXT = CURRENCY_CONTEXT.setLocaleContext(LOCALE_CONTEXT);
 }
