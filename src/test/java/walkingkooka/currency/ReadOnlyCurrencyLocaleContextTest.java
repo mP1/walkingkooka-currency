@@ -31,8 +31,6 @@ public final class ReadOnlyCurrencyLocaleContextTest implements CurrencyLocaleCo
     ClassTesting2<ReadOnlyCurrencyLocaleContext>,
     ToStringTesting<ReadOnlyCurrencyLocaleContext> {
 
-    private final static CurrencyLocaleContext CURRENCY_LOCALE_CONTEXT = CURRENCY_CONTEXT.setLocaleContext(LOCALE_CONTEXT);
-
     @Test
     public void testWithNullContextFails() {
         assertThrows(
@@ -65,8 +63,7 @@ public final class ReadOnlyCurrencyLocaleContextTest implements CurrencyLocaleCo
 
     @Override
     public ReadOnlyCurrencyLocaleContext createContext() {
-        return ReadOnlyCurrencyLocaleContext.with(CURRENCY_LOCALE_CONTEXT
-        );
+        return ReadOnlyCurrencyLocaleContext.with(CURRENCY_LOCALE_CONTEXT);
     }
 
     // toString.........................................................................................................
