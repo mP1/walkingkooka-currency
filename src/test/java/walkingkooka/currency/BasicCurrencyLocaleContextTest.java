@@ -24,12 +24,6 @@ import walkingkooka.locale.LocaleContexts;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 
-import java.time.LocalDateTime;
-import java.util.Currency;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -37,33 +31,6 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
     HashCodeEqualsDefinedTesting2<BasicCurrencyLocaleContext>,
     ClassTesting2<BasicCurrencyLocaleContext>,
     ToStringTesting<BasicCurrencyLocaleContext> {
-
-    private final static CurrencyContext CURRENCY_CONTEXT = CurrencyContexts.jre(
-        Currency.getInstance(
-            LOCALE_CONTEXT.locale()
-        ),
-        new FakeCurrencyExchangeRater() {
-            @Override
-            public Set<CurrencyExchange> currencyExchanges() {
-                return Set.of(
-                    CurrencyExchange.with(
-                        CurrencyCode.parse("AUD"),
-                        CurrencyCode.parse("NZD")
-                    )
-                );
-            }
-
-            @Override
-            public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
-                                                         final Optional<LocalDateTime> dateTime) {
-                Objects.requireNonNull(currencyExchange, "currencyExchange");
-                Objects.requireNonNull(dateTime, "dateTime");
-
-                return Optional.of(2);
-            }
-        },
-        LOCALE_CONTEXT
-    );
 
     @Test
     public void testWithNullCurrencyContextFails() {
