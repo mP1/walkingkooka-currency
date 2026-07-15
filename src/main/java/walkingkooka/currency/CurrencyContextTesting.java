@@ -18,12 +18,14 @@
 package walkingkooka.currency;
 
 import walkingkooka.collect.set.Sets;
+import walkingkooka.locale.LocaleContextTesting;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Currency;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -32,7 +34,45 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
     CanLocalesForCurrencyCodeTesting,
     CurrencyExchangeRaterTesting,
     HasCurrencyTesting,
+    LocaleContextTesting,
     TreePrintableTesting {
+
+    CurrencyContext CURRENCY_CONTEXT = CurrencyContexts.readOnly(
+        CurrencyContexts.jre(
+            CURRENCY,
+            new CurrencyExchangeRater() {
+                @Override
+                public Set<CurrencyExchange> currencyExchanges() {
+                    return Set.of(
+                        CurrencyExchange.with(
+                            CurrencyCode.parse("AUD"),
+                            CurrencyCode.parse("NZD")
+                        )
+                    );
+                }
+
+                @Override
+                public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                             final Optional<LocalDateTime> dateTime) {
+                    Objects.requireNonNull(currencyExchange, "currencyExchange");
+                    Objects.requireNonNull(dateTime, "dateTime");
+
+                    return Optional.of(
+                        1.0 *
+                            Currency.getInstance(
+                                currencyExchange.from()
+                                    .value()
+                            ).getDisplayName().length() /
+                            Currency.getInstance(
+                                currencyExchange.to()
+                                    .value()
+                            ).getDisplayName().length()
+                    );
+                }
+            },
+            LOCALE_CONTEXT
+        )
+    );
 
     // setCurrency....................................................................................................
 
