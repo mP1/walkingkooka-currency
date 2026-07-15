@@ -34,8 +34,6 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
     HasCurrencyTesting,
     TreePrintableTesting {
 
-    Currency CURRENCY = Currency.getInstance("AUD");
-
     // setCurrency....................................................................................................
 
     default void setCurrencyAndCheck(final CurrencyContext context,

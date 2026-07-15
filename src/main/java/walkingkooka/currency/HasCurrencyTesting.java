@@ -23,6 +23,8 @@ import java.util.Currency;
 
 public interface HasCurrencyTesting extends TreePrintableTesting {
 
+    Currency CURRENCY = Currency.getInstance("AUD");
+
     default void currencyAndCheck(final HasCurrency has,
                                   final Currency expected) {
         this.checkEquals(
