@@ -19,7 +19,8 @@ package walkingkooka.currency;
 
 import walkingkooka.locale.LocaleContextTesting2;
 
-public interface CurrencyLocaleContextTesting2<C extends CurrencyLocaleContext> extends CurrencyContextTesting2<C>,
+public interface CurrencyLocaleContextTesting2<C extends CurrencyLocaleContext> extends CurrencyLocaleContextTesting,
+    CurrencyContextTesting2<C>,
     LocaleContextTesting2<C>,
     CurrencyCodeLanguageTagContextTesting2<C> {
 
