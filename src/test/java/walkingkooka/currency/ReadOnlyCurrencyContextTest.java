@@ -50,7 +50,6 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
     }
 
     private final static Locale LOCALE = Locale.forLanguageTag("en-AU");
-    private final static Currency CURRENCY = Currency.getInstance(LOCALE);
 
     @Test
     public void testCurrencyForCurrencyCode() {
