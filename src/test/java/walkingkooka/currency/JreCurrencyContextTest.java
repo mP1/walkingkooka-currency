@@ -18,8 +18,7 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.locale.LocaleContext;
-import walkingkooka.locale.LocaleContexts;
+import walkingkooka.locale.LocaleContextTesting;
 
 import java.time.LocalDateTime;
 import java.util.Locale;
@@ -29,7 +28,8 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class JreCurrencyContextTest implements CurrencyContextTesting2<JreCurrencyContext> {
+public final class JreCurrencyContextTest implements CurrencyContextTesting2<JreCurrencyContext>,
+    LocaleContextTesting {
 
     private final static CurrencyExchangeRater CURRENCY_EXCHANGE_RATER = new CurrencyExchangeRater() {
         @Override
@@ -51,10 +51,6 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
             return java.util.Optional.of(2);
         }
     };
-
-    private final static LocaleContext LOCALE_CONTEXT = LocaleContexts.jre(
-        Locale.forLanguageTag("en-AU")
-    );
 
     @Test
     public void testWithNullCurrencyFails() {

@@ -19,8 +19,6 @@ package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
-import walkingkooka.locale.LocaleContext;
-import walkingkooka.locale.LocaleContexts;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 
@@ -36,14 +34,8 @@ public final class ReadOnlyCurrencyLocaleContextTest implements CurrencyLocaleCo
     ClassTesting2<ReadOnlyCurrencyLocaleContext>,
     ToStringTesting<ReadOnlyCurrencyLocaleContext> {
 
-    private final static LocaleContext LOCALE_CONTEXT = LocaleContexts.jre(
-        Locale.forLanguageTag("en-AU")
-    );
-
     private final static CurrencyContext CURRENCY_CONTEXT = CurrencyContexts.jre(
-        Currency.getInstance(
-            LOCALE_CONTEXT.locale()
-        ),
+        Currency.getInstance(LOCALE),
         new FakeCurrencyExchangeRater() {
 
             @Override
