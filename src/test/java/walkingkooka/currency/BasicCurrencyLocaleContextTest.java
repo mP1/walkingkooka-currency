@@ -20,14 +20,12 @@ package walkingkooka.currency;
 import org.junit.jupiter.api.Test;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.ToStringTesting;
-import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 
 import java.time.LocalDateTime;
 import java.util.Currency;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -39,10 +37,6 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
     HashCodeEqualsDefinedTesting2<BasicCurrencyLocaleContext>,
     ClassTesting2<BasicCurrencyLocaleContext>,
     ToStringTesting<BasicCurrencyLocaleContext> {
-
-    private final static LocaleContext LOCALE_CONTEXT = LocaleContexts.jre(
-        Locale.forLanguageTag("en-AU")
-    );
 
     private final static CurrencyContext CURRENCY_CONTEXT = CurrencyContexts.jre(
         Currency.getInstance(
