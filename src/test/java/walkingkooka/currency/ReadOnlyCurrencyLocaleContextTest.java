@@ -22,33 +22,14 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 
-import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Locale;
-import java.util.Objects;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class ReadOnlyCurrencyLocaleContextTest implements CurrencyLocaleContextTesting2<ReadOnlyCurrencyLocaleContext>,
     ClassTesting2<ReadOnlyCurrencyLocaleContext>,
     ToStringTesting<ReadOnlyCurrencyLocaleContext> {
-
-    private final static CurrencyContext CURRENCY_CONTEXT = CurrencyContexts.jre(
-        Currency.getInstance(LOCALE),
-        new FakeCurrencyExchangeRater() {
-
-            @Override
-            public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
-                                                         final Optional<LocalDateTime> dateTime) {
-                Objects.requireNonNull(currencyExchange, "currencyExchange");
-                Objects.requireNonNull(dateTime, "dateTime");
-
-                return Optional.of(2);
-            }
-        },
-        LOCALE_CONTEXT
-    );
 
     private final static CurrencyLocaleContext CURRENCY_LOCALE_CONTEXT = CURRENCY_CONTEXT.setLocaleContext(LOCALE_CONTEXT);
 
