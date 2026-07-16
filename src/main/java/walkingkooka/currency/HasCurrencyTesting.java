@@ -20,10 +20,13 @@ package walkingkooka.currency;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Currency;
+import java.util.Optional;
 
 public interface HasCurrencyTesting extends TreePrintableTesting {
 
     Currency CURRENCY = Currency.getInstance("AUD");
+
+    Optional<Currency> OPTIONAL_CURRENCY = Optional.of(CURRENCY);
 
     Currency DIFFERENT_CURRENCY = Currency.getInstance("NZD");
 
