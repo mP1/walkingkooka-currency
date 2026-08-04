@@ -33,7 +33,7 @@ import java.util.Objects;
 public final class CurrencyCode implements Comparable<CurrencyCode>, HasValue<String>,
     TreePrintable {
 
-    private final static CaseSensitivity CASE_SENSITIVITY = CaseSensitivity.INSENSITIVE;
+    public final static CaseSensitivity CASE_SENSITIVITY = HasCurrency.CURRENCY_CASE_SENSITIVITY;
 
     public static CurrencyCode parse(final String text) {
         return new CurrencyCode(
