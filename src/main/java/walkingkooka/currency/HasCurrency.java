@@ -17,12 +17,16 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.text.CaseSensitivity;
+
 import java.util.Currency;
 
 /**
  * Declares a {@link Currency} getter.
  */
 public interface HasCurrency extends HasCurrencyCode {
+
+    CaseSensitivity CURRENCY_CASE_SENSITIVITY = CaseSensitivity.INSENSITIVE;
 
     /**
      * The {@link Currency}
