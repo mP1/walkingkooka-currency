@@ -21,6 +21,7 @@ import walkingkooka.HasValue;
 import walkingkooka.InvalidTextLengthException;
 import walkingkooka.compare.Comparators;
 import walkingkooka.text.CaseSensitivity;
+import walkingkooka.text.HasCaseSensitivity;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
 
@@ -31,6 +32,7 @@ import java.util.Objects;
  * An id that uniquely identifies a {@link Currency}.
  */
 public final class CurrencyCode implements Comparable<CurrencyCode>, HasValue<String>,
+    HasCaseSensitivity,
     TreePrintable {
 
     public final static CaseSensitivity CASE_SENSITIVITY = HasCurrency.CURRENCY_CASE_SENSITIVITY;
@@ -106,5 +108,12 @@ public final class CurrencyCode implements Comparable<CurrencyCode>, HasValue<St
     @Override
     public void printTree(final IndentingPrinter printer) {
         printer.println(this.code);
+    }
+
+    // HasCaseSensitivity...............................................................................................
+
+    @Override
+    public CaseSensitivity caseSensitivity() {
+        return CASE_SENSITIVITY;
     }
 }
