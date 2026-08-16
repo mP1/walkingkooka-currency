@@ -22,7 +22,9 @@ import walkingkooka.collect.set.ImmutableSortedSetDefaults;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.text.CharacterConstant;
+import walkingkooka.text.HasTextWithLineBreaks;
 import walkingkooka.text.HasTextWithSeparator;
+import walkingkooka.text.LineEnding;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
 
@@ -34,6 +36,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 /**
  * An immutable {@link Set} containing unique {@link CurrencyCode currencies}.
@@ -41,6 +44,7 @@ import java.util.TreeSet;
 public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
     implements ImmutableSortedSetDefaults<CurrencyCodeSet, CurrencyCode>,
     HasTextWithSeparator,
+    HasTextWithLineBreaks,
     TreePrintable {
 
     /**
@@ -209,6 +213,21 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
             .toSeparatedString(
                 this,
                 CurrencyCode::value
+            );
+    }
+
+    // HasTextWithLineBreaks............................................................................................
+
+    @Override
+    public String textWithLineBreaks(final LineEnding lineEnding) {
+        return this.stream()
+            .map(CurrencyCode::value)
+            .collect(
+                Collectors.joining(
+                    lineEnding,
+                    "",
+                    lineEnding // suffix (last line)
+                )
             );
     }
 
