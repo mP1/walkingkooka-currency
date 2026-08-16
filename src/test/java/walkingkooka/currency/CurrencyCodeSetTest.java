@@ -22,7 +22,9 @@ import walkingkooka.collect.set.ImmutableSortedSetTesting;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.test.ParseStringTesting;
+import walkingkooka.text.HasTextWithLineBreaksTesting;
 import walkingkooka.text.HasTextWithSeparatorTesting;
+import walkingkooka.text.LineEnding;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Currency;
@@ -34,6 +36,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<CurrencyCodeSet, CurrencyCode>,
+    HasTextWithLineBreaksTesting,
     HasTextWithSeparatorTesting,
     ParseStringTesting<CurrencyCodeSet>,
     TreePrintableTesting {
@@ -271,6 +274,18 @@ public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<Curr
     @Override
     public RuntimeException parseStringFailedExpected(final RuntimeException thrown) {
         return thrown;
+    }
+
+    // HasTextWithLineBreaks............................................................................................
+
+    @Test
+    public void testTextWithLineBreaks() {
+        this.textWithLineBreaksAndCheck(
+            this.createSet(),
+            LineEnding.NL,
+            "AUD\n" +
+                "NZD\n"
+        );
     }
 
     // TreePrintable....................................................................................................
