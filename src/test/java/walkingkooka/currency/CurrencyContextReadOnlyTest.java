@@ -30,22 +30,22 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting2<ReadOnlyCurrencyContext> {
+public final class CurrencyContextReadOnlyTest implements CurrencyContextTesting2<CurrencyContextReadOnly> {
 
     @Test
     public void testWithNullContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> ReadOnlyCurrencyContext.with(null)
+            () -> CurrencyContextReadOnly.with(null)
         );
     }
 
     @Test
     public void testWithReadOnlyCurrencyContext() {
-        final ReadOnlyCurrencyContext context = this.createContext();
+        final CurrencyContextReadOnly context = this.createContext();
         assertSame(
             context,
-            ReadOnlyCurrencyContext.with(context)
+            CurrencyContextReadOnly.with(context)
         );
     }
 
@@ -99,8 +99,8 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
     }
 
     @Override
-    public ReadOnlyCurrencyContext createContext() {
-        return ReadOnlyCurrencyContext.with(
+    public CurrencyContextReadOnly createContext() {
+        return CurrencyContextReadOnly.with(
             new FakeCurrencyContext() {
 
             @Override
@@ -179,8 +179,8 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
     // class............................................................................................................
 
     @Override
-    public Class<ReadOnlyCurrencyContext> type() {
-        return ReadOnlyCurrencyContext.class;
+    public Class<CurrencyContextReadOnly> type() {
+        return CurrencyContextReadOnly.class;
     }
 
     @Override
