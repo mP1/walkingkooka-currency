@@ -20,11 +20,11 @@ package walkingkooka.currency;
 import org.junit.jupiter.api.Test;
 import walkingkooka.ContextTesting;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface CurrencyContextTesting2<C extends CurrencyContext> extends CurrencyContextTesting,
+    CanCurrencyExchangeRateTesting2<C>,
+    CanCurrencyExchangesTesting2<C>,
     CanCurrencyForCurrencyCodeTesting2<C>,
     CanCurrencyForLocaleTesting2<C>,
     CanLocalesForCurrencyCodeTesting2<C>,
@@ -40,36 +40,6 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
                 .setCurrency(null)
         );
     }
-
-    // currencyExchangeRate.............................................................................................
-
-    @Test
-    default void testCurrencyExchangeRateWithNullCurrencyExchangeFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .currencyExchangeRate(
-                    null,
-                    Optional.empty() // dateTime
-                )
-        );
-    }
-
-    @Test
-    default void testCurrencyExchangeRateWithNullDateTimeFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .currencyExchangeRate(
-                    CurrencyExchange.with(
-                        CurrencyCode.parse("AUD"),
-                        CurrencyCode.parse("NZD")
-                    ),
-                    null // dateTime
-                )
-        );
-    }
-
 
     // currencyText.....................................................................................................
 
@@ -121,6 +91,16 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
                     -1
                 )
         );
+    }
+
+    @Override
+    default C createCanCurrencyExchangeRate() {
+        return this.createContext();
+    }
+
+    @Override
+    default C createCanCurrencyExchanges() {
+        return this.createContext();
     }
 
     @Override

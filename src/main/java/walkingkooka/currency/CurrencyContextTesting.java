@@ -29,7 +29,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTesting,
+public interface CurrencyContextTesting extends CanCurrencyExchangeRateTesting,
+    CanCurrencyExchangesTesting,
+    CanCurrencyForCurrencyCodeTesting,
     CanCurrencyForLocaleTesting,
     CanLocalesForCurrencyCodeTesting,
     HasCurrencyTesting,
@@ -111,86 +113,6 @@ public interface CurrencyContextTesting extends CanCurrencyForCurrencyCodeTestin
             expected,
             context.availableCurrencies(),
             context::toString
-        );
-    }
-
-    // currencyExchanges................................................................................................
-
-    default void currencyExchangesAndCheck(final CurrencyContext context,
-                                           final CurrencyExchange... expected) {
-        this.currencyExchangesAndCheck(
-            context,
-            Sets.of(expected)
-        );
-    }
-
-    default void currencyExchangesAndCheck(final CurrencyContext context,
-                                           final Set<CurrencyExchange> expected) {
-        this.checkEquals(
-            expected,
-            context.currencyExchanges(),
-            context::toString
-        );
-    }
-
-    // currencyExchangeRate.............................................................................................
-
-    default void currencyExchangeRateAndCheck(final CurrencyContext context,
-                                              final CurrencyExchange currencyExchange) {
-        this.currencyExchangeRateAndCheck(
-            context,
-            currencyExchange,
-            Optional.empty(),
-            Optional.empty()
-        );
-    }
-
-    default void currencyExchangeRateAndCheck(final CurrencyContext context,
-                                              final CurrencyExchange currencyExchange,
-                                              final Number expected) {
-        this.currencyExchangeRateAndCheck(
-            context,
-            currencyExchange,
-            Optional.empty(),
-            Optional.of(expected)
-        );
-    }
-
-    default void currencyExchangeRateAndCheck(final CurrencyContext context,
-                                              final CurrencyExchange currencyExchange,
-                                              final LocalDateTime dateTime,
-                                              final Number expected) {
-        this.currencyExchangeRateAndCheck(
-            context,
-            currencyExchange,
-            Optional.of(dateTime),
-            Optional.of(expected)
-        );
-    }
-
-    default void currencyExchangeRateAndCheck(final CurrencyContext context,
-                                              final CurrencyExchange currencyExchange,
-                                              final Optional<LocalDateTime> dateTime,
-                                              final Number expected) {
-        this.currencyExchangeRateAndCheck(
-            context,
-            currencyExchange,
-            dateTime,
-            Optional.of(expected)
-        );
-    }
-
-    default void currencyExchangeRateAndCheck(final CurrencyContext context,
-                                              final CurrencyExchange currencyExchange,
-                                              final Optional<LocalDateTime> dateTime,
-                                              final Optional<Number> expected) {
-        this.checkEquals(
-            expected,
-            context.currencyExchangeRate(
-                currencyExchange,
-                dateTime
-            ),
-            () -> context + " currencyExchangeRate " + currencyExchange + " " + dateTime.map(Object::toString)
         );
     }
     
