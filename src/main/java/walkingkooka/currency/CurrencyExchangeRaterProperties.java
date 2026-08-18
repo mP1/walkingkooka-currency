@@ -36,18 +36,18 @@ import java.util.stream.Stream;
  * AUD-NZD=1.1
  * </pre>
  */
-final class PropertiesCurrencyExchangeRater implements CurrencyExchangeRater,
+final class CurrencyExchangeRaterProperties implements CurrencyExchangeRater,
     HasProperties {
 
-    static PropertiesCurrencyExchangeRater fromProperties(final Properties properties,
+    static CurrencyExchangeRaterProperties fromProperties(final Properties properties,
                                                           final BiFunction<String, Boolean, Number> numberParser) {
-        return new PropertiesCurrencyExchangeRater(
+        return new CurrencyExchangeRaterProperties(
             Objects.requireNonNull(properties, "properties"),
             Objects.requireNonNull(numberParser, "numberParser")
         );
     }
 
-    private PropertiesCurrencyExchangeRater(final Properties properties,
+    private CurrencyExchangeRaterProperties(final Properties properties,
                                             final BiFunction<String, Boolean, Number> numberParser) {
         super();
         this.properties = properties;
@@ -178,11 +178,11 @@ final class PropertiesCurrencyExchangeRater implements CurrencyExchangeRater,
     @Override
     public boolean equals(final Object other) {
         return this == other ||
-            (other instanceof PropertiesCurrencyExchangeRater &&
-                this.equals0((PropertiesCurrencyExchangeRater) other));
+            (other instanceof CurrencyExchangeRaterProperties &&
+                this.equals0((CurrencyExchangeRaterProperties) other));
     }
 
-    private boolean equals0(final PropertiesCurrencyExchangeRater other) {
+    private boolean equals0(final CurrencyExchangeRaterProperties other) {
         return this.properties.equals(other.properties) &&
             this.numberParser.equals(other.numberParser);
     }

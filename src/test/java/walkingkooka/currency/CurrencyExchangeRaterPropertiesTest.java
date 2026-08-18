@@ -30,11 +30,11 @@ import java.util.function.BiFunction;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class PropertiesCurrencyExchangeRaterTest implements CurrencyExchangeRaterTesting2<PropertiesCurrencyExchangeRater>,
+public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchangeRaterTesting2<CurrencyExchangeRaterProperties>,
     HasPropertiesTesting,
-    HashCodeEqualsDefinedTesting2<PropertiesCurrencyExchangeRater>,
-    ToStringTesting<PropertiesCurrencyExchangeRater>,
-    ClassTesting<PropertiesCurrencyExchangeRater> {
+    HashCodeEqualsDefinedTesting2<CurrencyExchangeRaterProperties>,
+    ToStringTesting<CurrencyExchangeRaterProperties>,
+    ClassTesting<CurrencyExchangeRaterProperties> {
 
     private final static Properties PROPERTIES = Properties.parse("AUD-NZD=1.1\nAUD-CAD=1.2\n");
 
@@ -55,7 +55,7 @@ public final class PropertiesCurrencyExchangeRaterTest implements CurrencyExchan
     public void testWithNullPropertiesFails() {
         assertThrows(
             NullPointerException.class,
-            () -> PropertiesCurrencyExchangeRater.fromProperties(
+            () -> CurrencyExchangeRaterProperties.fromProperties(
                 null,
                 NUMBER_PARSER
             )
@@ -66,7 +66,7 @@ public final class PropertiesCurrencyExchangeRaterTest implements CurrencyExchan
     public void testWithNullNumberParserFails() {
         assertThrows(
             NullPointerException.class,
-            () -> PropertiesCurrencyExchangeRater.fromProperties(
+            () -> CurrencyExchangeRaterProperties.fromProperties(
                 Properties.EMPTY,
                 null
             )
@@ -139,8 +139,8 @@ public final class PropertiesCurrencyExchangeRaterTest implements CurrencyExchan
     }
 
     @Override
-    public PropertiesCurrencyExchangeRater createCurrencyExchangeRater() {
-        return PropertiesCurrencyExchangeRater.fromProperties(
+    public CurrencyExchangeRaterProperties createCurrencyExchangeRater() {
+        return CurrencyExchangeRaterProperties.fromProperties(
             PROPERTIES,
             NUMBER_PARSER
         );
@@ -151,7 +151,7 @@ public final class PropertiesCurrencyExchangeRaterTest implements CurrencyExchan
     @Test
     public void testEqualsDifferentProperties() {
         this.checkNotEquals(
-            PropertiesCurrencyExchangeRater.fromProperties(
+            CurrencyExchangeRaterProperties.fromProperties(
                 Properties.EMPTY,
                 NUMBER_PARSER
             )
@@ -161,7 +161,7 @@ public final class PropertiesCurrencyExchangeRaterTest implements CurrencyExchan
     @Test
     public void testEqualsDifferentNumberParser() {
         this.checkNotEquals(
-            PropertiesCurrencyExchangeRater.fromProperties(
+            CurrencyExchangeRaterProperties.fromProperties(
                 PROPERTIES,
                 (String text, Boolean invert) -> {
                     throw new UnsupportedOperationException();
@@ -171,7 +171,7 @@ public final class PropertiesCurrencyExchangeRaterTest implements CurrencyExchan
     }
 
     @Override
-    public PropertiesCurrencyExchangeRater createObject() {
+    public CurrencyExchangeRaterProperties createObject() {
         return this.createCurrencyExchangeRater();
     }
 
@@ -188,8 +188,8 @@ public final class PropertiesCurrencyExchangeRaterTest implements CurrencyExchan
     // class............................................................................................................
 
     @Override
-    public Class<PropertiesCurrencyExchangeRater> type() {
-        return PropertiesCurrencyExchangeRater.class;
+    public Class<CurrencyExchangeRaterProperties> type() {
+        return CurrencyExchangeRaterProperties.class;
     }
 
     @Override

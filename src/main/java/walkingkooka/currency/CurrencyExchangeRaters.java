@@ -35,11 +35,11 @@ public final class CurrencyExchangeRaters implements PublicStaticHelper {
     }
 
     /**
-     * {@see PropertiesCurrencyExchangeRater}
+     * {@see CurrencyExchangeRaterProperties}
      */
     public static CurrencyExchangeRater properties(final Properties properties,
                                                    final BiFunction<String, Boolean, Number> numberParser) {
-        return PropertiesCurrencyExchangeRater.fromProperties(
+        return CurrencyExchangeRaterProperties.fromProperties(
             properties,
             numberParser
         );
