@@ -48,7 +48,7 @@ public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
     // currencyExchangeRate.............................................................................................
 
     default void currencyExchangeRateAndCheck(final CurrencyExchangeRater rater,
-                                      final CurrencyExchange currencyExchange) {
+                                              final CurrencyExchange currencyExchange) {
         this.currencyExchangeRateAndCheck(
             rater,
             currencyExchange,
@@ -58,8 +58,8 @@ public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
     }
 
     default void currencyExchangeRateAndCheck(final CurrencyExchangeRater rater,
-                                      final CurrencyExchange currencyExchange,
-                                      final Number expected) {
+                                              final CurrencyExchange currencyExchange,
+                                              final Number expected) {
         this.currencyExchangeRateAndCheck(
             rater,
             currencyExchange,
@@ -69,9 +69,9 @@ public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
     }
 
     default void currencyExchangeRateAndCheck(final CurrencyExchangeRater rater,
-                                      final CurrencyExchange currencyExchange,
-                                      final LocalDateTime dateTime,
-                                      final Number expected) {
+                                              final CurrencyExchange currencyExchange,
+                                              final LocalDateTime dateTime,
+                                              final Number expected) {
         this.currencyExchangeRateAndCheck(
             rater,
             currencyExchange,
@@ -81,9 +81,9 @@ public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
     }
 
     default void currencyExchangeRateAndCheck(final CurrencyExchangeRater rater,
-                                      final CurrencyExchange currencyExchange,
-                                      final Optional<LocalDateTime> dateTime,
-                                      final Number expected) {
+                                              final CurrencyExchange currencyExchange,
+                                              final Optional<LocalDateTime> dateTime,
+                                              final Number expected) {
         this.currencyExchangeRateAndCheck(
             rater,
             currencyExchange,
@@ -93,9 +93,9 @@ public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
     }
 
     default void currencyExchangeRateAndCheck(final CurrencyExchangeRater rater,
-                                      final CurrencyExchange currencyExchange,
-                                      final Optional<LocalDateTime> dateTime,
-                                      final Optional<Number> expected) {
+                                              final CurrencyExchange currencyExchange,
+                                              final Optional<LocalDateTime> dateTime,
+                                              final Optional<Number> expected) {
         this.checkEquals(
             expected,
             rater.currencyExchangeRate(
