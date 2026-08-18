@@ -61,9 +61,11 @@ public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleCo
         public CurrencyContext currencyContext() {
             return CurrencyContexts.jre(
                 Currency.getInstance("AUD"),
-                new FakeCurrencyExchangeRater() {
+                new FakeCurrencyExchangeRater<>() {
                     @Override
-                    public Set<CurrencyExchange> currencyExchanges() {
+                    public Set<CurrencyExchange> currencyExchanges(final CurrencyExchangeRaterContext context) {
+                        Objects.requireNonNull(context, "context");
+
                         return Set.of(
                             CurrencyExchange.with(
                                 CurrencyCode.parse("AUD"),
@@ -74,9 +76,11 @@ public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleCo
 
                     @Override
                     public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
-                                                                 final Optional<LocalDateTime> dateTime) {
+                                                                 final Optional<LocalDateTime> dateTime,
+                                                                 final CurrencyExchangeRaterContext context) {
                         Objects.requireNonNull(currencyExchange, "currencyExchange");
                         Objects.requireNonNull(dateTime, "dateTime");
+                        Objects.requireNonNull(context, "context");
 
                         return Optional.of(2);
                     }

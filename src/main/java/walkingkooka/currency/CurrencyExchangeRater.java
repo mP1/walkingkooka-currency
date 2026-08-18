@@ -24,18 +24,21 @@ import java.util.Set;
 /**
  * An oracle that returns the exchange rate between {@link CurrencyCode} for a given {@link LocalDateTime}.
  */
-public interface CurrencyExchangeRater {
+public interface CurrencyExchangeRater<C extends CurrencyExchangeRaterContext> {
 
-    Set<CurrencyExchange> currencyExchanges();
+    Set<CurrencyExchange> currencyExchanges(final C context);
 
     Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
-                                          final Optional<LocalDateTime> dateTime);
+                                          final Optional<LocalDateTime> dateTime,
+                                          final C context);
 
     default Number currencyExchangeRateOrFail(final CurrencyExchange currencyExchange,
-                                              final Optional<LocalDateTime> dateTime) {
+                                              final Optional<LocalDateTime> dateTime,
+                                              final C context) {
         return this.currencyExchangeRate(
             currencyExchange,
-            dateTime
+            dateTime,
+            context
         ).orElseThrow(() -> new IllegalArgumentException(
             "Invalid exchange rate " +
                 currencyExchange +

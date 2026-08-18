@@ -18,6 +18,7 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.ToStringTesting;
 import walkingkooka.props.HasPropertiesTesting;
@@ -30,11 +31,11 @@ import java.util.function.BiFunction;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchangeRaterTesting2<CurrencyExchangeRaterProperties>,
+public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchangeRaterTesting2<CurrencyExchangeRaterProperties<CurrencyExchangeRaterContext>, CurrencyExchangeRaterContext>,
     HasPropertiesTesting,
-    HashCodeEqualsDefinedTesting2<CurrencyExchangeRaterProperties>,
-    ToStringTesting<CurrencyExchangeRaterProperties>,
-    ClassTesting<CurrencyExchangeRaterProperties> {
+    HashCodeEqualsDefinedTesting2<CurrencyExchangeRaterProperties<CurrencyExchangeRaterContext>>,
+    ToStringTesting<CurrencyExchangeRaterProperties<CurrencyExchangeRaterContext>>,
+    ClassTesting<CurrencyExchangeRaterProperties<CurrencyExchangeRaterContext>> {
 
     private final static Properties PROPERTIES = Properties.parse("AUD-NZD=1.1\nAUD-CAD=1.2\n");
 
@@ -48,6 +49,8 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
             ) :
             value;
     };
+    
+    private final static CurrencyExchangeRaterContext CONTEXT = new FakeCurrencyExchangeRaterContext();
 
     // with.............................................................................................................
 
@@ -93,6 +96,7 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
 
         this.currencyExchangesAndCheck(
             this.createCurrencyExchangeRater(),
+            CONTEXT,
             CurrencyExchange.with(
                 aud,
                 nzd
@@ -122,6 +126,7 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
                 CurrencyCode.parse("AUD"),
                 CurrencyCode.parse("NZD")
             ),
+            CONTEXT,
             new BigDecimal("1.1")
         );
     }
@@ -134,16 +139,22 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
                 CurrencyCode.parse("NZD"),
                 CurrencyCode.parse("AUD")
             ),
+            CONTEXT,
             new BigDecimal("0.91")
         );
     }
 
     @Override
-    public CurrencyExchangeRaterProperties createCurrencyExchangeRater() {
+    public CurrencyExchangeRaterProperties<CurrencyExchangeRaterContext> createCurrencyExchangeRater() {
         return CurrencyExchangeRaterProperties.with(
             PROPERTIES,
             NUMBER_PARSER
         );
+    }
+
+    @Override
+    public CurrencyExchangeRaterContext createContext() {
+        return CONTEXT;
     }
 
     // hashCode/equals..................................................................................................
@@ -171,7 +182,7 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
     }
 
     @Override
-    public CurrencyExchangeRaterProperties createObject() {
+    public CurrencyExchangeRaterProperties<CurrencyExchangeRaterContext> createObject() {
         return this.createCurrencyExchangeRater();
     }
 
@@ -188,8 +199,8 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
     // class............................................................................................................
 
     @Override
-    public Class<CurrencyExchangeRaterProperties> type() {
-        return CurrencyExchangeRaterProperties.class;
+    public Class<CurrencyExchangeRaterProperties<CurrencyExchangeRaterContext>> type() {
+        return Cast.to(CurrencyExchangeRaterProperties.class);
     }
 
     @Override

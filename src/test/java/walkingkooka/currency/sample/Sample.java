@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.currency.CurrencyExchangeRaters;
+import walkingkooka.currency.FakeCurrencyExchangeRaterContext;
 import walkingkooka.props.Properties;
 
 import java.math.BigDecimal;
@@ -58,7 +59,8 @@ public class Sample {
                     CurrencyCode.parse("AUD"),
                     CurrencyCode.parse("NZD")
                 ),
-                Optional.empty()
+                Optional.empty(),
+                new FakeCurrencyExchangeRaterContext()
             ),
             "AUD-NZD"
         );

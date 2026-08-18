@@ -42,9 +42,9 @@ public interface CurrencyContextTesting extends CanCurrencyExchangeRateTesting,
     CurrencyContext CURRENCY_CONTEXT = CurrencyContexts.readOnly(
         CurrencyContexts.jre(
             CURRENCY,
-            new CurrencyExchangeRater() {
+            new CurrencyExchangeRater<CurrencyContext>() {
                 @Override
-                public Set<CurrencyExchange> currencyExchanges() {
+                public Set<CurrencyExchange> currencyExchanges(final CurrencyContext context) {
                     return Set.of(
                         CurrencyExchange.with(
                             CurrencyCode.parse("AUD"),
@@ -55,9 +55,11 @@ public interface CurrencyContextTesting extends CanCurrencyExchangeRateTesting,
 
                 @Override
                 public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
-                                                             final Optional<LocalDateTime> dateTime) {
+                                                             final Optional<LocalDateTime> dateTime,
+                                                             final CurrencyContext context) {
                     Objects.requireNonNull(currencyExchange, "currencyExchange");
                     Objects.requireNonNull(dateTime, "dateTime");
+                    Objects.requireNonNull(context, "context");
 
                     return Optional.of(
                         1.0 *

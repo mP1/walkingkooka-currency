@@ -31,9 +31,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class CurrencyContextJreTest implements CurrencyContextTesting2<CurrencyContextJre>,
     LocaleContextTesting {
 
-    private final static CurrencyExchangeRater CURRENCY_EXCHANGE_RATER = new CurrencyExchangeRater() {
+    private final static CurrencyExchangeRater<CurrencyContext> CURRENCY_EXCHANGE_RATER = new CurrencyExchangeRater<>() {
         @Override
-        public Set<CurrencyExchange> currencyExchanges() {
+        public Set<CurrencyExchange> currencyExchanges(final CurrencyContext context) {
+            Objects.requireNonNull(context, "context");
+
             return Set.of(
                 CurrencyExchange.with(
                     CurrencyCode.parse("AUD"),
@@ -44,9 +46,11 @@ public final class CurrencyContextJreTest implements CurrencyContextTesting2<Cur
 
         @Override
         public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
-                                                     final Optional<LocalDateTime> dateTime) {
+                                                     final Optional<LocalDateTime> dateTime,
+                                                     final CurrencyContext context) {
             Objects.requireNonNull(currencyExchange, "currencyExchange");
             Objects.requireNonNull(dateTime, "dateTime");
+            Objects.requireNonNull(context, "context");
 
             return java.util.Optional.of(2);
         }
