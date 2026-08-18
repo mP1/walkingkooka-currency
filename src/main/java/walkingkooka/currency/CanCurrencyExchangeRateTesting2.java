@@ -18,13 +18,12 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public interface CanCurrencyExchangeRateTesting2<C extends CanCurrencyExchangeRate> extends TreePrintableTesting {
+public interface CanCurrencyExchangeRateTesting2<C extends CanCurrencyExchangeRate> extends CanCurrencyExchangeRateTesting {
 
     @Test
     default void testCurrencyExchangeRateWithNullCurrencyExchangeFails() {
