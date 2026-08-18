@@ -21,17 +21,17 @@ import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
 
-final class ReadOnlyCurrencyLocaleContext implements CurrencyLocaleContextDelegator {
+final class CurrencyLocaleContextReadOnly implements CurrencyLocaleContextDelegator {
 
-    static ReadOnlyCurrencyLocaleContext with(final CurrencyLocaleContext context) {
-        return context instanceof ReadOnlyCurrencyLocaleContext ?
-            (ReadOnlyCurrencyLocaleContext) context :
-            new ReadOnlyCurrencyLocaleContext(
+    static CurrencyLocaleContextReadOnly with(final CurrencyLocaleContext context) {
+        return context instanceof CurrencyLocaleContextReadOnly ?
+            (CurrencyLocaleContextReadOnly) context :
+            new CurrencyLocaleContextReadOnly(
                 Objects.requireNonNull(context, "context")
             );
     }
 
-    private ReadOnlyCurrencyLocaleContext(final CurrencyLocaleContext context) {
+    private CurrencyLocaleContextReadOnly(final CurrencyLocaleContext context) {
         super();
         this.context = context;
     }
