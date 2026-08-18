@@ -20,6 +20,7 @@ package walkingkooka.currency;
 import walkingkooka.Context;
 import walkingkooka.locale.LocaleContext;
 
+import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Optional;
 import java.util.Set;
@@ -31,7 +32,6 @@ public interface CurrencyContext extends Context,
     CanCurrencyForCurrencyCode,
     CanCurrencyForLocale,
     CanLocalesForCurrencyCode,
-    CurrencyExchangeRater,
     HasCurrency {
 
     /**
@@ -43,6 +43,26 @@ public interface CurrencyContext extends Context,
      * Returns all available {@link CurrencyCode currencies}.
      */
     Set<CurrencyCode> availableCurrencies();
+
+    Set<CurrencyExchange> currencyExchanges();
+
+    Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                          final Optional<LocalDateTime> dateTime);
+
+    default Number currencyExchangeRateOrFail(final CurrencyExchange currencyExchange,
+                                              final Optional<LocalDateTime> dateTime) {
+        return this.currencyExchangeRate(
+            currencyExchange,
+            dateTime
+        ).orElseThrow(() -> new IllegalArgumentException(
+                "Invalid exchange rate " +
+                    currencyExchange +
+                    (
+                        dateTime.map(dt -> " " + dt)
+                    )
+            )
+        );
+    }
 
     /**
      * Returns text to display for the given {@link Currency} if it exists.
