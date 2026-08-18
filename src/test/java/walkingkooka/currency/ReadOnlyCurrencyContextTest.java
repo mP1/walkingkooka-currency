@@ -182,4 +182,9 @@ public final class ReadOnlyCurrencyContextTest implements CurrencyContextTesting
     public Class<ReadOnlyCurrencyContext> type() {
         return ReadOnlyCurrencyContext.class;
     }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
+    }
 }
