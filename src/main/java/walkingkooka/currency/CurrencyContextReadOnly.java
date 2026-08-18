@@ -28,23 +28,23 @@ import java.util.Set;
  * A {@link CurrencyContext} where {@link #setCurrency(Currency)} throws {@link UnsupportedOperationException}, all
  * other methods delegate to the wrapped {@link CurrencyContext}.
  */
-final class ReadOnlyCurrencyContext implements CurrencyContext {
+final class CurrencyContextReadOnly implements CurrencyContext {
 
-    static ReadOnlyCurrencyContext with(final CurrencyContext context) {
+    static CurrencyContextReadOnly with(final CurrencyContext context) {
         Objects.requireNonNull(context);
 
-        final ReadOnlyCurrencyContext readOnlyCurrencyContext;
+        final CurrencyContextReadOnly currencyContextReadOnly;
 
-        if (context instanceof ReadOnlyCurrencyContext) {
-            readOnlyCurrencyContext = (ReadOnlyCurrencyContext) context;
+        if (context instanceof CurrencyContextReadOnly) {
+            currencyContextReadOnly = (CurrencyContextReadOnly) context;
         } else {
-            readOnlyCurrencyContext = new ReadOnlyCurrencyContext(context);
+            currencyContextReadOnly = new CurrencyContextReadOnly(context);
         }
 
-        return readOnlyCurrencyContext;
+        return currencyContextReadOnly;
     }
 
-    private ReadOnlyCurrencyContext(final CurrencyContext context) {
+    private CurrencyContextReadOnly(final CurrencyContext context) {
         super();
         this.context = context;
     }

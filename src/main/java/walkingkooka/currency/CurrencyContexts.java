@@ -59,10 +59,10 @@ public final class CurrencyContexts implements PublicStaticHelper {
     }
 
     /**
-     * {@see ReadOnlyCurrencyContext}
+     * {@see CurrencyContextReadOnly}
      */
     public static CurrencyContext readOnly(final CurrencyContext context) {
-        return ReadOnlyCurrencyContext.with(context);
+        return CurrencyContextReadOnly.with(context);
     }
 
     /**
