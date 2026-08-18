@@ -123,7 +123,7 @@ final class CurrencyContextJre implements CurrencyContext,
         String text;
 
         try {
-            text = JreCurrencyContextGetDisplayName.getDisplayName(
+            text = CurrencyContextJreGetDisplayName.getDisplayName(
                 Currency.getInstance(
                     currencyCode.value()
                 ),

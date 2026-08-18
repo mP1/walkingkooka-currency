@@ -17,14 +17,16 @@
 
 package walkingkooka.currency;
 
+import javaemul.internal.annotations.GwtIncompatible;
+
 import java.util.Currency;
 import java.util.Locale;
 
-class JreCurrencyContextGetDisplayNameGwt {
+class CurrencyContextJreGetDisplayName extends CurrencyContextJreGetDisplayNameGwt {
 
-    // Currency#GetDisplayName is not emulated
+    @GwtIncompatible
     static String getDisplayName(final Currency currency,
                                  final Locale locale) {
-        return currency.getCurrencyCode();
+        return currency.getDisplayName(locale);
     }
 }
