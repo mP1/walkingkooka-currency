@@ -24,62 +24,62 @@ import java.util.Optional;
 
 public interface CanCurrencyExchangeRateTesting extends TreePrintableTesting {
 
-    default void currencyExchangeRateAndCheck(final CurrencyContext context,
+    default void currencyExchangeRateAndCheck(final CanCurrencyExchangeRate can,
                                               final CurrencyExchange currencyExchange) {
         this.currencyExchangeRateAndCheck(
-            context,
+            can,
             currencyExchange,
             Optional.empty(),
             Optional.empty()
         );
     }
 
-    default void currencyExchangeRateAndCheck(final CurrencyContext context,
+    default void currencyExchangeRateAndCheck(final CanCurrencyExchangeRate can,
                                               final CurrencyExchange currencyExchange,
                                               final Number expected) {
         this.currencyExchangeRateAndCheck(
-            context,
+            can,
             currencyExchange,
             Optional.empty(),
             Optional.of(expected)
         );
     }
 
-    default void currencyExchangeRateAndCheck(final CurrencyContext context,
+    default void currencyExchangeRateAndCheck(final CanCurrencyExchangeRate can,
                                               final CurrencyExchange currencyExchange,
                                               final LocalDateTime dateTime,
                                               final Number expected) {
         this.currencyExchangeRateAndCheck(
-            context,
+            can,
             currencyExchange,
             Optional.of(dateTime),
             Optional.of(expected)
         );
     }
 
-    default void currencyExchangeRateAndCheck(final CurrencyContext context,
+    default void currencyExchangeRateAndCheck(final CanCurrencyExchangeRate can,
                                               final CurrencyExchange currencyExchange,
                                               final Optional<LocalDateTime> dateTime,
                                               final Number expected) {
         this.currencyExchangeRateAndCheck(
-            context,
+            can,
             currencyExchange,
             dateTime,
             Optional.of(expected)
         );
     }
 
-    default void currencyExchangeRateAndCheck(final CurrencyContext context,
+    default void currencyExchangeRateAndCheck(final CanCurrencyExchangeRate can,
                                               final CurrencyExchange currencyExchange,
                                               final Optional<LocalDateTime> dateTime,
                                               final Optional<Number> expected) {
         this.checkEquals(
             expected,
-            context.currencyExchangeRate(
+            can.currencyExchangeRate(
                 currencyExchange,
                 dateTime
             ),
-            () -> context + " currencyExchangeRate " + currencyExchange + " " + dateTime.map(Object::toString)
+            () -> can + " currencyExchangeRate " + currencyExchange + " " + dateTime.map(Object::toString)
         );
     }
 }
