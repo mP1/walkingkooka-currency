@@ -33,20 +33,20 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.SortedSet;
 
-final class JreCurrencyContext implements CurrencyContext,
+final class CurrencyContextJre implements CurrencyContext,
     CurrencyExchangeRaterDelegator {
 
-    static JreCurrencyContext with(final Currency currency,
+    static CurrencyContextJre with(final Currency currency,
                                    final CurrencyExchangeRater currencyExchangeRater,
                                    final LocaleContext localeContext) {
-        return new JreCurrencyContext(
+        return new CurrencyContextJre(
             Objects.requireNonNull(currency, "currency"),
             Objects.requireNonNull(currencyExchangeRater, "currencyExchangeRater"),
             Objects.requireNonNull(localeContext, "localeContext")
         );
     }
 
-    private JreCurrencyContext(final Currency currency,
+    private CurrencyContextJre(final Currency currency,
                                final CurrencyExchangeRater currencyExchangeRater,
                                final LocaleContext localeContext) {
         this.currency = currency;

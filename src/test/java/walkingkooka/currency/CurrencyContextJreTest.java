@@ -28,7 +28,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class JreCurrencyContextTest implements CurrencyContextTesting2<JreCurrencyContext>,
+public final class CurrencyContextJreTest implements CurrencyContextTesting2<CurrencyContextJre>,
     LocaleContextTesting {
 
     private final static CurrencyExchangeRater CURRENCY_EXCHANGE_RATER = new CurrencyExchangeRater() {
@@ -56,7 +56,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     public void testWithNullCurrencyFails() {
         assertThrows(
             NullPointerException.class,
-            () -> JreCurrencyContext.with(
+            () -> CurrencyContextJre.with(
                 null,
                 CURRENCY_EXCHANGE_RATER,
                 LOCALE_CONTEXT
@@ -68,7 +68,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     public void testWithNullCurrencyExchangeRaterFails() {
         assertThrows(
             NullPointerException.class,
-            () -> JreCurrencyContext.with(
+            () -> CurrencyContextJre.with(
                 null,
                 CURRENCY_EXCHANGE_RATER,
                 LOCALE_CONTEXT
@@ -80,7 +80,7 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     public void testWithNullLocaleContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> JreCurrencyContext.with(
+            () -> CurrencyContextJre.with(
                 CURRENCY,
                 CURRENCY_EXCHANGE_RATER,
                 null
@@ -215,8 +215,8 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     }
 
     @Override
-    public JreCurrencyContext createContext() {
-        return JreCurrencyContext.with(
+    public CurrencyContextJre createContext() {
+        return CurrencyContextJre.with(
             CURRENCY,
             CURRENCY_EXCHANGE_RATER,
             LOCALE_CONTEXT
@@ -226,7 +226,12 @@ public final class JreCurrencyContextTest implements CurrencyContextTesting2<Jre
     // class............................................................................................................
 
     @Override
-    public Class<JreCurrencyContext> type() {
-        return JreCurrencyContext.class;
+    public Class<CurrencyContextJre> type() {
+        return CurrencyContextJre.class;
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }
