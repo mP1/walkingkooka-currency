@@ -66,6 +66,20 @@ final class CurrencyContextReadOnly implements CurrencyContext {
     }
 
     @Override
+    public Set<CurrencyExchange> currencyExchanges() {
+        return this.context.currencyExchanges();
+    }
+
+    @Override
+    public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                 final Optional<LocalDateTime> dateTime) {
+        return this.context.currencyExchangeRate(
+            currencyExchange,
+            dateTime
+        );
+    }
+
+    @Override
     public Optional<Currency> currencyForLocale(final Locale locale) {
         return this.context.currencyForLocale(locale);
     }
@@ -83,20 +97,6 @@ final class CurrencyContextReadOnly implements CurrencyContext {
             text,
             offset,
             count
-        );
-    }
-
-    @Override
-    public Set<CurrencyExchange> currencyExchanges() {
-        return this.context.currencyExchanges();
-    }
-
-    @Override
-    public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
-                                                 final Optional<LocalDateTime> dateTime) {
-        return this.context.currencyExchangeRate(
-            currencyExchange,
-            dateTime
         );
     }
 

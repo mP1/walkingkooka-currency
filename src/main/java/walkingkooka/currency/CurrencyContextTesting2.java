@@ -20,14 +20,15 @@ package walkingkooka.currency;
 import org.junit.jupiter.api.Test;
 import walkingkooka.ContextTesting;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface CurrencyContextTesting2<C extends CurrencyContext> extends CurrencyContextTesting,
     CanCurrencyForCurrencyCodeTesting2<C>,
     CanCurrencyForLocaleTesting2<C>,
     CanLocalesForCurrencyCodeTesting2<C>,
-    ContextTesting<C>,
-    CurrencyExchangeRaterTesting2<C> {
+    ContextTesting<C> {
 
     // setCurrency......................................................................................................
 
@@ -39,6 +40,36 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
                 .setCurrency(null)
         );
     }
+
+    // currencyExchangeRate.............................................................................................
+
+    @Test
+    default void testCurrencyExchangeRateWithNullCurrencyExchangeFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .currencyExchangeRate(
+                    null,
+                    Optional.empty() // dateTime
+                )
+        );
+    }
+
+    @Test
+    default void testCurrencyExchangeRateWithNullDateTimeFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .currencyExchangeRate(
+                    CurrencyExchange.with(
+                        CurrencyCode.parse("AUD"),
+                        CurrencyCode.parse("NZD")
+                    ),
+                    null // dateTime
+                )
+        );
+    }
+
 
     // currencyText.....................................................................................................
 
@@ -90,11 +121,6 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
                     -1
                 )
         );
-    }
-
-    @Override
-    default C createCurrencyExchangeRater() {
-        return this.createContext();
     }
 
     @Override

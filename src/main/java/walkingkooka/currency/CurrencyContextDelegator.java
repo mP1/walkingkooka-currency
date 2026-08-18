@@ -17,13 +17,13 @@
 
 package walkingkooka.currency;
 
+import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
-public interface CurrencyContextDelegator extends CurrencyContext,
-    CurrencyExchangeRaterDelegator {
+public interface CurrencyContextDelegator extends CurrencyContext {
 
     @Override
     default Currency currency() {
@@ -85,12 +85,21 @@ public interface CurrencyContextDelegator extends CurrencyContext,
             );
     }
 
-    CurrencyContext currencyContext();
-
-    // CurrencyExchangeRaterDelegator...................................................................................
+    @Override
+    default Set<CurrencyExchange> currencyExchanges() {
+        return this.currencyContext()
+            .currencyExchanges();
+    }
 
     @Override
-    default CurrencyExchangeRater currencyExchangeRater() {
-        return this.currencyContext();
+    default Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                  final Optional<LocalDateTime> dateTime) {
+        return this.currencyContext()
+            .currencyExchangeRate(
+                currencyExchange,
+                dateTime
+            );
     }
+
+    CurrencyContext currencyContext();
 }
