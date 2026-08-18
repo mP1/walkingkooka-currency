@@ -24,20 +24,20 @@ import java.util.Set;
 
 public interface CanCurrencyExchangesTesting extends TreePrintableTesting {
 
-    default void currencyExchangesAndCheck(final CurrencyContext context,
+    default void currencyExchangesAndCheck(final CanCurrencyExchanges can,
                                            final CurrencyExchange... expected) {
         this.currencyExchangesAndCheck(
-            context,
+            can,
             Sets.of(expected)
         );
     }
 
-    default void currencyExchangesAndCheck(final CurrencyContext context,
+    default void currencyExchangesAndCheck(final CanCurrencyExchanges can,
                                            final Set<CurrencyExchange> expected) {
         this.checkEquals(
             expected,
-            context.currencyExchanges(),
-            context::toString
+            can.currencyExchanges(),
+            can::toString
         );
     }
 }
