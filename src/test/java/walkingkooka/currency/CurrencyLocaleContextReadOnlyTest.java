@@ -27,15 +27,15 @@ import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ReadOnlyCurrencyLocaleContextTest implements CurrencyLocaleContextTesting2<ReadOnlyCurrencyLocaleContext>,
-    ClassTesting2<ReadOnlyCurrencyLocaleContext>,
-    ToStringTesting<ReadOnlyCurrencyLocaleContext> {
+public final class CurrencyLocaleContextReadOnlyTest implements CurrencyLocaleContextTesting2<CurrencyLocaleContextReadOnly>,
+    ClassTesting2<CurrencyLocaleContextReadOnly>,
+    ToStringTesting<CurrencyLocaleContextReadOnly> {
 
     @Test
     public void testWithNullContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> ReadOnlyCurrencyLocaleContext.with(null)
+            () -> CurrencyLocaleContextReadOnly.with(null)
         );
     }
 
@@ -62,8 +62,8 @@ public final class ReadOnlyCurrencyLocaleContextTest implements CurrencyLocaleCo
     }
 
     @Override
-    public ReadOnlyCurrencyLocaleContext createContext() {
-        return ReadOnlyCurrencyLocaleContext.with(CURRENCY_LOCALE_CONTEXT);
+    public CurrencyLocaleContextReadOnly createContext() {
+        return CurrencyLocaleContextReadOnly.with(CURRENCY_LOCALE_CONTEXT);
     }
 
     // toString.........................................................................................................
@@ -79,12 +79,17 @@ public final class ReadOnlyCurrencyLocaleContextTest implements CurrencyLocaleCo
     // class............................................................................................................
 
     @Override
-    public Class<ReadOnlyCurrencyLocaleContext> type() {
-        return ReadOnlyCurrencyLocaleContext.class;
+    public Class<CurrencyLocaleContextReadOnly> type() {
+        return CurrencyLocaleContextReadOnly.class;
     }
 
     @Override
     public JavaVisibility typeVisibility() {
         return JavaVisibility.PACKAGE_PRIVATE;
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }

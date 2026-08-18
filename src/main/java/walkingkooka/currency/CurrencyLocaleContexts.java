@@ -41,10 +41,10 @@ public final class CurrencyLocaleContexts implements PublicStaticHelper {
     }
 
     /**
-     * {@see ReadOnlyCurrencyLocaleContext}
+     * {@see CurrencyLocaleContextReadOnly}
      */
     public static CurrencyLocaleContext readOnly(final CurrencyLocaleContext currencyLocaleContext) {
-        return ReadOnlyCurrencyLocaleContext.with(currencyLocaleContext);
+        return CurrencyLocaleContextReadOnly.with(currencyLocaleContext);
     }
 
     /**
