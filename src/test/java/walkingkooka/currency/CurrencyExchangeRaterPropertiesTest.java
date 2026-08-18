@@ -55,7 +55,7 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
     public void testWithNullPropertiesFails() {
         assertThrows(
             NullPointerException.class,
-            () -> CurrencyExchangeRaterProperties.fromProperties(
+            () -> CurrencyExchangeRaterProperties.with(
                 null,
                 NUMBER_PARSER
             )
@@ -66,7 +66,7 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
     public void testWithNullNumberParserFails() {
         assertThrows(
             NullPointerException.class,
-            () -> CurrencyExchangeRaterProperties.fromProperties(
+            () -> CurrencyExchangeRaterProperties.with(
                 Properties.EMPTY,
                 null
             )
@@ -140,7 +140,7 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
 
     @Override
     public CurrencyExchangeRaterProperties createCurrencyExchangeRater() {
-        return CurrencyExchangeRaterProperties.fromProperties(
+        return CurrencyExchangeRaterProperties.with(
             PROPERTIES,
             NUMBER_PARSER
         );
@@ -151,7 +151,7 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
     @Test
     public void testEqualsDifferentProperties() {
         this.checkNotEquals(
-            CurrencyExchangeRaterProperties.fromProperties(
+            CurrencyExchangeRaterProperties.with(
                 Properties.EMPTY,
                 NUMBER_PARSER
             )
@@ -161,7 +161,7 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
     @Test
     public void testEqualsDifferentNumberParser() {
         this.checkNotEquals(
-            CurrencyExchangeRaterProperties.fromProperties(
+            CurrencyExchangeRaterProperties.with(
                 PROPERTIES,
                 (String text, Boolean invert) -> {
                     throw new UnsupportedOperationException();

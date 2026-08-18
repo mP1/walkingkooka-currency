@@ -39,7 +39,7 @@ public final class CurrencyExchangeRaters implements PublicStaticHelper {
      */
     public static CurrencyExchangeRater properties(final Properties properties,
                                                    final BiFunction<String, Boolean, Number> numberParser) {
-        return CurrencyExchangeRaterProperties.fromProperties(
+        return CurrencyExchangeRaterProperties.with(
             properties,
             numberParser
         );

@@ -39,8 +39,8 @@ import java.util.stream.Stream;
 final class CurrencyExchangeRaterProperties implements CurrencyExchangeRater,
     HasProperties {
 
-    static CurrencyExchangeRaterProperties fromProperties(final Properties properties,
-                                                          final BiFunction<String, Boolean, Number> numberParser) {
+    static CurrencyExchangeRaterProperties with(final Properties properties,
+                                                final BiFunction<String, Boolean, Number> numberParser) {
         return new CurrencyExchangeRaterProperties(
             Objects.requireNonNull(properties, "properties"),
             Objects.requireNonNull(numberParser, "numberParser")
