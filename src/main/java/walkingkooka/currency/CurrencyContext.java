@@ -33,6 +33,7 @@ public interface CurrencyContext extends Context,
     CanCurrencyForCurrencyCode,
     CanCurrencyForLocale,
     CanLocalesForCurrencyCode,
+    CurrencyExchangeRaterContext,
     HasCurrency {
 
     /**

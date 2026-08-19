@@ -34,6 +34,7 @@ public interface CurrencyContextTesting extends CanCurrencyExchangeRateTesting,
     CanCurrencyForCurrencyCodeTesting,
     CanCurrencyForLocaleTesting,
     CanLocalesForCurrencyCodeTesting,
+    CurrencyExchangeRaterContextTesting,
     HasCurrencyTesting,
     LocaleContextTesting,
     TreePrintableTesting {
