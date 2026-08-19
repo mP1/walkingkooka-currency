@@ -57,8 +57,8 @@ public interface CurrencyExchangeRaterTesting extends HasNowTesting,
     // currencyExchangeRate.............................................................................................
 
     default <C extends CurrencyExchangeRaterContext> void currencyExchangeRateAndCheck(final CurrencyExchangeRater<C> rater,
-                                                                                       final C context,
-                                                                                       final CurrencyExchange currencyExchange) {
+                                                                                       final CurrencyExchange currencyExchange,
+                                                                                       final C context) {
         this.currencyExchangeRateAndCheck(
             rater,
             currencyExchange,
