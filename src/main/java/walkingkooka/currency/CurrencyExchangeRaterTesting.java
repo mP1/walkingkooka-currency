@@ -26,6 +26,8 @@ import java.util.Set;
 
 public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
 
+    Optional<LocalDateTime> NO_DATE_TIME = Optional.empty();
+
     // currencyExchanges................................................................................................
 
     default void currencyExchangesAndCheck(final CurrencyExchangeRater rater,
@@ -52,7 +54,7 @@ public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
         this.currencyExchangeRateAndCheck(
             rater,
             currencyExchange,
-            Optional.empty(),
+            NO_DATE_TIME,
             Optional.empty()
         );
     }
@@ -63,7 +65,7 @@ public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
         this.currencyExchangeRateAndCheck(
             rater,
             currencyExchange,
-            Optional.empty(),
+            NO_DATE_TIME,
             Optional.of(expected)
         );
     }
