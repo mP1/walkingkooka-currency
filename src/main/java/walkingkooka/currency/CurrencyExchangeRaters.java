@@ -30,8 +30,8 @@ public final class CurrencyExchangeRaters implements PublicStaticHelper {
     /**
      * {@see FakeCurrencyExchangeRater}
      */
-    public static FakeCurrencyExchangeRater fake() {
-        return new FakeCurrencyExchangeRater();
+    public static <C extends CurrencyExchangeRaterContext> FakeCurrencyExchangeRater<C> fake() {
+        return new FakeCurrencyExchangeRater<>();
     }
 
     /**
