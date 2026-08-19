@@ -17,18 +17,20 @@
 
 package walkingkooka.currency;
 
-import walkingkooka.collect.set.ImmutableSet;
+import walkingkooka.collect.map.Maps;
+import walkingkooka.collect.set.Sets;
 import walkingkooka.props.HasProperties;
 import walkingkooka.props.Properties;
 import walkingkooka.props.PropertiesPath;
 import walkingkooka.text.CharSequences;
 
 import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
 /**
  * Wraps a {@link Properties} where multiple exchange rates are defined.
@@ -52,43 +54,44 @@ final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterConte
                                             final Function<String, Number> numberParser) {
         super();
         this.properties = properties;
-        this.numberParser = numberParser;
 
-        this.currencyExchanges = properties.keys()
-            .stream()
-            .flatMap((PropertiesPath propertiesPath) -> {
-                final String value = propertiesPath.value();
+        final Map<CurrencyExchange, Number> currencyExchangeToRate = Maps.hash();
 
-                final int separator = value.indexOf('-');
-                if (-1 == separator) {
-                    throw new IllegalArgumentException("Properties: Invalid currency exchange rate " + CharSequences.quoteIfChars(value));
-                }
+        for (final Entry<PropertiesPath, String> entry : properties.entries()) {
+            PropertiesPath propertiesPath = entry.getKey();
 
-                final CurrencyCode from = CurrencyCode.parse(
-                    value.substring(
-                        0,
-                        separator
-                    )
-                );
+            final String value = propertiesPath.value();
 
-                final CurrencyCode to = CurrencyCode.parse(
-                    value.substring(
-                        separator + 1
-                    )
-                );
+            final int separator = value.indexOf('-');
+            if (-1 == separator) {
+                throw new IllegalArgumentException("Properties: Invalid currency exchange rate " + CharSequences.quoteIfChars(value));
+            }
 
-                final CurrencyExchange currencyExchange = CurrencyExchange.with(
+            final CurrencyCode from = CurrencyCode.parse(
+                value.substring(
+                    0,
+                    separator
+                )
+            );
+
+            final CurrencyCode to = CurrencyCode.parse(
+                value.substring(
+                    separator + 1
+                )
+            );
+
+            currencyExchangeToRate.put(
+                CurrencyExchange.with(
                     from,
                     to
-                );
-
-                return Stream.of(
-                    currencyExchange,
-                    currencyExchange.swap()
-                );
-            }).collect(
-                ImmutableSet.collector()
+                ),
+                numberParser.apply(
+                    entry.getValue()
+                )
             );
+        }
+
+        this.currencyExchangeToRate = currencyExchangeToRate;
     }
 
     private final Properties properties;
@@ -106,10 +109,13 @@ final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterConte
     public Set<CurrencyExchange> currencyExchanges(final C context) {
         Objects.requireNonNull(context, "context");
 
-        return this.currencyExchanges;
+        //return this.currencyExchanges;
+        return Sets.readOnly(
+            this.currencyExchangeToRate.keySet()
+        );
     }
 
-    private final Set<CurrencyExchange> currencyExchanges;
+    //private final Set<CurrencyExchange> currencyExchanges;
 
     @Override
     public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
@@ -119,46 +125,52 @@ final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterConte
         Objects.requireNonNull(dateTime, "dateTime");
         Objects.requireNonNull(context, "context");
 
-        final String fromCurrencyCode = currencyExchange.from()
-            .value();
-        final String toCurrencyCode = currencyExchange.to()
-            .value();
-
-        final Properties properties = this.properties;
-
-        PropertiesPath key = PropertiesPath.parse(
-            fromCurrencyCode +
-                "-" +
-                toCurrencyCode
+//        final String fromCurrencyCode = currencyExchange.from()
+//            .value();
+//        final String toCurrencyCode = currencyExchange.to()
+//            .value();
+//
+//        final Properties properties = this.properties;
+//
+//        PropertiesPath key = PropertiesPath.parse(
+//            fromCurrencyCode +
+//                "-" +
+//                toCurrencyCode
+//        );
+//
+//        String valueOrNull = properties.get(key)
+//            .orElse(null);
+//
+//        final Number number;
+//        if (null != valueOrNull) {
+//            try {
+//                number = this.numberParser.apply(valueOrNull);
+//            } catch (final RuntimeException invalid) {
+//                throw new IllegalArgumentException("Invalid exchange rate " + CharSequences.quoteAndEscape(valueOrNull), invalid);
+//            }
+//        } else {
+//            number = null;
+//        }
+//
+//        return Optional.ofNullable(number);
+        return Optional.ofNullable(
+            this.currencyExchangeToRate.get(currencyExchange)
         );
-
-        String valueOrNull = properties.get(key)
-            .orElse(null);
-
-        final Number number;
-        if (null != valueOrNull) {
-            try {
-                number = this.numberParser.apply(valueOrNull);
-            } catch (final RuntimeException invalid) {
-                throw new IllegalArgumentException("Invalid exchange rate " + CharSequences.quoteAndEscape(valueOrNull), invalid);
-            }
-        } else {
-            number = null;
-        }
-
-        return Optional.ofNullable(number);
     }
 
-    private final Function<String, Number> numberParser;
+//    private final Function<String, Number> numberParser;
+
+    private final Map<CurrencyExchange, Number> currencyExchangeToRate;
 
     // Object...........................................................................................................
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-            this.properties,
-            this.numberParser
-        );
+//        return Objects.hash(
+//            this.properties,
+//            this.numberParser
+//        );
+        return this.currencyExchangeToRate.hashCode();
     }
 
     @Override
@@ -169,8 +181,9 @@ final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterConte
     }
 
     private boolean equals0(final CurrencyExchangeRaterProperties<?> other) {
-        return this.properties.equals(other.properties) &&
-            this.numberParser.equals(other.numberParser);
+//        return this.properties.equals(other.properties) &&
+//            this.numberParser.equals(other.numberParser);
+        return this.currencyExchangeToRate.equals(other.currencyExchangeToRate);
     }
 
     @Override
