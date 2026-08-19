@@ -21,20 +21,21 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
 
-public class FakeCurrencyExchangeRater implements CurrencyExchangeRater {
+public class FakeCurrencyExchangeRater<C extends CurrencyExchangeRaterContext> implements CurrencyExchangeRater<C> {
 
     public FakeCurrencyExchangeRater() {
         super();
     }
 
     @Override
-    public Set<CurrencyExchange> currencyExchanges() {
+    public Set<CurrencyExchange> currencyExchanges(final C context) {
         throw new UnsupportedOperationException();
     }
 
     @Override
     public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
-                                                 final Optional<LocalDateTime> dateTime) {
+                                                 final Optional<LocalDateTime> dateTime,
+                                                 final C context) {
         throw new UnsupportedOperationException();
     }
 }

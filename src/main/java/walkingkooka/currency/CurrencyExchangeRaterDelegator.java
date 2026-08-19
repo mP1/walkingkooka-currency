@@ -21,23 +21,25 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
 
-public interface CurrencyExchangeRaterDelegator extends CurrencyExchangeRater {
+public interface CurrencyExchangeRaterDelegator<C extends CurrencyExchangeRaterContext> extends CurrencyExchangeRater<C> {
 
     @Override
-    default Set<CurrencyExchange> currencyExchanges() {
+    default Set<CurrencyExchange> currencyExchanges(final C context) {
         return this.currencyExchangeRater()
-            .currencyExchanges();
+            .currencyExchanges(context);
     }
 
     @Override
     default Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
-                                                  final Optional<LocalDateTime> dateTime) {
+                                                  final Optional<LocalDateTime> dateTime,
+                                                  final C context) {
         return this.currencyExchangeRater()
             .currencyExchangeRate(
                 currencyExchange,
-                dateTime
+                dateTime,
+                context
             );
     }
 
-    CurrencyExchangeRater currencyExchangeRater();
+    CurrencyExchangeRater<C> currencyExchangeRater();
 }

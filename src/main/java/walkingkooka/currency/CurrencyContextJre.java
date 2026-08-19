@@ -37,7 +37,7 @@ import java.util.SortedSet;
 final class CurrencyContextJre implements CurrencyContext {
 
     static CurrencyContextJre with(final Currency currency,
-                                   final CurrencyExchangeRater currencyExchangeRater,
+                                   final CurrencyExchangeRater<CurrencyContext> currencyExchangeRater,
                                    final LocaleContext localeContext) {
         return new CurrencyContextJre(
             Objects.requireNonNull(currency, "currency"),
@@ -47,7 +47,7 @@ final class CurrencyContextJre implements CurrencyContext {
     }
 
     private CurrencyContextJre(final Currency currency,
-                               final CurrencyExchangeRater currencyExchangeRater,
+                               final CurrencyExchangeRater<CurrencyContext> currencyExchangeRater,
                                final LocaleContext localeContext) {
         this.currency = currency;
         this.currencyExchangeRater = currencyExchangeRater;
@@ -219,7 +219,9 @@ final class CurrencyContextJre implements CurrencyContext {
 
     @Override
     public Set<CurrencyExchange> currencyExchanges() {
-        return this.currencyExchangeRater.currencyExchanges();
+        return this.currencyExchangeRater.currencyExchanges(
+            this // CurrencyExchangeRaterContext
+        );
     }
 
     @Override
@@ -227,7 +229,8 @@ final class CurrencyContextJre implements CurrencyContext {
                                                  final Optional<LocalDateTime> dateTime) {
         return this.currencyExchangeRater.currencyExchangeRate(
             currencyExchange,
-            dateTime
+            dateTime,
+            this // CurrencyExchangeRaterContext
         );
     }
 
@@ -236,11 +239,12 @@ final class CurrencyContextJre implements CurrencyContext {
                                              final Optional<LocalDateTime> dateTime) {
         return this.currencyExchangeRater.currencyExchangeRateOrFail(
             currencyExchange,
-            dateTime
+            dateTime,
+            this // CurrencyExchangeRaterContext
         );
     }
 
-    private final CurrencyExchangeRater currencyExchangeRater;
+    private final CurrencyExchangeRater<CurrencyContext> currencyExchangeRater;
 
     @Override
     public String toString() {

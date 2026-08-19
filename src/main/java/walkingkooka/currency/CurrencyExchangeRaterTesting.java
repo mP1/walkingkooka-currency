@@ -34,79 +34,92 @@ public interface CurrencyExchangeRaterTesting extends HasNowTesting,
 
     // currencyExchanges................................................................................................
 
-    default void currencyExchangesAndCheck(final CurrencyExchangeRater rater,
-                                           final CurrencyExchange... expected) {
+    default <C extends CurrencyExchangeRaterContext> void currencyExchangesAndCheck(final CurrencyExchangeRater<C> rater,
+                                                                                    final C context,
+                                                                                    final CurrencyExchange... expected) {
         this.currencyExchangesAndCheck(
             rater,
+            context,
             Sets.of(expected)
         );
     }
 
-    default void currencyExchangesAndCheck(final CurrencyExchangeRater rater,
-                                           final Set<CurrencyExchange> expected) {
+    default <C extends CurrencyExchangeRaterContext> void currencyExchangesAndCheck(final CurrencyExchangeRater<C> rater,
+                                                                                    final C context,
+                                                                                    final Set<CurrencyExchange> expected) {
         this.checkEquals(
             expected,
-            rater.currencyExchanges(),
+            rater.currencyExchanges(context),
             rater::toString
         );
     }
 
     // currencyExchangeRate.............................................................................................
 
-    default void currencyExchangeRateAndCheck(final CurrencyExchangeRater rater,
-                                              final CurrencyExchange currencyExchange) {
+    default <C extends CurrencyExchangeRaterContext> void currencyExchangeRateAndCheck(final CurrencyExchangeRater<C> rater,
+                                                                                       final C context,
+                                                                                       final CurrencyExchange currencyExchange) {
         this.currencyExchangeRateAndCheck(
             rater,
             currencyExchange,
             NO_DATE_TIME,
+            context,
             Optional.empty()
         );
     }
 
-    default void currencyExchangeRateAndCheck(final CurrencyExchangeRater rater,
-                                              final CurrencyExchange currencyExchange,
-                                              final Number expected) {
+    default <C extends CurrencyExchangeRaterContext> void currencyExchangeRateAndCheck(final CurrencyExchangeRater<C> rater,
+                                                                                       final CurrencyExchange currencyExchange,
+                                                                                       final C context,
+                                                                                       final Number expected) {
         this.currencyExchangeRateAndCheck(
             rater,
             currencyExchange,
             NO_DATE_TIME,
+            context,
             Optional.of(expected)
         );
     }
 
-    default void currencyExchangeRateAndCheck(final CurrencyExchangeRater rater,
-                                              final CurrencyExchange currencyExchange,
-                                              final LocalDateTime dateTime,
-                                              final Number expected) {
+    default <C extends CurrencyExchangeRaterContext> void currencyExchangeRateAndCheck(final CurrencyExchangeRater<C> rater,
+                                                                                       final CurrencyExchange currencyExchange,
+                                                                                       final C context,
+                                                                                       final LocalDateTime dateTime,
+                                                                                       final Number expected) {
         this.currencyExchangeRateAndCheck(
             rater,
             currencyExchange,
             Optional.of(dateTime),
+            context,
             Optional.of(expected)
         );
     }
 
-    default void currencyExchangeRateAndCheck(final CurrencyExchangeRater rater,
-                                              final CurrencyExchange currencyExchange,
-                                              final Optional<LocalDateTime> dateTime,
-                                              final Number expected) {
+    default <C extends CurrencyExchangeRaterContext> void currencyExchangeRateAndCheck(final CurrencyExchangeRater<C> rater,
+                                                                                       final CurrencyExchange currencyExchange,
+                                                                                       final Optional<LocalDateTime> dateTime,
+                                                                                       final C context,
+                                                                                       final Number expected) {
         this.currencyExchangeRateAndCheck(
             rater,
             currencyExchange,
             dateTime,
+            context,
             Optional.of(expected)
         );
     }
 
-    default void currencyExchangeRateAndCheck(final CurrencyExchangeRater rater,
-                                              final CurrencyExchange currencyExchange,
-                                              final Optional<LocalDateTime> dateTime,
-                                              final Optional<Number> expected) {
+    default <C extends CurrencyExchangeRaterContext> void currencyExchangeRateAndCheck(final CurrencyExchangeRater<C> rater,
+                                                                                       final CurrencyExchange currencyExchange,
+                                                                                       final Optional<LocalDateTime> dateTime,
+                                                                                       final C context,
+                                                                                       final Optional<Number> expected) {
         this.checkEquals(
             expected,
             rater.currencyExchangeRate(
                 currencyExchange,
-                dateTime
+                dateTime,
+                context
             ),
             () -> rater + " currencyExchangeRate " + currencyExchange + " " + dateTime.map(Object::toString)
         );

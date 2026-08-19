@@ -36,12 +36,12 @@ import java.util.stream.Stream;
  * AUD-NZD=1.1
  * </pre>
  */
-final class CurrencyExchangeRaterProperties implements CurrencyExchangeRater,
+final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterContext> implements CurrencyExchangeRater<C>,
     HasProperties {
 
-    static CurrencyExchangeRaterProperties with(final Properties properties,
-                                                final BiFunction<String, Boolean, Number> numberParser) {
-        return new CurrencyExchangeRaterProperties(
+    static <C extends CurrencyExchangeRaterContext> CurrencyExchangeRaterProperties<C> with(final Properties properties,
+                                                                                            final BiFunction<String, Boolean, Number> numberParser) {
+        return new CurrencyExchangeRaterProperties<>(
             Objects.requireNonNull(properties, "properties"),
             Objects.requireNonNull(numberParser, "numberParser")
         );
@@ -102,7 +102,9 @@ final class CurrencyExchangeRaterProperties implements CurrencyExchangeRater,
     // CurrencyExchangeRater............................................................................................
 
     @Override
-    public Set<CurrencyExchange> currencyExchanges() {
+    public Set<CurrencyExchange> currencyExchanges(final C context) {
+        Objects.requireNonNull(context, "context");
+
         return this.currencyExchanges;
     }
 
@@ -110,9 +112,11 @@ final class CurrencyExchangeRaterProperties implements CurrencyExchangeRater,
 
     @Override
     public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
-                                                 final Optional<LocalDateTime> dateTime) {
+                                                 final Optional<LocalDateTime> dateTime,
+                                                 final C context) {
         Objects.requireNonNull(currencyExchange, "currencyExchange");
         Objects.requireNonNull(dateTime, "dateTime");
+        Objects.requireNonNull(context, "context");
 
         final String fromCurrencyCode = currencyExchange.from()
             .value();
@@ -179,10 +183,10 @@ final class CurrencyExchangeRaterProperties implements CurrencyExchangeRater,
     public boolean equals(final Object other) {
         return this == other ||
             (other instanceof CurrencyExchangeRaterProperties &&
-                this.equals0((CurrencyExchangeRaterProperties) other));
+                this.equals0((CurrencyExchangeRaterProperties<?>) other));
     }
 
-    private boolean equals0(final CurrencyExchangeRaterProperties other) {
+    private boolean equals0(final CurrencyExchangeRaterProperties<?> other) {
         return this.properties.equals(other.properties) &&
             this.numberParser.equals(other.numberParser);
     }

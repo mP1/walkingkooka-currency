@@ -37,8 +37,8 @@ public final class CurrencyExchangeRaters implements PublicStaticHelper {
     /**
      * {@see CurrencyExchangeRaterProperties}
      */
-    public static CurrencyExchangeRater properties(final Properties properties,
-                                                   final BiFunction<String, Boolean, Number> numberParser) {
+    public static <C extends CurrencyExchangeRaterContext> CurrencyExchangeRater<C> properties(final Properties properties,
+                                                                                               final BiFunction<String, Boolean, Number> numberParser) {
         return CurrencyExchangeRaterProperties.with(
             properties,
             numberParser

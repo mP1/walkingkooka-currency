@@ -23,7 +23,8 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
-public interface CurrencyContextDelegator extends CurrencyContext {
+public interface CurrencyContextDelegator extends CurrencyContext,
+    CurrencyExchangeRaterContextDelegator {
 
     @Override
     default Currency currency() {
@@ -102,4 +103,11 @@ public interface CurrencyContextDelegator extends CurrencyContext {
     }
 
     CurrencyContext currencyContext();
+
+    // CurrencyExchangeRaterContextDelegator............................................................................
+
+    @Override
+    default CurrencyExchangeRaterContext currencyExchangeRaterContext() {
+        return this.currencyContext();
+    }
 }

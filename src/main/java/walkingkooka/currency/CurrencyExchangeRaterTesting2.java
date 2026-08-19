@@ -23,7 +23,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public interface CurrencyExchangeRaterTesting2<C extends CurrencyExchangeRater> extends CurrencyExchangeRaterTesting {
+public interface CurrencyExchangeRaterTesting2<R extends CurrencyExchangeRater<C>, C extends CurrencyExchangeRaterContext> extends CurrencyExchangeRaterTesting {
 
     // currencyExchangeRate.............................................................................................
 
@@ -34,7 +34,8 @@ public interface CurrencyExchangeRaterTesting2<C extends CurrencyExchangeRater> 
             () -> this.createCurrencyExchangeRater()
                 .currencyExchangeRate(
                     null,
-                    Optional.empty() // dateTime
+                    Optional.empty(), // dateTime
+                    this.createContext()
                 )
         );
     }
@@ -49,10 +50,29 @@ public interface CurrencyExchangeRaterTesting2<C extends CurrencyExchangeRater> 
                         CurrencyCode.parse("AUD"),
                         CurrencyCode.parse("NZD")
                     ),
-                    null // dateTime
+                    null, // dateTime
+                    this.createContext()
                 )
         );
     }
 
-    C createCurrencyExchangeRater();
+    @Test
+    default void testCurrencyExchangeRateWithNullContextFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createCurrencyExchangeRater()
+                .currencyExchangeRate(
+                    CurrencyExchange.with(
+                        CurrencyCode.parse("AUD"),
+                        CurrencyCode.parse("NZD")
+                    ),
+                    NO_DATE_TIME, // dateTime
+                    null
+                )
+        );
+    }
+
+    R createCurrencyExchangeRater();
+
+    C createContext();
 }
