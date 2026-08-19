@@ -27,7 +27,7 @@ import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 
 import java.math.BigDecimal;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -39,16 +39,7 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
 
     private final static Properties PROPERTIES = Properties.parse("AUD-NZD=1.1\nAUD-CAD=1.2\n");
 
-    private final BiFunction<String, Boolean, Number> NUMBER_PARSER = (String text, Boolean invert) -> {
-        final BigDecimal value = new BigDecimal(text);
-        return invert ?
-            BigDecimal.ONE.divide(
-                value,
-                2,
-                BigDecimal.ROUND_HALF_UP
-            ) :
-            value;
-    };
+    private final Function<String, Number> NUMBER_PARSER = BigDecimal::new;
     
     private final static CurrencyExchangeRaterContext CONTEXT = new FakeCurrencyExchangeRaterContext();
 
@@ -139,8 +130,7 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
                 CurrencyCode.parse("NZD"),
                 CurrencyCode.parse("AUD")
             ),
-            CONTEXT,
-            new BigDecimal("0.91")
+            CONTEXT
         );
     }
 
@@ -174,7 +164,7 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
         this.checkNotEquals(
             CurrencyExchangeRaterProperties.with(
                 PROPERTIES,
-                (String text, Boolean invert) -> {
+                (String text) -> {
                     throw new UnsupportedOperationException();
                 }
             )
