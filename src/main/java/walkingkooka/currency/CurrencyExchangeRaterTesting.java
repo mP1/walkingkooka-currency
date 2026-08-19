@@ -18,15 +18,19 @@
 package walkingkooka.currency;
 
 import walkingkooka.collect.set.Sets;
+import walkingkooka.datetime.HasNowTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
 
-public interface CurrencyExchangeRaterTesting extends TreePrintableTesting {
+public interface CurrencyExchangeRaterTesting extends HasNowTesting,
+    TreePrintableTesting {
 
     Optional<LocalDateTime> NO_DATE_TIME = Optional.empty();
+
+    Optional<LocalDateTime> DATE_TIME = Optional.of(NOW);
 
     // currencyExchanges................................................................................................
 
