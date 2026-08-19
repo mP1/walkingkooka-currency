@@ -17,13 +17,20 @@
 
 package walkingkooka.currency;
 
-import walkingkooka.ContextTesting;
+import walkingkooka.currency.TestCurrencyExchangeRaterContextTesting2.TestCurrencyExchangeRaterContext;
 
-public interface CurrencyExchangeRaterContextTesting2<C extends CurrencyExchangeRaterContext> extends CurrencyExchangeRaterContextTesting,
-    ContextTesting<C> {
+public final class TestCurrencyExchangeRaterContextTesting2 implements CurrencyExchangeRaterContextTesting2<TestCurrencyExchangeRaterContext> {
+    @Override
+    public TestCurrencyExchangeRaterContext createContext() {
+        return new TestCurrencyExchangeRaterContext();
+    }
+
+    final static class TestCurrencyExchangeRaterContext implements CurrencyExchangeRaterContext {
+
+    }
 
     @Override
-    default String typeNameSuffix() {
-        return CurrencyExchangeRaterContext.class.getName();
+    public Class<TestCurrencyExchangeRaterContext> type() {
+        return TestCurrencyExchangeRaterContext.class;
     }
 }
