@@ -20,7 +20,7 @@ package walkingkooka.currency;
 import walkingkooka.props.Properties;
 import walkingkooka.reflect.PublicStaticHelper;
 
-import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * A collection of {@link CurrencyExchangeRater}
@@ -38,7 +38,7 @@ public final class CurrencyExchangeRaters implements PublicStaticHelper {
      * {@see CurrencyExchangeRaterProperties}
      */
     public static <C extends CurrencyExchangeRaterContext> CurrencyExchangeRater<C> properties(final Properties properties,
-                                                                                               final BiFunction<String, Boolean, Number> numberParser) {
+                                                                                               final Function<String, Number> numberParser) {
         return CurrencyExchangeRaterProperties.with(
             properties,
             numberParser

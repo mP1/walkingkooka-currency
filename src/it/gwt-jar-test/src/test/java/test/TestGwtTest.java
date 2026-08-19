@@ -26,16 +26,7 @@ public class TestGwtTest extends GWTTestCase {
             ),
             CurrencyExchangeRaters.properties(
                 Properties.parse("AUD-NZD=1.1"),
-                (String text, Boolean invert) -> {
-                    final BigDecimal value = new BigDecimal(text);
-                    return invert ?
-                        BigDecimal.ONE.divide(
-                            value,
-                            2,
-                            BigDecimal.ROUND_HALF_UP
-                        ) :
-                        value;
-                }
+                BigDecimal::new
             ).currencyExchangeRate(
                 CurrencyExchange.with(
                     CurrencyCode.parse("AUD"),

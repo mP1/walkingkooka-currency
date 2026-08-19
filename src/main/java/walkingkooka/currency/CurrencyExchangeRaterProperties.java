@@ -27,20 +27,21 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
  * Wraps a {@link Properties} where multiple exchange rates are defined.
  * <pre>
  * AUD-NZD=1.1
+ * NZD-AUD=0.9
  * </pre>
  */
 final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterContext> implements CurrencyExchangeRater<C>,
     HasProperties {
 
     static <C extends CurrencyExchangeRaterContext> CurrencyExchangeRaterProperties<C> with(final Properties properties,
-                                                                                            final BiFunction<String, Boolean, Number> numberParser) {
+                                                                                            final Function<String, Number> numberParser) {
         return new CurrencyExchangeRaterProperties<>(
             Objects.requireNonNull(properties, "properties"),
             Objects.requireNonNull(numberParser, "numberParser")
@@ -48,7 +49,7 @@ final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterConte
     }
 
     private CurrencyExchangeRaterProperties(final Properties properties,
-                                            final BiFunction<String, Boolean, Number> numberParser) {
+                                            final Function<String, Number> numberParser) {
         super();
         this.properties = properties;
         this.numberParser = numberParser;
@@ -125,8 +126,6 @@ final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterConte
 
         final Properties properties = this.properties;
 
-        boolean invert = false;
-
         PropertiesPath key = PropertiesPath.parse(
             fromCurrencyCode +
                 "-" +
@@ -136,27 +135,10 @@ final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterConte
         String valueOrNull = properties.get(key)
             .orElse(null);
 
-        if (null == valueOrNull) {
-            key = PropertiesPath.parse(
-                toCurrencyCode +
-                    "-" +
-                    fromCurrencyCode
-            );
-
-            valueOrNull = properties.get(key)
-                .orElse(null);
-
-            invert = true;
-        }
-
         final Number number;
-
         if (null != valueOrNull) {
             try {
-                number = this.numberParser.apply(
-                    valueOrNull,
-                    invert
-                );
+                number = this.numberParser.apply(valueOrNull);
             } catch (final RuntimeException invalid) {
                 throw new IllegalArgumentException("Invalid exchange rate " + CharSequences.quoteAndEscape(valueOrNull), invalid);
             }
@@ -167,7 +149,7 @@ final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterConte
         return Optional.ofNullable(number);
     }
 
-    private final BiFunction<String, Boolean, Number> numberParser;
+    private final Function<String, Number> numberParser;
 
     // Object...........................................................................................................
 
