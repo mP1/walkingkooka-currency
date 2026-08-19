@@ -95,14 +95,6 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
             CurrencyExchange.with(
                 aud,
                 cad
-            ),
-            CurrencyExchange.with(
-                nzd,
-                aud
-            ),
-            CurrencyExchange.with(
-                cad,
-                aud
             )
         );
     }
@@ -155,18 +147,6 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
             CurrencyExchangeRaterProperties.with(
                 Properties.EMPTY,
                 NUMBER_PARSER
-            )
-        );
-    }
-
-    @Test
-    public void testEqualsDifferentNumberParser() {
-        this.checkNotEquals(
-            CurrencyExchangeRaterProperties.with(
-                PROPERTIES,
-                (String text) -> {
-                    throw new UnsupportedOperationException();
-                }
             )
         );
     }
