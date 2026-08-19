@@ -17,15 +17,21 @@
 
 package walkingkooka.currency;
 
-import walkingkooka.currency.TestCurrencyExchangeRaterContextTesting2.TestCurrencyExchangeRaterContext;
+import walkingkooka.currency.CurrencyExchangeRaterContextDelegatorTest.TestCurrencyExchangeRaterContextDelegator;
 
-public final class TestCurrencyExchangeRaterContextTesting2 implements CurrencyExchangeRaterContextTesting2<TestCurrencyExchangeRaterContext> {
+public final class CurrencyExchangeRaterContextDelegatorTest implements CurrencyExchangeRaterContextTesting2<TestCurrencyExchangeRaterContextDelegator> {
+
     @Override
-    public TestCurrencyExchangeRaterContext createContext() {
-        return new TestCurrencyExchangeRaterContext();
+    public TestCurrencyExchangeRaterContextDelegator createContext() {
+        return new TestCurrencyExchangeRaterContextDelegator();
     }
 
-    final static class TestCurrencyExchangeRaterContext implements CurrencyExchangeRaterContext {
+    final static class TestCurrencyExchangeRaterContextDelegator implements CurrencyExchangeRaterContextDelegator {
+
+        @Override
+        public CurrencyExchangeRaterContext currencyExchangeRaterContext() {
+            return new FakeCurrencyExchangeRaterContext();
+        }
 
         @Override
         public String toString() {
@@ -34,8 +40,8 @@ public final class TestCurrencyExchangeRaterContextTesting2 implements CurrencyE
     }
 
     @Override
-    public Class<TestCurrencyExchangeRaterContext> type() {
-        return TestCurrencyExchangeRaterContext.class;
+    public Class<TestCurrencyExchangeRaterContextDelegator> type() {
+        return TestCurrencyExchangeRaterContextDelegator.class;
     }
 
     @Override
