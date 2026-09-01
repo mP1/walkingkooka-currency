@@ -22,8 +22,8 @@ import walkingkooka.collect.set.ImmutableSortedSetTesting;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.test.ParseStringTesting;
-import walkingkooka.text.HasTextWithLineBreaksTesting;
 import walkingkooka.text.HasTextWithSeparatorTesting;
+import walkingkooka.text.HasTextWithTextContextTesting;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.printer.TreePrintableTesting;
 
@@ -36,8 +36,8 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<CurrencyCodeSet, CurrencyCode>,
-    HasTextWithLineBreaksTesting,
     HasTextWithSeparatorTesting,
+    HasTextWithTextContextTesting,
     ParseStringTesting<CurrencyCodeSet>,
     TreePrintableTesting {
 
@@ -276,11 +276,11 @@ public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<Curr
         return thrown;
     }
 
-    // HasTextWithLineBreaks............................................................................................
+    // HasTextWithTextContext...........................................................................................
 
     @Test
-    public void testTextWithLineBreaks() {
-        this.textWithLineBreaksAndCheck(
+    public void testTextWithTextContext() {
+        this.textWithTextContextAndCheck(
             this.createSet(),
             LineEnding.NL,
             "AUD\n" +
