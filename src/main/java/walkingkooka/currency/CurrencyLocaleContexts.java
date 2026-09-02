@@ -27,7 +27,7 @@ public final class CurrencyLocaleContexts implements PublicStaticHelper {
      */
     public static CurrencyLocaleContext basic(final CurrencyContext currencyContext,
                                               final LocaleContext localeContext) {
-        return BasicCurrencyLocaleContext.with(
+        return CurrencyLocaleContextBasic.with(
             currencyContext,
             localeContext
         );

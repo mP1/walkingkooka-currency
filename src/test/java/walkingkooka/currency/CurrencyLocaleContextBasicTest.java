@@ -27,16 +27,16 @@ import walkingkooka.reflect.JavaVisibility;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleContextTesting2<BasicCurrencyLocaleContext>,
-    HashCodeEqualsDefinedTesting2<BasicCurrencyLocaleContext>,
-    ClassTesting2<BasicCurrencyLocaleContext>,
-    ToStringTesting<BasicCurrencyLocaleContext> {
+public final class CurrencyLocaleContextBasicTest implements CurrencyLocaleContextTesting2<CurrencyLocaleContextBasic>,
+    HashCodeEqualsDefinedTesting2<CurrencyLocaleContextBasic>,
+    ClassTesting2<CurrencyLocaleContextBasic>,
+    ToStringTesting<CurrencyLocaleContextBasic> {
 
     @Test
     public void testWithNullCurrencyContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> BasicCurrencyLocaleContext.with(
+            () -> CurrencyLocaleContextBasic.with(
                 null,
                 LOCALE_CONTEXT
             )
@@ -47,7 +47,7 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
     public void testWithNullLocaleContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> BasicCurrencyLocaleContext.with(
+            () -> CurrencyLocaleContextBasic.with(
                 CURRENCY_CONTEXT,
                 null
             )
@@ -56,10 +56,10 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
 
     @Test
     public void testWithCurrencyLocaleContext() {
-        final BasicCurrencyLocaleContext context = this.createContext();
+        final CurrencyLocaleContextBasic context = this.createContext();
         assertSame(
             context,
-            BasicCurrencyLocaleContext.with(
+            CurrencyLocaleContextBasic.with(
                 context,
                 context
             )
@@ -67,9 +67,9 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
     }
 
     @Override
-    public BasicCurrencyLocaleContext createContext() {
-        return (BasicCurrencyLocaleContext)
-            BasicCurrencyLocaleContext.with(
+    public CurrencyLocaleContextBasic createContext() {
+        return (CurrencyLocaleContextBasic)
+            CurrencyLocaleContextBasic.with(
                 CURRENCY_CONTEXT,
                 LOCALE_CONTEXT
             );
@@ -80,7 +80,7 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
     @Test
     public void testEqualsDifferentCurrencyContext() {
         this.checkNotEquals(
-            BasicCurrencyLocaleContext.with(
+            CurrencyLocaleContextBasic.with(
                 CurrencyContexts.fake(),
                 LOCALE_CONTEXT
             )
@@ -90,7 +90,7 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
     @Test
     public void testEqualsDifferentLocaleContext() {
         this.checkNotEquals(
-            BasicCurrencyLocaleContext.with(
+            CurrencyLocaleContextBasic.with(
                 CURRENCY_CONTEXT,
                 LocaleContexts.fake()
             )
@@ -98,7 +98,7 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
     }
 
     @Override
-    public BasicCurrencyLocaleContext createObject() {
+    public CurrencyLocaleContextBasic createObject() {
         return this.createContext();
     }
 
@@ -115,12 +115,17 @@ public final class BasicCurrencyLocaleContextTest implements CurrencyLocaleConte
     // class............................................................................................................
 
     @Override
-    public Class<BasicCurrencyLocaleContext> type() {
-        return BasicCurrencyLocaleContext.class;
+    public Class<CurrencyLocaleContextBasic> type() {
+        return CurrencyLocaleContextBasic.class;
     }
 
     @Override
     public JavaVisibility typeVisibility() {
         return JavaVisibility.PACKAGE_PRIVATE;
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }
