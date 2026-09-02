@@ -17,9 +17,9 @@
 
 package walkingkooka.currency;
 
-import walkingkooka.currency.TestCurrencyExchangeRaterContextTesting2.TestCurrencyExchangeRaterContext;
+import walkingkooka.currency.CurrencyExchangeRaterContextTesting2Test.TestCurrencyExchangeRaterContext;
 
-public final class TestCurrencyExchangeRaterContextTesting2 implements CurrencyExchangeRaterContextTesting2<TestCurrencyExchangeRaterContext> {
+public final class CurrencyExchangeRaterContextTesting2Test implements CurrencyExchangeRaterContextTesting2<TestCurrencyExchangeRaterContext> {
     @Override
     public TestCurrencyExchangeRaterContext createContext() {
         return new TestCurrencyExchangeRaterContext();
