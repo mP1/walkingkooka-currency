@@ -109,13 +109,10 @@ final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterConte
     public Set<CurrencyExchange> currencyExchanges(final C context) {
         Objects.requireNonNull(context, "context");
 
-        //return this.currencyExchanges;
         return Sets.readOnly(
             this.currencyExchangeToRate.keySet()
         );
     }
-
-    //private final Set<CurrencyExchange> currencyExchanges;
 
     @Override
     public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
@@ -125,40 +122,10 @@ final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterConte
         Objects.requireNonNull(dateTime, "dateTime");
         Objects.requireNonNull(context, "context");
 
-//        final String fromCurrencyCode = currencyExchange.from()
-//            .value();
-//        final String toCurrencyCode = currencyExchange.to()
-//            .value();
-//
-//        final Properties properties = this.properties;
-//
-//        PropertiesPath key = PropertiesPath.parse(
-//            fromCurrencyCode +
-//                "-" +
-//                toCurrencyCode
-//        );
-//
-//        String valueOrNull = properties.get(key)
-//            .orElse(null);
-//
-//        final Number number;
-//        if (null != valueOrNull) {
-//            try {
-//                number = this.numberParser.apply(valueOrNull);
-//            } catch (final RuntimeException invalid) {
-//                throw new IllegalArgumentException("Invalid exchange rate " + CharSequences.quoteAndEscape(valueOrNull), invalid);
-//            }
-//        } else {
-//            number = null;
-//        }
-//
-//        return Optional.ofNullable(number);
         return Optional.ofNullable(
             this.currencyExchangeToRate.get(currencyExchange)
         );
     }
-
-//    private final Function<String, Number> numberParser;
 
     private final Map<CurrencyExchange, Number> currencyExchangeToRate;
 
@@ -166,10 +133,6 @@ final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterConte
 
     @Override
     public int hashCode() {
-//        return Objects.hash(
-//            this.properties,
-//            this.numberParser
-//        );
         return this.currencyExchangeToRate.hashCode();
     }
 
@@ -181,8 +144,6 @@ final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterConte
     }
 
     private boolean equals0(final CurrencyExchangeRaterProperties<?> other) {
-//        return this.properties.equals(other.properties) &&
-//            this.numberParser.equals(other.numberParser);
         return this.currencyExchangeToRate.equals(other.currencyExchangeToRate);
     }
 
