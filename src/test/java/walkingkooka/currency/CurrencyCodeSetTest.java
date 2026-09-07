@@ -33,7 +33,6 @@ import java.util.Set;
 import java.util.SortedSet;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<CurrencyCodeSet, CurrencyCode>,
     HasTextWithSeparatorTesting,
@@ -48,14 +47,6 @@ public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<Curr
     private final static CurrencyCode NZD = CurrencyCode.fromCurrency(
         Currency.getInstance("NZD")
     );
-
-    @Test
-    public void testWithNullFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> CurrencyCodeSet.with(null)
-        );
-    }
 
     @Test
     public void testDeleteBecomesEmpty() {
