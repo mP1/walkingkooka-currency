@@ -28,6 +28,13 @@ import java.util.function.Function;
 public final class CurrencyExchangeRaters implements PublicStaticHelper {
 
     /**
+     * {@see CurrencyExchangeRaterEmpty}
+     */
+    public static <C extends CurrencyExchangeRaterContext> CurrencyExchangeRater<C> empty() {
+        return CurrencyExchangeRaterEmpty.instance();
+    }
+
+    /**
      * {@see FakeCurrencyExchangeRater}
      */
     public static <C extends CurrencyExchangeRaterContext> FakeCurrencyExchangeRater<C> fake() {
