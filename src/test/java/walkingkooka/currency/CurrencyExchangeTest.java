@@ -22,6 +22,7 @@ import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.text.HasTextTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import static org.junit.jupiter.api.Assertions.assertNotSame;
@@ -30,6 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2<CurrencyExchange>,
     ClassTesting2<CurrencyExchange>,
+    HasTextTesting,
     ToStringTesting<CurrencyExchange>,
     TreePrintableTesting {
 
@@ -191,6 +193,16 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
         this.toStringAndCheck(
             this.createObject(),
             "AUD to NZD"
+        );
+    }
+
+    // HasText..........................................................................................................
+
+    @Test
+    public void testText() {
+        this.textAndCheck(
+            this.createObject(),
+            "AUD-NZD"
         );
     }
 

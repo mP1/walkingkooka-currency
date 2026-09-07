@@ -17,6 +17,7 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.text.HasText;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
 
@@ -26,7 +27,8 @@ import java.util.Objects;
 /**
  * An id that uniquely identifies a {@link Currency}.
  */
-public final class CurrencyExchange implements TreePrintable {
+public final class CurrencyExchange implements HasText,
+    TreePrintable {
 
     public static CurrencyExchange with(final CurrencyCode from,
                                         final CurrencyCode to) {
@@ -88,9 +90,26 @@ public final class CurrencyExchange implements TreePrintable {
             this.to.equals(other.to);
     }
 
+    /**
+     * <pre>
+     * AUD to NZD
+     * </pre>
+     */
     @Override
     public String toString() {
         return this.from + " to " + this.to;
+    }
+
+    // HasText..........................................................................................................
+
+    /**
+     * <pre>
+     * AUD-NZD
+     * </pre>
+     */
+    @Override
+    public String text() {
+        return this.from + "-" + this.to;
     }
 
     // TreePrintable....................................................................................................
