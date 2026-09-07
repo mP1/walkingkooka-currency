@@ -83,14 +83,8 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
         return matched;
     }
 
-    /**
-     * Factory that creates {@link CurrencyCodeSet} with the given currencies.
-     */
-    public static CurrencyCodeSet with(final Collection<CurrencyCode> currencies) {
-        return EMPTY.setElements(currencies);
-    }
-
-    private static CurrencyCodeSet withCopy(final SortedSet<CurrencyCode> currencies) {
+    // @VisibleForTesting
+    static CurrencyCodeSet with(final SortedSet<CurrencyCode> currencies) {
         return currencies.isEmpty() ?
             EMPTY :
             new CurrencyCodeSet(currencies);
@@ -123,7 +117,7 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
     @Override
     public CurrencyCodeSet subSet(final CurrencyCode from,
                                   final CurrencyCode to) {
-        return withCopy(
+        return with(
             this.currencyCodes.subSet(
                 from,
                 to
@@ -133,14 +127,14 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
 
     @Override
     public CurrencyCodeSet headSet(final CurrencyCode locale) {
-        return withCopy(
+        return with(
             this.currencyCodes.headSet(locale)
         );
     }
 
     @Override
     public CurrencyCodeSet tailSet(final CurrencyCode locale) {
-        return withCopy(
+        return with(
             this.currencyCodes.tailSet(locale)
         );
     }
@@ -172,7 +166,7 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
             );
             currencyCodeSet = this.currencyCodes.equals(copy) ?
                 this :
-                withCopy(copy);
+                with(copy);
         }
 
         return currencyCodeSet;
@@ -199,7 +193,7 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
             )
         );
 
-        return withCopy(currencyCodes);
+        return with(currencyCodes);
     }
 
     // HasTextWithSeparator.............................................................................................
