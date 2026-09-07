@@ -67,9 +67,10 @@ public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<Curr
             )
         );
 
-        assertSame(
+        this.setElementsAndCheck(
             set,
-            set.setElements(set)
+            set,
+            set
         );
     }
 
@@ -78,11 +79,10 @@ public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<Curr
         final CurrencyCodeSet set = this.createSet();
         final CurrencyCodeSet set2 = this.createSet();
 
-        assertSame(
+        this.setElementsAndCheck(
+            set,
             set2,
-            set.setElements(
-                set2
-            )
+            set2
         );
     }
 
