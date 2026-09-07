@@ -62,6 +62,22 @@ public final class CurrencyCodeTest implements ComparableTesting2<CurrencyCode>,
     }
 
     @Test
+    public void testParseInvalidCharacterFails() {
+        this.parseStringInvalidCharacterFails(
+            "AU!",
+            '!'
+        );
+    }
+
+    @Test
+    public void testParseLowerCaseCharacterFails() {
+        this.parseStringInvalidCharacterFails(
+            "AUd",
+            'd'
+        );
+    }
+
+    @Test
     public void testParse() {
         this.parseStringAndCheck(
             "AUD",
