@@ -17,6 +17,9 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.InvalidCharacterException;
+import walkingkooka.InvalidTextLengthException;
+import walkingkooka.text.CharSequences;
 import walkingkooka.text.HasText;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
@@ -98,6 +101,65 @@ public final class CurrencyExchange implements HasText,
     @Override
     public String toString() {
         return this.from + " to " + this.to;
+    }
+
+    // parse............................................................................................................
+
+    /**
+     * <pre>
+     * AUD-NZD
+     * </pre>
+     */
+    public static CurrencyExchange parse(final String text) {
+        CharSequences.failIfNullOrEmpty(text, "text");
+
+        InvalidTextLengthException.throwIfFail(
+            "text",
+            text,
+            7,
+            7
+        );
+
+        final CurrencyCode from;
+        try {
+            from = CurrencyCode.parse(
+                text.substring(
+                    0,
+                    3
+                )
+            );
+        } catch (final InvalidCharacterException cause) {
+            throw cause.setTextAndPosition(
+                text,
+                cause.position()
+            );
+        }
+
+        if('-' != text.charAt(3)) {
+            throw new InvalidCharacterException(
+                text,
+                3
+            );
+        }
+
+        final CurrencyCode to;
+        try {
+            to = CurrencyCode.parse(
+                text.substring(
+                    4
+                )
+            );
+        } catch (final InvalidCharacterException cause) {
+            throw cause.setTextAndPosition(
+                text,
+                4 + cause.position()
+            );
+        }
+
+        return with(
+            from,
+            to
+        );
     }
 
     // HasText..........................................................................................................

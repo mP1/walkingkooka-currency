@@ -19,9 +19,11 @@ package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
+import walkingkooka.InvalidTextLengthException;
 import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.HasTextTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
 
@@ -32,6 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2<CurrencyExchange>,
     ClassTesting2<CurrencyExchange>,
     HasTextTesting,
+    ParseStringTesting<CurrencyExchange>,
     ToStringTesting<CurrencyExchange>,
     TreePrintableTesting {
 
@@ -194,6 +197,63 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
             this.createObject(),
             "AUD to NZD"
         );
+    }
+
+    // parse...........................................................................................................
+
+    @Test
+    public void testParseInvalidLengthFails() {
+        this.parseStringFails(
+            "AU-NZD",
+            new InvalidTextLengthException("text", "AU-NZD", 7, 7)
+        );
+    }
+
+    @Test
+    public void testParseInvalidFromCurrencyFails() {
+        this.parseStringInvalidCharacterFails(
+            "AU!-NZD",
+            '!'
+        );
+    }
+
+    @Test
+    public void testParseInvalidSeparatorFails() {
+        this.parseStringInvalidCharacterFails(
+            "AUD!NZD",
+            '!'
+        );
+    }
+
+    @Test
+    public void testParseInvalidToCurrencyFails() {
+        this.parseStringInvalidCharacterFails(
+            "AUD-N!D",
+            '!'
+        );
+    }
+
+    @Test
+    public void testParse() {
+        this.parseStringAndCheck(
+            "AUD-NZD",
+            this.createObject()
+        );
+    }
+
+    @Override
+    public CurrencyExchange parseString(final String text) {
+        return CurrencyExchange.parse(text);
+    }
+
+    @Override
+    public Class<? extends RuntimeException> parseStringFailedExpected(final Class<? extends RuntimeException> expected) {
+        return expected;
+    }
+
+    @Override
+    public RuntimeException parseStringFailedExpected(final RuntimeException expected) {
+        return expected;
     }
 
     // HasText..........................................................................................................
