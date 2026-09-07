@@ -20,6 +20,8 @@ package walkingkooka.currency;
 import walkingkooka.HasValue;
 import walkingkooka.InvalidTextLengthException;
 import walkingkooka.compare.Comparators;
+import walkingkooka.predicate.character.CharPredicate;
+import walkingkooka.predicate.character.CharPredicates;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.HasCaseSensitivity;
 import walkingkooka.text.printer.IndentingPrinter;
@@ -38,15 +40,24 @@ public final class CurrencyCode implements Comparable<CurrencyCode>, HasValue<St
     public final static CaseSensitivity CASE_SENSITIVITY = HasCurrency.CURRENCY_CASE_SENSITIVITY;
 
     public static CurrencyCode parse(final String text) {
-        return new CurrencyCode(
-            InvalidTextLengthException.throwIfFail(
-                "currencyCode",
-                text,
-                3,
-                3
-            )
+        InvalidTextLengthException.throwIfFail(
+            "currencyCode",
+            text,
+            3,
+            3
         );
+
+        CharPredicates.failIfNullOrEmptyOrInitialAndPartFalse(
+            text,
+            "text",
+            A_TO_Z,
+            A_TO_Z
+        );
+
+        return new CurrencyCode(text);
     }
+
+    private final static CharPredicate A_TO_Z = CharPredicates.range('A', 'Z');
 
     public static CurrencyCode fromCurrency(final Currency currency) {
         return new CurrencyCode(
