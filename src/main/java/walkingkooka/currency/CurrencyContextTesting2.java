@@ -52,14 +52,14 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
         );
     }
 
-    // findByCurrencyText...............................................................................................
+    // findCurrencyByText...............................................................................................
 
     @Test
-    default void testFindByCurrencyTextWithNullTextAndCheckFails() {
+    default void testFindCurrencyByTextWithNullTextAndCheckFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createContext()
-                .findByCurrencyText(
+                .findCurrencyByText(
                     null,
                     0,
                     1
@@ -68,11 +68,11 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
     }
 
     @Test
-    default void testFindByCurrencyTextAndCheckWithNegativeOffsetFails() {
+    default void testFindCurrencyByTextWithNegativeOffsetFails() {
         assertThrows(
             IllegalArgumentException.class,
             () -> this.createContext()
-                .findByCurrencyText(
+                .findCurrencyByText(
                     "",
                     -1,
                     1
@@ -81,11 +81,11 @@ public interface CurrencyContextTesting2<C extends CurrencyContext> extends Curr
     }
 
     @Test
-    default void testFindByCurrencyTextAndCheckWithNegativeCountFails() {
+    default void testFindCurrencyByTextWithNegativeCountFails() {
         assertThrows(
             IllegalArgumentException.class,
             () -> this.createContext()
-                .findByCurrencyText(
+                .findCurrencyByText(
                     "",
                     0,
                     -1

@@ -184,8 +184,8 @@ public final class CurrencyContextJreTest implements CurrencyContextTesting2<Cur
     }
 
     @Test
-    public void testFindByCurrencyText() {
-        this.findByCurrencyTextAndCheck(
+    public void testFindCurrencyByText() {
+        this.findCurrencyByTextAndCheck(
             this.createContext(),
             "Australia",
             0,
@@ -195,8 +195,8 @@ public final class CurrencyContextJreTest implements CurrencyContextTesting2<Cur
     }
 
     @Test
-    public void testFindByCurrencyTextDifferentCaseText() {
-        this.findByCurrencyTextAndCheck(
+    public void testFindCurrencyByTextDifferentCaseCode() {
+        this.findCurrencyByTextAndCheck(
             this.createContext(),
             "AUSTRalia",
             0,

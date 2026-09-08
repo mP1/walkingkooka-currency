@@ -130,20 +130,20 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
         );
     }
 
-    // findByCurrencyText...............................................................................................
+    // findCurrencyByText...............................................................................................
 
     @Test
-    public void testFindByCurrencyTextAndCheck() {
+    public void testFindCurrencyByTextAndCheck() {
         final String text = "text1";
         final int offset = 1;
         final int count = 23;
         final String currencyCode1 = "AUD";
         final String currencyCode2 = "NZD";
 
-        this.findByCurrencyTextAndCheck(
+        this.findCurrencyByTextAndCheck(
             new FakeCurrencyContext() {
                 @Override
-                public Set<CurrencyCode> findByCurrencyText(final String t,
+                public Set<CurrencyCode> findCurrencyByText(final String t,
                                                             final int o,
                                                             final int c) {
                     checkEquals(text, t, "text");

@@ -170,12 +170,12 @@ public interface CurrencyContextTesting extends CanCurrencyExchangeRateTesting,
     
     // findByCurrencyText...............................................................................................
 
-    default void findByCurrencyTextAndCheck(final CurrencyContext context,
+    default void findCurrencyByTextAndCheck(final CurrencyContext context,
                                             final String text,
                                             final int offset,
                                             final int count,
                                             final String... expected) {
-        this.findByCurrencyTextAndCheck(
+        this.findCurrencyByTextAndCheck(
             context,
             text,
             offset,
@@ -186,12 +186,12 @@ public interface CurrencyContextTesting extends CanCurrencyExchangeRateTesting,
         );
     }
 
-    default void findByCurrencyTextAndCheck(final CurrencyContext context,
+    default void findCurrencyByTextAndCheck(final CurrencyContext context,
                                             final String text,
                                             final int offset,
                                             final int count,
                                             final CurrencyCode... expected) {
-        this.findByCurrencyTextAndCheck(
+        this.findCurrencyByTextAndCheck(
             context,
             text,
             offset,
@@ -200,19 +200,19 @@ public interface CurrencyContextTesting extends CanCurrencyExchangeRateTesting,
         );
     }
 
-    default void findByCurrencyTextAndCheck(final CurrencyContext context,
+    default void findCurrencyByTextAndCheck(final CurrencyContext context,
                                             final String text,
                                             final int offset,
                                             final int count,
                                             final Set<CurrencyCode> expected) {
         this.checkEquals(
             expected,
-            context.findByCurrencyText(
+            context.findCurrencyByText(
                 text,
                 offset,
                 count
             ),
-            () -> "findByCurrencyText text: " + CharSequences.quoteAndEscape(text) + " offset: " + offset + " count: " + count
+            () -> "findCurrencyByText text: " + CharSequences.quoteAndEscape(text) + " offset: " + offset + " count: " + count
         );
     }
 }
