@@ -72,6 +72,64 @@ public interface CurrencyExchangeRaterTesting2<R extends CurrencyExchangeRater<C
         );
     }
 
+    // findCurrencyExchangeByText.......................................................................................
+
+    @Test
+    default void testFindCurrencyExchangeByTextWithNullTextAndCheckFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createCurrencyExchangeRater()
+                .findCurrencyExchangeByText(
+                    null,
+                    0,
+                    1,
+                    this.createContext()
+                )
+        );
+    }
+
+    @Test
+    default void testFindCurrencyExchangeByTextWithNegativeOffsetFails() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> this.createCurrencyExchangeRater()
+                .findCurrencyExchangeByText(
+                    "",
+                    -1,
+                    1,
+                    this.createContext()
+                )
+        );
+    }
+
+    @Test
+    default void testFindCurrencyExchangeByTextWithNegativeCountFails() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> this.createCurrencyExchangeRater()
+                .findCurrencyExchangeByText(
+                    "",
+                    0,
+                    -1,
+                    this.createContext()
+                )
+        );
+    }
+
+    @Test
+    default void testFindCurrencyExchangeByTextWithNullContextFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createCurrencyExchangeRater()
+                .findCurrencyExchangeByText(
+                    "",
+                    0,
+                    0,
+                    null
+                )
+        );
+    }
+    
     R createCurrencyExchangeRater();
 
     C createContext();

@@ -48,4 +48,12 @@ public interface CurrencyExchangeRater<C extends CurrencyExchangeRaterContext> {
             )
         );
     }
+
+    /**
+     * Returns all {@link CurrencyExchange} that have display or local text beginning with the given search text.
+     */
+    Set<CurrencyExchange> findCurrencyExchangeByText(final String text,
+                                                     final int offset,
+                                                     final int count,
+                                                     final C context);
 }

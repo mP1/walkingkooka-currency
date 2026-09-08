@@ -59,6 +59,23 @@ final class CurrencyExchangeRaterEmpty<C extends CurrencyExchangeRaterContext> i
         return Optional.empty();
     }
 
+    @Override
+    public Set<CurrencyExchange> findCurrencyExchangeByText(final String text,
+                                                            final int offset,
+                                                            final int count,
+                                                            final C context) {
+        Objects.requireNonNull(text, "text");
+        if (offset < 0) {
+            throw new IllegalArgumentException("Invalid offset " + offset + " < 0");
+        }
+        if (count < 0) {
+            throw new IllegalArgumentException("Invalid count " + count + " < 0");
+        }
+        Objects.requireNonNull(context, "context");
+
+        return Sets.empty();
+    }
+
     // Object...........................................................................................................
 
     @Override

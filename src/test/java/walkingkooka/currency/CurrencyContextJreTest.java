@@ -18,6 +18,7 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.collect.set.Sets;
 import walkingkooka.locale.LocaleContextTesting;
 
 import java.time.LocalDateTime;
@@ -53,6 +54,23 @@ public final class CurrencyContextJreTest implements CurrencyContextTesting2<Cur
             Objects.requireNonNull(context, "context");
 
             return java.util.Optional.of(2);
+        }
+
+        @Override
+        public Set<CurrencyExchange> findCurrencyExchangeByText(final String text,
+                                                                final int offset,
+                                                                final int count,
+                                                                final CurrencyContext context) {
+            Objects.requireNonNull(text, "text");
+            if (offset < 0) {
+                throw new IllegalArgumentException("Invalid offset " + offset + " < 0");
+            }
+            if (count < 0) {
+                throw new IllegalArgumentException("Invalid count " + count + " < 0");
+            }
+            Objects.requireNonNull(context, "context");
+
+            return Sets.empty();
         }
     };
 

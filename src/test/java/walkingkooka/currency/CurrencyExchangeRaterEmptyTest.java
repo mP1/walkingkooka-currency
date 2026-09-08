@@ -53,6 +53,30 @@ public final class CurrencyExchangeRaterEmptyTest implements CurrencyExchangeRat
         );
     }
 
+    // findCurrencyExchangeByText.......................................................................................
+
+    @Test
+    public void testFindCurrencyExchangeByEmptyText() {
+        this.findCurrencyExchangeByTextAndCheck(
+            this.createCurrencyExchangeRater(),
+            "",
+            0,
+            1,
+            CONTEXT
+        );
+    }
+
+    @Test
+    public void testFindCurrencyExchangeByNonEmptyText() {
+        this.findCurrencyExchangeByTextAndCheck(
+            this.createCurrencyExchangeRater(),
+            "AUD",
+            0,
+            1,
+            CONTEXT
+        );
+    }
+
     @Override
     public CurrencyExchangeRaterEmpty<CurrencyExchangeRaterContext> createCurrencyExchangeRater() {
         return CurrencyExchangeRaterEmpty.instance();

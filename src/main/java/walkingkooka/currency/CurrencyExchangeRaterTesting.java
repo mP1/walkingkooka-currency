@@ -17,11 +17,15 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.datetime.HasNowTesting;
+import walkingkooka.text.CharSequences;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -122,6 +126,75 @@ public interface CurrencyExchangeRaterTesting extends HasNowTesting,
                 context
             ),
             () -> rater + " currencyExchangeRate " + currencyExchange + " " + dateTime.map(Object::toString)
+        );
+    }
+
+    // findCurrencyExchangeByText.......................................................................................
+
+    default <C extends CurrencyExchangeRaterContext> void findCurrencyExchangeByTextAndCheck(final CurrencyExchangeRater<C> rater,
+                                                                                             final String text,
+                                                                                             final int offset,
+                                                                                             final int count,
+                                                                                             final C context) {
+        this.findCurrencyExchangeByTextAndCheck(
+            rater,
+            text,
+            offset,
+            count,
+            context,
+            new String[0]
+        );
+    }
+
+    default <C extends CurrencyExchangeRaterContext> void findCurrencyExchangeByTextAndCheck(final CurrencyExchangeRater<C> rater,
+                                                                                             final String text,
+                                                                                             final int offset,
+                                                                                             final int count,
+                                                                                             final C context,
+                                                                                             final String... expected) {
+        this.findCurrencyExchangeByTextAndCheck(
+            rater,
+            text,
+            offset,
+            count,
+            context,
+            Arrays.stream(expected)
+                .map(CurrencyExchange::parse)
+                .toArray(CurrencyExchange[]::new)
+        );
+    }
+
+    default <C extends CurrencyExchangeRaterContext> void findCurrencyExchangeByTextAndCheck(final CurrencyExchangeRater<C> rater,
+                                                                                             final String text,
+                                                                                             final int offset,
+                                                                                             final int count,
+                                                                                             final C context,
+                                                                                             final CurrencyExchange... expected) {
+        this.findCurrencyExchangeByTextAndCheck(
+            rater,
+            text,
+            offset,
+            count,
+            context,
+            Lists.of(expected)
+        );
+    }
+
+    default <C extends CurrencyExchangeRaterContext> void findCurrencyExchangeByTextAndCheck(final CurrencyExchangeRater<C> rater,
+                                                                                             final String text,
+                                                                                             final int offset,
+                                                                                             final int count,
+                                                                                             final C context,
+                                                                                             final List<CurrencyExchange> expected) {
+        this.checkEquals(
+            expected,
+            rater.findCurrencyExchangeByText(
+                text,
+                offset,
+                count,
+                context
+            ),
+            () -> "findCurrencyExchangeByText text: " + CharSequences.quoteAndEscape(text) + " offset: " + offset + " count: " + count
         );
     }
 }

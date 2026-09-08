@@ -38,4 +38,12 @@ public class FakeCurrencyExchangeRater<C extends CurrencyExchangeRaterContext> i
                                                  final C context) {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public Set<CurrencyExchange> findCurrencyExchangeByText(final String text,
+                                                            final int offset,
+                                                            final int count,
+                                                            final C context) {
+        throw new UnsupportedOperationException();
+    }
 }

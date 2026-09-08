@@ -73,6 +73,14 @@ public interface CurrencyContextTesting extends CanCurrencyExchangeRateTesting,
                             ).getDisplayName().length()
                     );
                 }
+
+                @Override
+                public Set<CurrencyExchange> findCurrencyExchangeByText(final String text,
+                                                                        final int offset,
+                                                                        final int count,
+                                                                        final CurrencyContext context) {
+                    throw new UnsupportedOperationException();
+                }
             },
             LOCALE_CONTEXT
         )
