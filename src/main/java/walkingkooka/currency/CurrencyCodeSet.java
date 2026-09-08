@@ -67,7 +67,7 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
 
         final Set<CurrencyCode> matched = Sets.ordered();
 
-        for (final CurrencyCode currencyCode : context.findByCurrencyText(
+        for (final CurrencyCode currencyCode : context.findCurrencyByText(
             startsWith,
             0,
             Integer.MAX_VALUE

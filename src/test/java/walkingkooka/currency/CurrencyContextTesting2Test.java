@@ -103,7 +103,7 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
         }
 
         @Override
-        public Set<CurrencyCode> findByCurrencyText(final String text,
+        public Set<CurrencyCode> findCurrencyByText(final String text,
                                                     final int offset,
                                                     final int count) {
             Objects.requireNonNull(text, "text");

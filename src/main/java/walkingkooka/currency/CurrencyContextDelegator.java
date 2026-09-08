@@ -75,11 +75,11 @@ public interface CurrencyContextDelegator extends CurrencyContext,
     }
 
     @Override
-    default Set<CurrencyCode> findByCurrencyText(final String text,
+    default Set<CurrencyCode> findCurrencyByText(final String text,
                                                  final int offset,
                                                  final int count) {
         return this.currencyContext()
-            .findByCurrencyText(
+            .findCurrencyByText(
                 text,
                 offset,
                 count

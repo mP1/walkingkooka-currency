@@ -88,8 +88,8 @@ public final class CurrencyContextReadOnlyTest implements CurrencyContextTesting
     }
 
     @Test
-    public void testFindByCurrencyText() {
-        this.findByCurrencyTextAndCheck(
+    public void testFindCurrencyByText() {
+        this.findCurrencyByTextAndCheck(
             this.createContext(),
             "",
             0,
@@ -144,7 +144,7 @@ public final class CurrencyContextReadOnlyTest implements CurrencyContextTesting
             }
 
             @Override
-            public Set<CurrencyCode> findByCurrencyText(final String text,
+            public Set<CurrencyCode> findCurrencyByText(final String text,
                                                         final int offset,
                                                         final int count) {
                 Objects.requireNonNull(text, "text");

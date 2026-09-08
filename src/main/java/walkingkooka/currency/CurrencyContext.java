@@ -55,7 +55,7 @@ public interface CurrencyContext extends Context,
     /**
      * Returns all {@link CurrencyCode} that have display or local text beginning with the given search text.
      */
-    Set<CurrencyCode> findByCurrencyText(final String text,
+    Set<CurrencyCode> findCurrencyByText(final String text,
                                          final int offset,
                                          final int count);
 
