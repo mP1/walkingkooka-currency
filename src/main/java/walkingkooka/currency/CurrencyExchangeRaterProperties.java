@@ -18,6 +18,7 @@
 package walkingkooka.currency;
 
 import walkingkooka.collect.map.Maps;
+import walkingkooka.collect.set.ImmutableSortedSet;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.props.HasProperties;
 import walkingkooka.props.Properties;
@@ -25,6 +26,7 @@ import walkingkooka.props.PropertiesPath;
 import walkingkooka.text.CharSequences;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -124,6 +126,40 @@ final class CurrencyExchangeRaterProperties<C extends CurrencyExchangeRaterConte
 
         return Optional.ofNullable(
             this.currencyExchangeToRate.get(currencyExchange)
+        );
+    }
+
+    @Override
+    public Set<CurrencyExchange> findCurrencyExchangeByText(final String text,
+                                                            final int offset,
+                                                            final int count,
+                                                            final C context) {
+        Objects.requireNonNull(text, "text");
+        if (offset < 0) {
+            throw new IllegalArgumentException("Invalid offset " + offset + " < 0");
+        }
+        if (count < 0) {
+            throw new IllegalArgumentException("Invalid count " + count + " < 0");
+        }
+        Objects.requireNonNull(context, "context");
+
+        return this.currencyExchangeToRate.keySet()
+            .stream()
+            .filter((CurrencyExchange currencyExchange) -> isMatch(
+                    currencyExchange.from(),
+                    text
+                ) || isMatch(
+                    currencyExchange.to(),
+                    text
+                )
+            ).collect(ImmutableSortedSet.collector(Comparator.naturalOrder()));
+    }
+
+    private static boolean isMatch(final CurrencyCode currencyCode,
+                                   final String text) {
+        return CurrencyCode.CASE_SENSITIVITY.contains(
+            currencyCode.value(),
+            text
         );
     }
 

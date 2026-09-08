@@ -134,6 +134,53 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
         );
     }
 
+    // findCurrencyExchangeByText.......................................................................................
+
+    @Test
+    public void testFindCurrencyExchangeByEmptyText() {
+        this.findCurrencyExchangeByTextAndCheck(
+            this.createCurrencyExchangeRater(),
+            "",
+            0,
+            1,
+            CONTEXT
+        );
+    }
+
+    @Test
+    public void testFindCurrencyExchangeByNonEmptyText() {
+        this.findCurrencyExchangeByTextAndCheck(
+            this.createCurrencyExchangeRater(),
+            "AUD",
+            0,
+            1,
+            CONTEXT,
+            CurrencyExchange.with(
+                CurrencyCode.parse("AUD"),
+                CurrencyCode.parse("CAD")
+            ),
+            CurrencyExchange.with(
+                CurrencyCode.parse("AUD"),
+                CurrencyCode.parse("NZD")
+            )
+        );
+    }
+
+    @Test
+    public void testFindCurrencyExchangeByNonEmptyText2() {
+        this.findCurrencyExchangeByTextAndCheck(
+            this.createCurrencyExchangeRater(),
+            "CAD",
+            0,
+            1,
+            CONTEXT,
+            CurrencyExchange.with(
+                CurrencyCode.parse("AUD"),
+                CurrencyCode.parse("CAD")
+            )
+        );
+    }
+
     @Override
     public CurrencyExchangeRaterContext createContext() {
         return CONTEXT;

@@ -41,5 +41,19 @@ public interface CurrencyExchangeRaterDelegator<C extends CurrencyExchangeRaterC
             );
     }
 
+    @Override
+    default Set<CurrencyExchange> findCurrencyExchangeByText(final String text,
+                                                             final int offset,
+                                                             final int count,
+                                                             final C context) {
+        return this.currencyExchangeRater()
+            .findCurrencyExchangeByText(
+                text,
+                offset,
+                count,
+                context
+            );
+    }
+
     CurrencyExchangeRater<C> currencyExchangeRater();
 }
