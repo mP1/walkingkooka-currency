@@ -20,6 +20,7 @@ package walkingkooka.currency;
 import walkingkooka.InvalidCharacterException;
 import walkingkooka.InvalidTextLengthException;
 import walkingkooka.text.CharSequences;
+import walkingkooka.text.CharacterConstant;
 import walkingkooka.text.HasText;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
@@ -33,6 +34,11 @@ import java.util.Objects;
 public final class CurrencyExchange implements HasText,
     TreePrintable,
     Comparable<CurrencyExchange> {
+
+    /**
+     * The separator character between {@link CurrencyCode}.
+     */
+    public final static CharacterConstant SEPARATOR = CharacterConstant.with('-');
 
     public static CurrencyExchange with(final CurrencyCode from,
                                         final CurrencyCode to) {
@@ -136,7 +142,7 @@ public final class CurrencyExchange implements HasText,
             );
         }
 
-        if('-' != text.charAt(3)) {
+        if(SEPARATOR.character() != text.charAt(3)) {
             throw new InvalidCharacterException(
                 text,
                 3
@@ -172,7 +178,7 @@ public final class CurrencyExchange implements HasText,
      */
     @Override
     public String text() {
-        return this.from + "-" + this.to;
+        return this.from + SEPARATOR.string() + this.to;
     }
 
     // TreePrintable....................................................................................................
