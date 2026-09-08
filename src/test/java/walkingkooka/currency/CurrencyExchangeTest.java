@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.InvalidTextLengthException;
 import walkingkooka.ToStringTesting;
+import walkingkooka.compare.ComparableTesting2;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.test.ParseStringTesting;
@@ -33,6 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2<CurrencyExchange>,
     ClassTesting2<CurrencyExchange>,
+    ComparableTesting2<CurrencyExchange>,
     HasTextTesting,
     ParseStringTesting<CurrencyExchange>,
     ToStringTesting<CurrencyExchange>,
@@ -187,6 +189,27 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
             CurrencyCode.parse("AUD"),
             CurrencyCode.parse("NZD")
         );
+    }
+
+    // Comparable.......................................................................................................
+
+    @Test
+    public void testCompareLess() {
+        this.compareToAndCheckLess(
+            CurrencyExchange.with(
+                CurrencyCode.parse("AUD"),
+                CurrencyCode.parse("NZD")
+            ),
+            CurrencyExchange.with(
+                CurrencyCode.parse("CAD"),
+                CurrencyCode.parse("NZD")
+            )
+        );
+    }
+
+    @Override
+    public CurrencyExchange createComparable() {
+        return this.createObject();
     }
 
     // toString.........................................................................................................
