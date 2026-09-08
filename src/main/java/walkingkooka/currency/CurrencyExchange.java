@@ -31,7 +31,8 @@ import java.util.Objects;
  * An id that uniquely identifies a {@link Currency}.
  */
 public final class CurrencyExchange implements HasText,
-    TreePrintable {
+    TreePrintable,
+    Comparable<CurrencyExchange> {
 
     public static CurrencyExchange with(final CurrencyCode from,
                                         final CurrencyCode to) {
@@ -186,5 +187,15 @@ public final class CurrencyExchange implements HasText,
             this.to.printTree(printer);
         }
         printer.outdent();
+    }
+
+    // Comparable.......................................................................................................
+
+    @Override
+    public int compareTo(final CurrencyExchange other) {
+        return this.text()
+            .compareTo(
+                other.text()
+            );
     }
 }
