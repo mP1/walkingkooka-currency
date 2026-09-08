@@ -37,7 +37,7 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
- * An immutable {@link Set} containing unique {@link CurrencyExchange currencies}.
+ * An immutable {@link Set} containing unique {@link CurrencyExchange}.
  */
 public final class CurrencyExchangeSet extends AbstractSet<CurrencyExchange>
     implements ImmutableSortedSetDefaults<CurrencyExchangeSet, CurrencyExchange>,
