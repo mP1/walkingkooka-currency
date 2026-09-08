@@ -175,8 +175,8 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
     private final SortedSet<CurrencyCode> currencyCodes;
 
     @Override
-    public void elementCheck(final CurrencyCode locale) {
-        Objects.requireNonNull(locale, "locale");
+    public void elementCheck(final CurrencyCode currencyCode) {
+        Objects.requireNonNull(currencyCode, "currencyCode");
     }
 
     // parse............................................................................................................
