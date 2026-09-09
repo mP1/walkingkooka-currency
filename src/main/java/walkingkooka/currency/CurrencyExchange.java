@@ -19,6 +19,7 @@ package walkingkooka.currency;
 
 import walkingkooka.InvalidCharacterException;
 import walkingkooka.InvalidTextLengthException;
+import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.CharacterConstant;
 import walkingkooka.text.HasText;
@@ -109,6 +110,8 @@ public final class CurrencyExchange implements HasText,
     public String toString() {
         return this.from + " to " + this.to;
     }
+
+    public final static CaseSensitivity CASE_SENSITIVITY = CurrencyCode.CASE_SENSITIVITY;
 
     // parse............................................................................................................
 
