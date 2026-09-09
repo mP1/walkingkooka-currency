@@ -37,6 +37,11 @@ public final class CurrencyCodeLanguageTagContextTesting2Test implements Currenc
         return TestCurrencyCodeLanguageTagContext.class;
     }
 
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
+
     static final class TestCurrencyCodeLanguageTagContext implements CurrencyCodeLanguageTagContext{
         @Override
         public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {

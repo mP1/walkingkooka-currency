@@ -33,6 +33,11 @@ public final class CurrencyCodeLanguageTagContextDelegatorTest implements Curren
     }
 
     @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public TestCurrencyCodeLanguageTagContextDelegator createContext() {
         return new TestCurrencyCodeLanguageTagContextDelegator();
     }

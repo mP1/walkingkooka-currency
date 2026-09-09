@@ -51,6 +51,11 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
         return TestCurrencyContext.class;
     }
 
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
+
     final static class TestCurrencyContext extends FakeCurrencyContext {
 
         @Override
