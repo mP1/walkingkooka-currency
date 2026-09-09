@@ -192,8 +192,7 @@ public final class CurrencyExchange implements HasText,
 
         printer.indent();
         {
-            this.from.printTree(printer);
-            this.to.printTree(printer);
+            printer.println(this.text());
         }
         printer.outdent();
     }

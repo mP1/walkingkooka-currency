@@ -296,8 +296,7 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
         this.treePrintAndCheck(
             this.createObject(),
             "CurrencyExchange\n" +
-                "  AUD\n" +
-                "  NZD\n"
+                "  AUD-NZD\n"
         );
     }
 
