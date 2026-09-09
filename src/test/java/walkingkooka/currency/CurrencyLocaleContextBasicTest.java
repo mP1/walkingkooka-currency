@@ -22,7 +22,6 @@ import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.ToStringTesting;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.reflect.ClassTesting2;
-import walkingkooka.reflect.JavaVisibility;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -117,11 +116,6 @@ public final class CurrencyLocaleContextBasicTest implements CurrencyLocaleConte
     @Override
     public Class<CurrencyLocaleContextBasic> type() {
         return CurrencyLocaleContextBasic.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
     }
 
     @Override

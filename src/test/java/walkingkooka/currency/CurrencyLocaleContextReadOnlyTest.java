@@ -20,7 +20,6 @@ package walkingkooka.currency;
 import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.ClassTesting2;
-import walkingkooka.reflect.JavaVisibility;
 
 import java.util.Currency;
 import java.util.Locale;
@@ -81,11 +80,6 @@ public final class CurrencyLocaleContextReadOnlyTest implements CurrencyLocaleCo
     @Override
     public Class<CurrencyLocaleContextReadOnly> type() {
         return CurrencyLocaleContextReadOnly.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
     }
 
     @Override

@@ -53,6 +53,11 @@ public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleCo
         return TestCurrencyLocaleContext.class;
     }
 
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
+
     final static class TestCurrencyLocaleContext implements CurrencyLocaleContext,
         CurrencyContextDelegator,
         LocaleContextDelegator {

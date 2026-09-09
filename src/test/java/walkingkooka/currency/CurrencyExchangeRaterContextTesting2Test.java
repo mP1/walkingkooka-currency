@@ -42,4 +42,9 @@ public final class CurrencyExchangeRaterContextTesting2Test implements CurrencyE
     public void testTypeNaming() {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
 }

@@ -72,6 +72,12 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
+
+
     final static class TestCurrencyLocaleContextDelegator implements CurrencyLocaleContextDelegator {
 
         TestCurrencyLocaleContextDelegator() {

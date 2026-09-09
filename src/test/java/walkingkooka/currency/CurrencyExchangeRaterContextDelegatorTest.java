@@ -48,4 +48,9 @@ public final class CurrencyExchangeRaterContextDelegatorTest implements Currency
     public void testTypeNaming() {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
 }
