@@ -20,7 +20,6 @@ package walkingkooka.currency;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.set.SortedSets;
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
@@ -64,10 +63,5 @@ public final class CurrencyContextsTest implements PublicStaticHelperTesting<Cur
     @Override
     public Class<CurrencyContexts> type() {
         return CurrencyContexts.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }

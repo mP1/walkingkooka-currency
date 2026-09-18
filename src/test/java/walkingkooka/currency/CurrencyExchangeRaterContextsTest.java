@@ -17,7 +17,6 @@
 
 package walkingkooka.currency;
 
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
@@ -29,11 +28,6 @@ public final class CurrencyExchangeRaterContextsTest implements PublicStaticHelp
     @Override
     public Class<CurrencyExchangeRaterContexts> type() {
         return CurrencyExchangeRaterContexts.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 
     @Override

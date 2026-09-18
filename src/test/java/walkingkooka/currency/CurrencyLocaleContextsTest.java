@@ -17,7 +17,6 @@
 
 package walkingkooka.currency;
 
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
@@ -33,10 +32,5 @@ public final class CurrencyLocaleContextsTest implements PublicStaticHelperTesti
     @Override
     public Class<CurrencyLocaleContexts> type() {
         return CurrencyLocaleContexts.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }
