@@ -19,12 +19,13 @@ package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
+import walkingkooka.util.HasLocaleTesting;
 
 import java.util.Currency;
-import java.util.Locale;
 import java.util.Optional;
 
-public final class HasOptionalCurrencyTestingTest implements HasOptionalCurrencyTesting {
+public final class HasOptionalCurrencyTestingTest implements HasOptionalCurrencyTesting,
+    HasLocaleTesting {
 
     @Test
     public void testCurrencyAndCheckWithNone() {
@@ -35,9 +36,7 @@ public final class HasOptionalCurrencyTestingTest implements HasOptionalCurrency
 
     @Test
     public void testCurrencyAndCheck() {
-        final Currency currency = Currency.getInstance(
-            Locale.forLanguageTag("en-AU")
-        );
+        final Currency currency = Currency.getInstance(LOCALE);
         this.currencyAndCheck(
             () -> Optional.of(currency),
             currency
@@ -51,13 +50,9 @@ public final class HasOptionalCurrencyTestingTest implements HasOptionalCurrency
             this.currencyAndCheck(
                 () ->
                     Optional.of(
-                        Currency.getInstance(
-                            Locale.forLanguageTag("en-AU")
-                        )
+                        Currency.getInstance(LOCALE)
                     ),
-                Currency.getInstance(
-                    Locale.forLanguageTag("en-NZ")
-                )
+                Currency.getInstance(DIFFERENT_LOCALE)
             );
         } catch (final AssertionFailedError expected) {
             failed = true;

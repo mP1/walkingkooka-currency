@@ -68,9 +68,7 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
             Objects.requireNonNull(currencyCode, "currencyCode");
 
             return Optional.of(
-                Currency.getInstance(
-                    Locale.forLanguageTag("en-AU")
-                )
+                Currency.getInstance(LOCALE)
             );
         }
 
@@ -79,9 +77,7 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
             Objects.requireNonNull(locale, "locale");
 
             return Optional.of(
-                Currency.getInstance(
-                    Locale.forLanguageTag("en-AU")
-                )
+                Currency.getInstance(LOCALE)
             );
         }
 
@@ -102,7 +98,7 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
 
             return currencyCode.value().equalsIgnoreCase("AUD") ?
                 Sets.of(
-                    Locale.forLanguageTag("en-AU")
+                    LOCALE
                 ) :
                 Sets.empty();
         }
@@ -121,7 +117,7 @@ public final class CurrencyContextTesting2Test implements CurrencyContextTesting
             return Sets.of(
                 CurrencyCode.fromCurrency(
                     Currency.getInstance(
-                        Locale.forLanguageTag("en-AU")
+                        LOCALE
                     )
                 )
             );

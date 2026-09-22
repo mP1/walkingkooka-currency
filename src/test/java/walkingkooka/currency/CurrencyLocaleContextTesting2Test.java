@@ -21,11 +21,9 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.currency.CurrencyLocaleContextTesting2Test.TestCurrencyLocaleContext;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
-import walkingkooka.locale.LocaleContexts;
 
 import java.time.LocalDateTime;
 import java.util.Currency;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -96,9 +94,7 @@ public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleCo
 
         @Override
         public LocaleContext localeContext() {
-            return LocaleContexts.jre(
-                Locale.forLanguageTag("en-AU")
-            );
+            return LOCALE_CONTEXT;
         }
 
         @Override
