@@ -32,6 +32,7 @@ import java.util.function.Function;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchangeRaterTesting2<CurrencyExchangeRaterProperties<CurrencyExchangeRaterContext>, CurrencyExchangeRaterContext>,
+    HasCurrencyCodeTesting,
     HasPropertiesTesting,
     HashCodeEqualsDefinedTesting2<CurrencyExchangeRaterProperties<CurrencyExchangeRaterContext>>,
     ToStringTesting<CurrencyExchangeRaterProperties<CurrencyExchangeRaterContext>>,
@@ -81,8 +82,8 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
 
     @Test
     public void testCurrencyExchanges() {
-        final CurrencyCode aud = CurrencyCode.parse("AUD");
-        final CurrencyCode nzd = CurrencyCode.parse("NZD");
+        final CurrencyCode aud = CURRENCY_CODE;
+        final CurrencyCode nzd = DIFFERENT_CURRENCY_CODE;
         final CurrencyCode cad = CurrencyCode.parse("CAD");
 
         this.currencyExchangesAndCheck(
@@ -106,8 +107,8 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
         this.currencyExchangeRateAndCheck(
             this.createCurrencyExchangeRater(),
             CurrencyExchange.with(
-                CurrencyCode.parse("AUD"),
-                CurrencyCode.parse("NZD")
+                CURRENCY_CODE,
+                DIFFERENT_CURRENCY_CODE
             ),
             CONTEXT,
             new BigDecimal("1.1")
@@ -119,8 +120,8 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
         this.currencyExchangeRateAndCheck(
             this.createCurrencyExchangeRater(),
             CurrencyExchange.with(
-                CurrencyCode.parse("NZD"),
-                CurrencyCode.parse("AUD")
+                DIFFERENT_CURRENCY_CODE,
+                CURRENCY_CODE
             ),
             CONTEXT
         );
@@ -156,12 +157,12 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
             1,
             CONTEXT,
             CurrencyExchange.with(
-                CurrencyCode.parse("AUD"),
+                CURRENCY_CODE,
                 CurrencyCode.parse("CAD")
             ),
             CurrencyExchange.with(
-                CurrencyCode.parse("AUD"),
-                CurrencyCode.parse("NZD")
+                CURRENCY_CODE,
+                DIFFERENT_CURRENCY_CODE
             )
         );
     }
@@ -175,7 +176,7 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
             1,
             CONTEXT,
             CurrencyExchange.with(
-                CurrencyCode.parse("AUD"),
+                CURRENCY_CODE,
                 CurrencyCode.parse("CAD")
             )
         );

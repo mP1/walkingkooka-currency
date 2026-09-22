@@ -36,8 +36,6 @@ public final class CurrencyValueTest implements HashCodeEqualsDefinedTesting2<Cu
 
     private final static Number NUMBER = 1;
 
-    private final static CurrencyCode CURRENCY_CODE = CurrencyCode.parse("AUD");
-
     // with.............................................................................................................
 
     @Test

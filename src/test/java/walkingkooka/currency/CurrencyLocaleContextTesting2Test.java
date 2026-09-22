@@ -71,8 +71,8 @@ public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleCo
 
                         return Set.of(
                             CurrencyExchange.with(
-                                CurrencyCode.parse("AUD"),
-                                CurrencyCode.parse("NZD")
+                                CURRENCY_CODE,
+                                DIFFERENT_CURRENCY_CODE
                             )
                         );
                     }

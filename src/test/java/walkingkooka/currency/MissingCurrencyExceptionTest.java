@@ -23,7 +23,8 @@ import walkingkooka.reflect.ThrowableTesting2;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class MissingCurrencyExceptionTest implements ThrowableTesting2<MissingCurrencyException> {
+public class MissingCurrencyExceptionTest implements ThrowableTesting2<MissingCurrencyException>,
+    HasCurrencyCodeTesting{
 
     // with.............................................................................................................
 
@@ -37,11 +38,9 @@ public class MissingCurrencyExceptionTest implements ThrowableTesting2<MissingCu
 
     @Test
     public void testWith() {
-        final CurrencyCode currencyCode = CurrencyCode.parse("AUD");
-
         this.checkEquals(
-            currencyCode,
-            new MissingCurrencyException(currencyCode)
+            CURRENCY_CODE,
+            new MissingCurrencyException(CURRENCY_CODE)
                 .currencyCode()
         );
     }
@@ -51,9 +50,7 @@ public class MissingCurrencyExceptionTest implements ThrowableTesting2<MissingCu
     @Test
     public void testGetMessage() {
         this.getMessageAndCheck(
-            new MissingCurrencyException(
-                CurrencyCode.parse("AUD")
-            ),
+            new MissingCurrencyException(CURRENCY_CODE),
             "Missing currency code \"AUD\""
         );
     }

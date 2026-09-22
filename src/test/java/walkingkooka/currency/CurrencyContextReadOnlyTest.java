@@ -30,7 +30,8 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class CurrencyContextReadOnlyTest implements CurrencyContextTesting2<CurrencyContextReadOnly> {
+public final class CurrencyContextReadOnlyTest implements CurrencyContextTesting2<CurrencyContextReadOnly>,
+    HasCurrencyCodeTesting{
 
     @Test
     public void testWithNullContextFails() {
@@ -80,7 +81,7 @@ public final class CurrencyContextReadOnlyTest implements CurrencyContextTesting
     public void testLocalesForCurrencyCode() {
         this.localesForCurrencyCodeAndCheck(
             this.createContext(),
-            CurrencyCode.parse("AUD"),
+            CURRENCY_CODE,
             LOCALE
         );
     }

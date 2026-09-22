@@ -26,7 +26,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class UnsupportedCurrencyExchangeExceptionTest implements ThrowableTesting2<UnsupportedCurrencyExchangeException> {
+public final class UnsupportedCurrencyExchangeExceptionTest implements ThrowableTesting2<UnsupportedCurrencyExchangeException>,
+    HasCurrencyCodeTesting{
 
     // with.............................................................................................................
 
@@ -36,7 +37,7 @@ public final class UnsupportedCurrencyExchangeExceptionTest implements Throwable
             NullPointerException.class,
             () -> UnsupportedCurrencyExchangeException.with(
                 null,
-                CurrencyCode.parse("NZD"),
+                DIFFERENT_CURRENCY_CODE,
                 Optional.empty()
             )
         );
@@ -47,7 +48,7 @@ public final class UnsupportedCurrencyExchangeExceptionTest implements Throwable
         assertThrows(
             NullPointerException.class,
             () -> UnsupportedCurrencyExchangeException.with(
-                CurrencyCode.parse("AUD"),
+                CURRENCY_CODE,
                 null,
                 Optional.empty()
             )
@@ -59,8 +60,8 @@ public final class UnsupportedCurrencyExchangeExceptionTest implements Throwable
         assertThrows(
             NullPointerException.class,
             () -> UnsupportedCurrencyExchangeException.with(
-                CurrencyCode.parse("AUD"),
-                CurrencyCode.parse("NZD"),
+                CURRENCY_CODE,
+                DIFFERENT_CURRENCY_CODE,
                 null
             )
         );
@@ -72,8 +73,8 @@ public final class UnsupportedCurrencyExchangeExceptionTest implements Throwable
     public void testGetMessage() {
         this.getMessageAndCheck(
             UnsupportedCurrencyExchangeException.with(
-                CurrencyCode.parse("AUD"),
-                CurrencyCode.parse("NZD"),
+                CURRENCY_CODE,
+                DIFFERENT_CURRENCY_CODE,
                 Optional.empty()
             ),
             "Unsupported currency exchange \"AUD\" to \"NZD\""
@@ -84,8 +85,8 @@ public final class UnsupportedCurrencyExchangeExceptionTest implements Throwable
     public void testGetMessageWithDateTime() {
         this.getMessageAndCheck(
             UnsupportedCurrencyExchangeException.with(
-                CurrencyCode.parse("AUD"),
-                CurrencyCode.parse("NZD"),
+                CURRENCY_CODE,
+                DIFFERENT_CURRENCY_CODE,
                 Optional.of(
                     LocalDateTime.of(
                         1999,

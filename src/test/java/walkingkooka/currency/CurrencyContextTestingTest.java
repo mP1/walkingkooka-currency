@@ -33,6 +33,7 @@ import java.util.Set;
 
 public final class CurrencyContextTestingTest implements CurrencyContextTesting,
     ClassTesting<CurrencyContextTesting>,
+    HasCurrencyCodeTesting,
     HasValueTesting {
 
     // setCurrency......................................................................................................
@@ -169,8 +170,8 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
     @Test
     public void testCurrencyExchangeRate() {
         final CurrencyExchange currencyExchange = CurrencyExchange.with(
-            CurrencyCode.parse("AUD"),
-            CurrencyCode.parse("NZD")
+            CURRENCY_CODE,
+            DIFFERENT_CURRENCY_CODE
         );
 
         final Optional<LocalDateTime> dateTime = Optional.of(

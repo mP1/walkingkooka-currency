@@ -23,12 +23,27 @@ import org.opentest4j.AssertionFailedError;
 public final class HasCurrencyCodeTestingTest implements HasCurrencyCodeTesting {
 
     @Test
+    public void testConstants() {
+        this.checkNotEquals(
+            CURRENCY_CODE,
+            DIFFERENT_CURRENCY_CODE
+        );
+    }
+
+    @Test
+    public void testOptionalConstants() {
+        this.checkNotEquals(
+            OPTIONAL_CURRENCY_CODE,
+            OPTIONAL_DIFFERENT_CURRENCY_CODE
+        );
+    }
+
+    @Test
     public void testCurrencyCodeAndCheck() {
-        final CurrencyCode currencyCode = CurrencyCode.parse("AUD");
 
         this.currencyCodeAndCheck(
-            () -> currencyCode,
-            currencyCode
+            () -> CURRENCY_CODE,
+            CURRENCY_CODE
         );
     }
 
@@ -37,8 +52,8 @@ public final class HasCurrencyCodeTestingTest implements HasCurrencyCodeTesting 
         boolean failed = false;
         try {
             this.currencyCodeAndCheck(
-                () -> CurrencyCode.parse("AUD"),
-                CurrencyCode.parse("NZD")
+                () -> CURRENCY_CODE,
+                DIFFERENT_CURRENCY_CODE
             );
         } catch (final AssertionFailedError expected) {
             failed = true;

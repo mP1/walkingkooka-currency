@@ -35,6 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2<CurrencyExchange>,
     ClassTesting2<CurrencyExchange>,
     ComparableTesting2<CurrencyExchange>,
+    HasCurrencyCodeTesting,
     HasTextTesting,
     ParseStringTesting<CurrencyExchange>,
     ToStringTesting<CurrencyExchange>,
@@ -46,7 +47,7 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
             NullPointerException.class,
             () -> CurrencyExchange.with(
                 null,
-                CurrencyCode.parse("NZD")
+                DIFFERENT_CURRENCY_CODE
             )
         );
     }
@@ -56,7 +57,7 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
         assertThrows(
             NullPointerException.class,
             () -> CurrencyExchange.with(
-                CurrencyCode.parse("AUD"),
+                CURRENCY_CODE,
                 null
             )
         );
@@ -64,8 +65,8 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
 
     @Test
     public void testWith() {
-        final CurrencyCode from = CurrencyCode.parse("AUD");
-        final CurrencyCode to = CurrencyCode.parse("NZD");
+        final CurrencyCode from = CURRENCY_CODE;
+        final CurrencyCode to = DIFFERENT_CURRENCY_CODE;
 
         this.fromAndToCheck(
             CurrencyExchange.with(
@@ -79,7 +80,7 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
 
     @Test
     public void testWithSameFromAndTo() {
-        final CurrencyCode from = CurrencyCode.parse("AUD");
+        final CurrencyCode from = CURRENCY_CODE;
         final CurrencyCode to = from;
 
         this.fromAndToCheck(
@@ -96,7 +97,7 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
 
     @Test
     public void testSwapSame() {
-        final CurrencyCode from = CurrencyCode.parse("AUD");
+        final CurrencyCode from = CURRENCY_CODE;
         final CurrencyCode to = from;
 
         final CurrencyExchange currencyExchange = CurrencyExchange.with(
@@ -118,8 +119,8 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
 
     @Test
     public void testSwap() {
-        final CurrencyCode from = CurrencyCode.parse("AUD");
-        final CurrencyCode to = CurrencyCode.parse("NZD");
+        final CurrencyCode from = CURRENCY_CODE;
+        final CurrencyCode to = DIFFERENT_CURRENCY_CODE;
 
         final CurrencyExchange currencyExchange = CurrencyExchange.with(
             from,
@@ -168,7 +169,7 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
         this.checkNotEquals(
             CurrencyExchange.with(
                 CurrencyCode.parse("DIF"),
-                CurrencyCode.parse("NZD")
+                DIFFERENT_CURRENCY_CODE
             )
         );
     }
@@ -177,7 +178,7 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
     public void testEqualsDifferentTo() {
         this.checkNotEquals(
             CurrencyExchange.with(
-                CurrencyCode.parse("AUD"),
+                CURRENCY_CODE,
                 CurrencyCode.parse("DIF")
             )
         );
@@ -186,8 +187,8 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
     @Override
     public CurrencyExchange createObject() {
         return CurrencyExchange.with(
-            CurrencyCode.parse("AUD"),
-            CurrencyCode.parse("NZD")
+            CURRENCY_CODE,
+            DIFFERENT_CURRENCY_CODE
         );
     }
 
@@ -197,12 +198,12 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
     public void testCompareLess() {
         this.compareToAndCheckLess(
             CurrencyExchange.with(
-                CurrencyCode.parse("AUD"),
-                CurrencyCode.parse("NZD")
+                CURRENCY_CODE,
+                DIFFERENT_CURRENCY_CODE
             ),
             CurrencyExchange.with(
                 CurrencyCode.parse("CAD"),
-                CurrencyCode.parse("NZD")
+                DIFFERENT_CURRENCY_CODE
             )
         );
     }

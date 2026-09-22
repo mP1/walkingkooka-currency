@@ -25,7 +25,8 @@ import walkingkooka.reflect.JavaVisibility;
 
 public final class CurrencyExchangeRaterEmptyTest implements CurrencyExchangeRaterTesting2<CurrencyExchangeRaterEmpty<CurrencyExchangeRaterContext>, CurrencyExchangeRaterContext>,
     ToStringTesting<CurrencyExchangeRaterEmpty<CurrencyExchangeRaterContext>>,
-    ClassTesting<CurrencyExchangeRaterEmpty<CurrencyExchangeRaterContext>> {
+    ClassTesting<CurrencyExchangeRaterEmpty<CurrencyExchangeRaterContext>>,
+    HasCurrencyCodeTesting{
 
     private final static CurrencyExchangeRaterContext CONTEXT = new FakeCurrencyExchangeRaterContext();
 
@@ -46,8 +47,8 @@ public final class CurrencyExchangeRaterEmptyTest implements CurrencyExchangeRat
         this.currencyExchangeRateAndCheck(
             this.createCurrencyExchangeRater(),
             CurrencyExchange.with(
-                CurrencyCode.parse("AUD"),
-                CurrencyCode.parse("NZD")
+                CURRENCY_CODE,
+                DIFFERENT_CURRENCY_CODE
             ),
             CONTEXT
         );
