@@ -38,10 +38,9 @@ public class MissingCurrencyExceptionTest implements ThrowableTesting2<MissingCu
 
     @Test
     public void testWith() {
-        this.checkEquals(
-            CURRENCY_CODE,
-            new MissingCurrencyException(CURRENCY_CODE)
-                .currencyCode()
+        this.currencyCodeAndCheck(
+            new MissingCurrencyException(CURRENCY_CODE),
+                CURRENCY_CODE
         );
     }
 

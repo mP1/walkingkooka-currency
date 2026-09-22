@@ -24,7 +24,8 @@ import java.util.Objects;
 /**
  * The exception that should be thrown when a {@link CurrencyCode} currency code is not found by all {@link CanCurrencyForCurrencyCode}.
  */
-public final class MissingCurrencyException extends IllegalArgumentException {
+public final class MissingCurrencyException extends IllegalArgumentException
+    implements HasCurrencyCode{
 
     private static final long serialVersionUID = 1L;
 
@@ -39,6 +40,7 @@ public final class MissingCurrencyException extends IllegalArgumentException {
         this.currencyCode = currencyCode;
     }
 
+    @Override
     public CurrencyCode currencyCode() {
         return this.currencyCode;
     }
