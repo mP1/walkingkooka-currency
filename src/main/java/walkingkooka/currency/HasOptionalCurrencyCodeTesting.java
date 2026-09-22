@@ -21,7 +21,8 @@ import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Optional;
 
-public interface HasOptionalCurrencyCodeTesting extends TreePrintableTesting {
+public interface HasOptionalCurrencyCodeTesting extends HasCurrencyCodeTesting,
+    TreePrintableTesting {
 
     default void currencyCodeAndCheck(final HasOptionalCurrencyCode has) {
         this.currencyCodeAndCheck(

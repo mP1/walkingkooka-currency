@@ -36,6 +36,7 @@ public interface CurrencyContextTesting extends CanCurrencyExchangeRateTesting,
     CanLocalesForCurrencyCodeTesting,
     CurrencyExchangeRaterContextTesting,
     HasCurrencyTesting,
+    HasCurrencyCodeTesting,
     LocaleContextTesting,
     TreePrintableTesting {
 
@@ -47,8 +48,8 @@ public interface CurrencyContextTesting extends CanCurrencyExchangeRateTesting,
                 public Set<CurrencyExchange> currencyExchanges(final CurrencyContext context) {
                     return Set.of(
                         CurrencyExchange.with(
-                            CurrencyCode.parse("AUD"),
-                            CurrencyCode.parse("NZD")
+                            CURRENCY_CODE,
+                            DIFFERENT_CURRENCY_CODE
                         )
                     );
                 }

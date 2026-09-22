@@ -45,7 +45,7 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
     public void testLocalesForCurrencyCode() {
         this.localesForCurrencyCodeAndCheck(
             this.createContext(),
-            CurrencyCode.parse("AUD"),
+            CURRENCY_CODE,
             LOCALE
         );
     }

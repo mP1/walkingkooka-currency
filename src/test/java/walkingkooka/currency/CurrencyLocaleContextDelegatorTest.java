@@ -31,13 +31,12 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleContextTesting2<TestCurrencyLocaleContextDelegator> {
-
-    private final static String CURRENCY_CODE = "AUD";
+public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleContextTesting2<TestCurrencyLocaleContextDelegator>,
+    HasCurrencyCodeTesting{
 
     @Test
     public void testCurrencyText() {
-        final Currency currency = Currency.getInstance(CURRENCY_CODE);
+        final Currency currency = Currency.getInstance(CURRENCY_CODE.value());
 
         this.currencyTextAndCheck(
             this.createContext(),
@@ -50,7 +49,7 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
     public void testLocaleForCurrencyCode() {
         this.localesForCurrencyCodeAndCheck(
             this.createContext(),
-            CurrencyCode.parse("AUD"),
+            CURRENCY_CODE,
             LOCALE
         );
     }
@@ -135,7 +134,7 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
         public Set<Locale> localesForCurrencyCode(final CurrencyCode currencyCode) {
             Objects.requireNonNull(currencyCode, "currencyCode");
 
-            return currencyCode.value().equalsIgnoreCase(CURRENCY_CODE) ?
+            return currencyCode.equals(CURRENCY_CODE) ?
                 Sets.of(LOCALE) :
                 Sets.empty();
         }

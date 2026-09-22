@@ -19,7 +19,17 @@ package walkingkooka.currency;
 
 import walkingkooka.text.printer.TreePrintableTesting;
 
+import java.util.Optional;
+
 public interface HasCurrencyCodeTesting extends TreePrintableTesting {
+
+    CurrencyCode CURRENCY_CODE = CurrencyCode.parse("AUD");
+
+    Optional<CurrencyCode> OPTIONAL_CURRENCY_CODE = Optional.of(CURRENCY_CODE);
+
+    CurrencyCode DIFFERENT_CURRENCY_CODE = CurrencyCode.parse("NZD");
+
+    Optional<CurrencyCode> OPTIONAL_DIFFERENT_CURRENCY_CODE = Optional.of(DIFFERENT_CURRENCY_CODE);
 
     default void currencyCodeAndCheck(final HasCurrencyCode has,
                                       final CurrencyCode expected) {

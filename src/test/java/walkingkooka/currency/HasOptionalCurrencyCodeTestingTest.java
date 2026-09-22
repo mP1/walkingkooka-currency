@@ -25,11 +25,9 @@ public final class HasOptionalCurrencyCodeTestingTest implements HasOptionalCurr
 
     @Test
     public void testCurrencyCodeAndCheck() {
-        final CurrencyCode currencyCode = CurrencyCode.parse("AUD");
-
         this.currencyCodeAndCheck(
-            () -> Optional.of(currencyCode),
-            currencyCode
+            () -> OPTIONAL_CURRENCY_CODE,
+            CURRENCY_CODE
         );
     }
 

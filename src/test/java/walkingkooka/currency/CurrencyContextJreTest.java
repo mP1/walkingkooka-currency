@@ -30,6 +30,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyContextJreTest implements CurrencyContextTesting2<CurrencyContextJre>,
+    HasCurrencyCodeTesting,
     LocaleContextTesting {
 
     private final static CurrencyExchangeRater<CurrencyContext> CURRENCY_EXCHANGE_RATER = new CurrencyExchangeRater<>() {
@@ -39,8 +40,8 @@ public final class CurrencyContextJreTest implements CurrencyContextTesting2<Cur
 
             return Set.of(
                 CurrencyExchange.with(
-                    CurrencyCode.parse("AUD"),
-                    CurrencyCode.parse("NZD")
+                    CURRENCY_CODE,
+                    DIFFERENT_CURRENCY_CODE
                 )
             );
         }
@@ -188,7 +189,7 @@ public final class CurrencyContextJreTest implements CurrencyContextTesting2<Cur
     public void testLocalesForCurrencyCodeWithMany() {
         this.localesForCurrencyCodeAndCheck(
             this.createContext(),
-            CurrencyCode.parse("AUD"),
+            CURRENCY_CODE,
             "en-CX, en-AU, en-NR, en-CC, en-TV, en-KI, en-NF"
         );
     }
@@ -228,8 +229,8 @@ public final class CurrencyContextJreTest implements CurrencyContextTesting2<Cur
         this.currencyExchangeRateAndCheck(
             this.createContext(),
             CurrencyExchange.with(
-                CurrencyCode.parse("AUD"),
-                CurrencyCode.parse("NZD")
+                CURRENCY_CODE,
+                DIFFERENT_CURRENCY_CODE
             ),
             LocalDateTime.MIN,
             2
