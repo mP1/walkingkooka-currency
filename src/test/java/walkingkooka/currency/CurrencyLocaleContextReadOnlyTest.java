@@ -22,7 +22,6 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.ClassTesting2;
 
 import java.util.Currency;
-import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -54,9 +53,7 @@ public final class CurrencyLocaleContextReadOnlyTest implements CurrencyLocaleCo
         assertThrows(
             UnsupportedOperationException.class,
             () -> this.createContext()
-                .setLocale(
-                    Locale.forLanguageTag("en-NZ")
-                )
+                .setLocale(DIFFERENT_LOCALE)
         );
     }
 

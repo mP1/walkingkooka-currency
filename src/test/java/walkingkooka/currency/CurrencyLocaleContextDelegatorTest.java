@@ -33,8 +33,6 @@ import java.util.Set;
 
 public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleContextTesting2<TestCurrencyLocaleContextDelegator> {
 
-    private final static Locale LOCALE = Locale.forLanguageTag("en-AU");
-
     private final static String CURRENCY_CODE = "AUD";
 
     @Test
@@ -118,9 +116,7 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
             Objects.requireNonNull(locale, "locale");
 
             return Optional.of(
-                Currency.getInstance(
-                    Locale.forLanguageTag("en-AU")
-                )
+                Currency.getInstance(LOCALE)
             );
         }
 
@@ -158,7 +154,7 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
             return Sets.of(
                 CurrencyCode.fromCurrency(
                     Currency.getInstance(
-                        Locale.forLanguageTag("en-AU")
+                        LOCALE
                     )
                 )
             );
@@ -178,7 +174,7 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
         @Override
         public LocaleContext localeContext() {
             return LocaleContexts.jre(
-                Locale.forLanguageTag("en-AU")
+                LOCALE
             );
         }
 

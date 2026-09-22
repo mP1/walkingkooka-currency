@@ -49,8 +49,6 @@ public final class CurrencyContextReadOnlyTest implements CurrencyContextTesting
         );
     }
 
-    private final static Locale LOCALE = Locale.forLanguageTag("en-AU");
-
     @Test
     public void testCurrencyForCurrencyCode() {
         this.currencyForCurrencyCodeAndCheck(

@@ -153,7 +153,7 @@ public final class CurrencyContextJreTest implements CurrencyContextTesting2<Cur
     public void testCurrencyForLocale() {
         this.currencyForLocaleAndCheck(
             this.createContext(),
-            Locale.forLanguageTag("en-AU"),
+            LOCALE,
             CURRENCY
         );
     }
