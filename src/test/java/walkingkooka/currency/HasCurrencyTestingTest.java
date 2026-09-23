@@ -27,6 +27,14 @@ public final class HasCurrencyTestingTest implements HasCurrencyTesting,
     HasLocaleTesting {
 
     @Test
+    public void testConstants() {
+        this.checkNotEquals(
+            HasCurrencyTesting.CURRENCY,
+            HasCurrencyTesting.DIFFERENT_CURRENCY
+        );
+    }
+
+    @Test
     public void testOptionalConstants() {
         this.checkNotEquals(
             HasCurrencyTesting.OPTIONAL_CURRENCY,
