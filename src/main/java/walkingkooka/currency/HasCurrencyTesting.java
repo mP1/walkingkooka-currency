@@ -30,6 +30,8 @@ public interface HasCurrencyTesting extends TreePrintableTesting {
 
     Currency DIFFERENT_CURRENCY = Currency.getInstance("NZD");
 
+    Optional<Currency> OPTIONAL_DIFFERENT_CURRENCY = Optional.of(DIFFERENT_CURRENCY);
+
     default void currencyAndCheck(final HasCurrency has,
                                   final Currency expected) {
         this.checkEquals(
