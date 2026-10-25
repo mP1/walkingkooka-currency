@@ -25,16 +25,65 @@ import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Currency;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-public interface CurrencyExchangeRaterTesting extends HasNowTesting,
+public interface CurrencyExchangeRaterTesting extends HasCurrencyCodeTesting,
+    HasNowTesting,
     TreePrintableTesting {
 
     Optional<LocalDateTime> NO_DATE_TIME = Optional.empty();
 
     Optional<LocalDateTime> DATE_TIME = Optional.of(NOW);
+
+    CurrencyExchangeRater<CurrencyContext> CURRENCY_EXCHANGE_RATER = new CurrencyExchangeRater<>() {
+        @Override
+        public Set<CurrencyExchange> currencyExchanges(final CurrencyContext context) {
+            return Set.of(
+                CurrencyExchange.with(
+                    CURRENCY_CODE,
+                    DIFFERENT_CURRENCY_CODE
+                )
+            );
+        }
+
+        @Override
+        public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                     final Optional<LocalDateTime> dateTime,
+                                                     final CurrencyContext context) {
+            Objects.requireNonNull(currencyExchange, "currencyExchange");
+            Objects.requireNonNull(dateTime, "dateTime");
+            Objects.requireNonNull(context, "context");
+
+            return Optional.of(
+                1.0 *
+                    Currency.getInstance(
+                        currencyExchange.from()
+                            .value()
+                    ).getDisplayName().length() /
+                    Currency.getInstance(
+                        currencyExchange.to()
+                            .value()
+                    ).getDisplayName().length()
+            );
+        }
+
+        @Override
+        public Set<CurrencyExchange> findCurrencyExchangeByText(final String text,
+                                                                final int offset,
+                                                                final int count,
+                                                                final CurrencyContext context) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public String toString() {
+            return "CURRENCY_EXCHANGE_RATER";
+        }
+    };
 
     // currencyExchanges................................................................................................
 

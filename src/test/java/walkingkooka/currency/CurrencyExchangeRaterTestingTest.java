@@ -17,9 +17,19 @@
 
 package walkingkooka.currency;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.PublicClassTesting;
 
-public final class CurrencyExchangeRaterTestingTest implements PublicClassTesting<CurrencyExchangeRaterTesting> {
+public final class CurrencyExchangeRaterTestingTest implements CurrencyExchangeRaterTesting,
+    PublicClassTesting<CurrencyExchangeRaterTesting> {
+
+    @Test
+    public void testCurrencyContextConstantToString() {
+        this.checkEquals(
+            "CURRENCY_EXCHANGE_RATER",
+            CURRENCY_EXCHANGE_RATER.toString()
+        );
+    }
 
     // class............................................................................................................
 
