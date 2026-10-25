@@ -85,6 +85,8 @@ public interface CurrencyExchangeRaterTesting extends HasCurrencyCodeTesting,
         }
     };
 
+    CurrencyExchangeRater<CurrencyContext> DIFFERENT_CURRENCY_EXCHANGE_RATER = CurrencyExchangeRaters.empty();
+
     // currencyExchanges................................................................................................
 
     default <C extends CurrencyExchangeRaterContext> void currencyExchangesAndCheck(final CurrencyExchangeRater<C> rater,
