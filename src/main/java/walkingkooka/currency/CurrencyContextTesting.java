@@ -22,10 +22,8 @@ import walkingkooka.locale.LocaleContextTesting;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.printer.TreePrintableTesting;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Currency;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -34,6 +32,7 @@ public interface CurrencyContextTesting extends CanCurrencyExchangeRateTesting,
     CanCurrencyForCurrencyCodeTesting,
     CanCurrencyForLocaleTesting,
     CanLocalesForCurrencyCodeTesting,
+    CurrencyExchangeRaterTesting,
     CurrencyExchangeRaterContextTesting,
     HasCurrencyTesting,
     HasCurrencyCodeTesting,
@@ -43,46 +42,7 @@ public interface CurrencyContextTesting extends CanCurrencyExchangeRateTesting,
     CurrencyContext CURRENCY_CONTEXT = CurrencyContexts.readOnly(
         CurrencyContexts.jre(
             CURRENCY,
-            new CurrencyExchangeRater<CurrencyContext>() {
-                @Override
-                public Set<CurrencyExchange> currencyExchanges(final CurrencyContext context) {
-                    return Set.of(
-                        CurrencyExchange.with(
-                            CURRENCY_CODE,
-                            DIFFERENT_CURRENCY_CODE
-                        )
-                    );
-                }
-
-                @Override
-                public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
-                                                             final Optional<LocalDateTime> dateTime,
-                                                             final CurrencyContext context) {
-                    Objects.requireNonNull(currencyExchange, "currencyExchange");
-                    Objects.requireNonNull(dateTime, "dateTime");
-                    Objects.requireNonNull(context, "context");
-
-                    return Optional.of(
-                        1.0 *
-                            Currency.getInstance(
-                                currencyExchange.from()
-                                    .value()
-                            ).getDisplayName().length() /
-                            Currency.getInstance(
-                                currencyExchange.to()
-                                    .value()
-                            ).getDisplayName().length()
-                    );
-                }
-
-                @Override
-                public Set<CurrencyExchange> findCurrencyExchangeByText(final String text,
-                                                                        final int offset,
-                                                                        final int count,
-                                                                        final CurrencyContext context) {
-                    throw new UnsupportedOperationException();
-                }
-            },
+            CURRENCY_EXCHANGE_RATER,
             LOCALE_CONTEXT
         )
     );
