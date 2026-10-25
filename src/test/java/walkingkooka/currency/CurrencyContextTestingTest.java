@@ -20,8 +20,7 @@ package walkingkooka.currency;
 import org.junit.jupiter.api.Test;
 import walkingkooka.HasValueTesting;
 import walkingkooka.collect.set.Sets;
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PublicClassTesting;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -32,7 +31,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public final class CurrencyContextTestingTest implements CurrencyContextTesting,
-    ClassTesting<CurrencyContextTesting>,
+    PublicClassTesting<CurrencyContextTesting>,
     HasCurrencyCodeTesting,
     HasValueTesting {
 
@@ -201,10 +200,5 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
     @Override
     public Class<CurrencyContextTesting> type() {
         return CurrencyContextTesting.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }
