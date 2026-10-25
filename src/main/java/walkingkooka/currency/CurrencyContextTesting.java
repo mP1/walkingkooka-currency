@@ -47,6 +47,14 @@ public interface CurrencyContextTesting extends CanCurrencyExchangeRateTesting,
         )
     );
 
+    CurrencyContext DIFFERENT_CURRENCY_CONTEXT = CurrencyContexts.readOnly(
+        CurrencyContexts.jre(
+            DIFFERENT_CURRENCY,
+            CurrencyExchangeRaters.empty(),
+            DIFFERENT_LOCALE_CONTEXT
+        )
+    );
+
     // setCurrency....................................................................................................
 
     default void setCurrencyAndCheck(final CurrencyContext context,
