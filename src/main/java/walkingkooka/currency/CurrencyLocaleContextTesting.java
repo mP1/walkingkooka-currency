@@ -24,4 +24,6 @@ public interface CurrencyLocaleContextTesting extends CurrencyContextTesting,
     CurrencyCodeLanguageTagContextTesting {
 
     CurrencyLocaleContext CURRENCY_LOCALE_CONTEXT = CURRENCY_CONTEXT.setLocaleContext(LOCALE_CONTEXT);
+
+    CurrencyLocaleContext DIFFERENT_CURRENCY_LOCALE_CONTEXT = DIFFERENT_CURRENCY_CONTEXT.setLocaleContext(DIFFERENT_LOCALE_CONTEXT);
 }

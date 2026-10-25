@@ -17,9 +17,19 @@
 
 package walkingkooka.currency;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.PublicClassTesting;
 
-public final class CurrencyLocaleContextTestingTest implements PublicClassTesting<CurrencyLocaleContextTesting> {
+public final class CurrencyLocaleContextTestingTest implements CurrencyLocaleContextTesting,
+    PublicClassTesting<CurrencyLocaleContextTesting> {
+
+    @Test
+    public void testConstantsDifferent() {
+        this.checkNotEquals(
+            CURRENCY_LOCALE_CONTEXT,
+            DIFFERENT_CURRENCY_LOCALE_CONTEXT
+        );
+    }
 
     @Override
     public Class<CurrencyLocaleContextTesting> type() {
