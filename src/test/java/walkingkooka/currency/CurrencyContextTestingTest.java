@@ -35,6 +35,15 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
     HasCurrencyCodeTesting,
     HasValueTesting {
 
+
+    @Test
+    public void testCurrencyContextConstantsToString() {
+        this.checkEquals(
+            CURRENCY_CONTEXT.toString(),
+            "JRE"
+        );
+    }
+
     @Test
     public void testConstantsDifferent() {
         this.checkNotEquals(
