@@ -18,10 +18,12 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.reflect.PublicClassTesting;
 
 import java.util.Optional;
 
-public final class HasOptionalCurrencyCodeTestingTest implements HasOptionalCurrencyCodeTesting {
+public final class HasOptionalCurrencyCodeTestingTest implements HasOptionalCurrencyCodeTesting,
+    PublicClassTesting<HasOptionalCurrencyCodeTesting> {
 
     @Test
     public void testCurrencyCodeAndCheck() {
@@ -36,5 +38,12 @@ public final class HasOptionalCurrencyCodeTestingTest implements HasOptionalCurr
         this.currencyCodeAndCheck(
             () -> Optional.empty()
         );
+    }
+
+    // class............................................................................................................
+
+    @Override
+    public Class<HasOptionalCurrencyCodeTesting> type() {
+        return HasOptionalCurrencyCodeTesting.class;
     }
 }
