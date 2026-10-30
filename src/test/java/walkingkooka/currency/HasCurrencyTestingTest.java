@@ -19,12 +19,14 @@ package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
+import walkingkooka.reflect.PublicClassTesting;
 import walkingkooka.util.HasLocaleTesting;
 
 import java.util.Currency;
 
 public final class HasCurrencyTestingTest implements HasCurrencyTesting,
-    HasLocaleTesting {
+    HasLocaleTesting,
+    PublicClassTesting<HasCurrencyTesting> {
 
     @Test
     public void testConstants() {
@@ -63,5 +65,12 @@ public final class HasCurrencyTestingTest implements HasCurrencyTesting,
             true,
             failed
         );
+    }
+
+    // class............................................................................................................
+
+    @Override
+    public Class<HasCurrencyTesting> type() {
+        return HasCurrencyTesting.class;
     }
 }
