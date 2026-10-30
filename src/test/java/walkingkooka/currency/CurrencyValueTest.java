@@ -25,6 +25,8 @@ import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.printer.TreePrintableTesting;
 
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyValueTest implements HashCodeEqualsDefinedTesting2<CurrencyValue>,
@@ -35,6 +37,7 @@ public final class CurrencyValueTest implements HashCodeEqualsDefinedTesting2<Cu
     HasValueTesting {
 
     private final static Number NUMBER = 1;
+    private final static Number DIFFERENT_NUMBER = 999;
 
     // with.............................................................................................................
 
@@ -78,13 +81,58 @@ public final class CurrencyValueTest implements HashCodeEqualsDefinedTesting2<Cu
         );
     }
 
+    // setValue.........................................................................................................
+
+    @Test
+    public void testSetValueWithNullFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createObject()
+                .setValue(null)
+        );
+    }
+
+    @Test
+    public void testSetValueWithSame() {
+        final CurrencyValue value = this.createObject();
+
+        assertSame(
+            value.setValue(NUMBER),
+            value
+        );
+    }
+
+    @Test
+    public void testSetValueWithDifferentValue() {
+        final CurrencyValue value = this.createObject();
+
+        final CurrencyValue different = value.setValue(DIFFERENT_NUMBER);
+        assertNotSame(
+            value,
+            different
+        );
+
+        this.valueAndCheck(
+            different,
+            DIFFERENT_NUMBER
+        );
+
+        this.checkEquals(
+            CurrencyValue.with(
+                DIFFERENT_NUMBER,
+                CURRENCY_CODE
+            ),
+            different
+        );
+    }
+
     // hashCode/equals..................................................................................................
 
     @Test
     public void testEqualsDifferentNumber() {
         this.checkNotEquals(
             CurrencyValue.with(
-                2,
+                DIFFERENT_NUMBER,
                 CURRENCY_CODE
             )
         );

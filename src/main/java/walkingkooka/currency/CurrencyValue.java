@@ -50,6 +50,15 @@ public final class CurrencyValue implements HasValue<Number>,
         return this.number;
     }
 
+    public CurrencyValue setValue(final Number value) {
+        return this.number.equals(value) ?
+            this :
+            new CurrencyValue(
+                Objects.requireNonNull(value, "value"),
+                this.currencyCode
+            );
+    }
+
     private final Number number;
 
     @Override
