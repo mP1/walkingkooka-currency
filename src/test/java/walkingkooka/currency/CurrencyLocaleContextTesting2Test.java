@@ -23,7 +23,6 @@ import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
 
 import java.time.LocalDateTime;
-import java.util.Currency;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -32,12 +31,10 @@ public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleCo
 
     @Test
     public void testCurrencyText() {
-        final Currency currency = Currency.getInstance("AUD");
-
         this.currencyTextAndCheck(
             this.createContext(),
-            currency.getCurrencyCode(),
-            currency.getDisplayName()
+            CURRENCY_CODE,
+            CURRENCY.getDisplayName()
         );
     }
 
@@ -63,7 +60,7 @@ public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleCo
         @Override
         public CurrencyContext currencyContext() {
             return CurrencyContexts.jre(
-                Currency.getInstance("AUD"),
+                CURRENCY,
                 new FakeCurrencyExchangeRater<>() {
                     @Override
                     public Set<CurrencyExchange> currencyExchanges(final CurrencyExchangeRaterContext context) {
