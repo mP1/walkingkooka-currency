@@ -66,12 +66,7 @@ public final class CurrencyLocaleContextTesting2Test implements CurrencyLocaleCo
                     public Set<CurrencyExchange> currencyExchanges(final CurrencyExchangeRaterContext context) {
                         Objects.requireNonNull(context, "context");
 
-                        return Set.of(
-                            CurrencyExchange.with(
-                                CURRENCY_CODE,
-                                DIFFERENT_CURRENCY_CODE
-                            )
-                        );
+                        return Set.of(CURRENCY_EXCHANGE);
                     }
 
                     @Override
