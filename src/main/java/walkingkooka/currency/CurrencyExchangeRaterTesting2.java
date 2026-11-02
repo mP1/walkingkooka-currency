@@ -46,10 +46,7 @@ public interface CurrencyExchangeRaterTesting2<R extends CurrencyExchangeRater<C
             NullPointerException.class,
             () -> this.createCurrencyExchangeRater()
                 .currencyExchangeRate(
-                    CurrencyExchange.with(
-                        CurrencyCode.parse("AUD"),
-                        CurrencyCode.parse("NZD")
-                    ),
+                    CURRENCY_EXCHANGE,
                     null, // dateTime
                     this.createContext()
                 )
@@ -62,10 +59,7 @@ public interface CurrencyExchangeRaterTesting2<R extends CurrencyExchangeRater<C
             NullPointerException.class,
             () -> this.createCurrencyExchangeRater()
                 .currencyExchangeRate(
-                    CurrencyExchange.with(
-                        CurrencyCode.parse("AUD"),
-                        CurrencyCode.parse("NZD")
-                    ),
+                    CURRENCY_EXCHANGE,
                     NO_DATE_TIME, // dateTime
                     null
                 )
