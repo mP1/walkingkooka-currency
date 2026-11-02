@@ -65,31 +65,25 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
 
     @Test
     public void testWith() {
-        final CurrencyCode from = CURRENCY_CODE;
-        final CurrencyCode to = DIFFERENT_CURRENCY_CODE;
-
         this.fromAndToCheck(
             CurrencyExchange.with(
-                from,
-                to
+                CURRENCY_CODE,
+                DIFFERENT_CURRENCY_CODE
             ),
-            from,
-            to
+            CURRENCY_CODE,
+            DIFFERENT_CURRENCY_CODE
         );
     }
 
     @Test
     public void testWithSameFromAndTo() {
-        final CurrencyCode from = CURRENCY_CODE;
-        final CurrencyCode to = from;
-
         this.fromAndToCheck(
             CurrencyExchange.with(
-                from,
-                to
+                CURRENCY_CODE,
+                CURRENCY_CODE
             ),
-            from,
-            to
+            CURRENCY_CODE,
+            CURRENCY_CODE
         );
     }
 
@@ -97,18 +91,15 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
 
     @Test
     public void testSwapSame() {
-        final CurrencyCode from = CURRENCY_CODE;
-        final CurrencyCode to = from;
-
         final CurrencyExchange currencyExchange = CurrencyExchange.with(
-            from,
-            to
+            CURRENCY_CODE,
+            CURRENCY_CODE
         );
 
         this.fromAndToCheck(
             currencyExchange,
-            from,
-            to
+            CURRENCY_CODE,
+            CURRENCY_CODE
         );
 
         assertSame(
@@ -119,18 +110,15 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
 
     @Test
     public void testSwap() {
-        final CurrencyCode from = CURRENCY_CODE;
-        final CurrencyCode to = DIFFERENT_CURRENCY_CODE;
-
         final CurrencyExchange currencyExchange = CurrencyExchange.with(
-            from,
-            to
+            CURRENCY_CODE,
+            DIFFERENT_CURRENCY_CODE
         );
 
         this.fromAndToCheck(
             currencyExchange,
-            from,
-            to
+            CURRENCY_CODE,
+            DIFFERENT_CURRENCY_CODE
         );
 
         final CurrencyExchange swapped = currencyExchange.swap();
@@ -142,8 +130,8 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
 
         this.fromAndToCheck(
             swapped,
-            to,
-            from
+            DIFFERENT_CURRENCY_CODE,
+            CURRENCY_CODE
         );
     }
 
