@@ -22,8 +22,7 @@ import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.InvalidTextLengthException;
 import walkingkooka.ToStringTesting;
 import walkingkooka.compare.ComparableTesting2;
-import walkingkooka.reflect.ClassTesting2;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PublicClassTesting;
 import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.HasTextTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
@@ -33,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2<CurrencyExchange>,
-    ClassTesting2<CurrencyExchange>,
+    PublicClassTesting<CurrencyExchange>,
     ComparableTesting2<CurrencyExchange>,
     HasCurrencyCodeTesting,
     HasTextTesting,
@@ -294,10 +293,5 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
     @Override
     public Class<CurrencyExchange> type() {
         return CurrencyExchange.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }
