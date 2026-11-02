@@ -39,14 +39,18 @@ public interface CurrencyExchangeRaterTesting extends HasCurrencyCodeTesting,
 
     Optional<LocalDateTime> DATE_TIME = Optional.of(NOW);
 
+    CurrencyExchange CURRENCY_EXCHANGE = CurrencyExchange.with(
+        CURRENCY_CODE,
+        DIFFERENT_CURRENCY_CODE
+    );
+
+    CurrencyExchange DIFFERENT_CURRENCY_EXCHANGE = CURRENCY_EXCHANGE.swap();
+
     CurrencyExchangeRater<CurrencyContext> CURRENCY_EXCHANGE_RATER = new CurrencyExchangeRater<>() {
         @Override
         public Set<CurrencyExchange> currencyExchanges(final CurrencyContext context) {
             return Set.of(
-                CurrencyExchange.with(
-                    CURRENCY_CODE,
-                    DIFFERENT_CURRENCY_CODE
-                )
+                CURRENCY_EXCHANGE
             );
         }
 

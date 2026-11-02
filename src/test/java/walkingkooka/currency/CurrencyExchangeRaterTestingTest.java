@@ -39,6 +39,14 @@ public final class CurrencyExchangeRaterTestingTest implements CurrencyExchangeR
         );
     }
 
+    @Test
+    public void testCurrencyExchangeConstant() {
+        this.checkNotEquals(
+            CURRENCY_EXCHANGE,
+            DIFFERENT_CURRENCY_EXCHANGE
+        );
+    }
+
     // class............................................................................................................
 
     @Override
