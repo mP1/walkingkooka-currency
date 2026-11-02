@@ -22,7 +22,6 @@ import walkingkooka.collect.set.Sets;
 import walkingkooka.currency.CurrencyLocaleContextDelegatorTest.TestCurrencyLocaleContextDelegator;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
-import walkingkooka.locale.LocaleContexts;
 
 import java.time.LocalDateTime;
 import java.util.Currency;
@@ -36,12 +35,10 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
 
     @Test
     public void testCurrencyText() {
-        final Currency currency = Currency.getInstance(CURRENCY_CODE.value());
-
         this.currencyTextAndCheck(
             this.createContext(),
             CURRENCY_CODE,
-            "***" + currency.getDisplayName()
+            "***" + CURRENCY.getDisplayName()
         );
     }
 
@@ -105,9 +102,7 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
         public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
             Objects.requireNonNull(currencyCode, "currencyCode");
 
-            return Optional.of(
-                Currency.getInstance(LOCALE)
-            );
+            return OPTIONAL_CURRENCY;
         }
 
         @Override
@@ -115,7 +110,7 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
             Objects.requireNonNull(locale, "locale");
 
             return Optional.of(
-                Currency.getInstance(LOCALE)
+                Currency.getInstance(locale)
             );
         }
 
@@ -150,13 +145,7 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
             if (count < 0) {
                 throw new IllegalArgumentException("count " + count + " < 0");
             }
-            return Sets.of(
-                CurrencyCode.fromCurrency(
-                    Currency.getInstance(
-                        LOCALE
-                    )
-                )
-            );
+            return Sets.of(CURRENCY_CODE);
         }
 
         @Override
@@ -172,9 +161,7 @@ public final class CurrencyLocaleContextDelegatorTest implements CurrencyLocaleC
 
         @Override
         public LocaleContext localeContext() {
-            return LocaleContexts.jre(
-                LOCALE
-            );
+            return LOCALE_CONTEXT;
         }
 
         @Override
