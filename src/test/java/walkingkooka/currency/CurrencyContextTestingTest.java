@@ -56,8 +56,6 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
 
     @Test
     public void testSetCurrency() {
-        final Currency currency = Currency.getInstance("NZD");
-
         final CurrencyContext context = new FakeCurrencyContext() {
             @Override
             public Currency currency() {
@@ -70,12 +68,12 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
                 this.currency = currency;
             }
 
-            private Currency currency = Currency.getInstance("AUD");
+            private Currency currency = CURRENCY;
         };
 
         this.setCurrencyAndCheck(
             context,
-            currency
+            DIFFERENT_CURRENCY
         );
     }
 
@@ -83,21 +81,18 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
 
     @Test
     public void testAvailableCurrencies() {
-        final String currency1 = "AUD";
-        final String currency2 = "NZD";
-
         this.availableCurrenciesAndCheck(
             new FakeCurrencyContext() {
                 @Override
                 public Set<CurrencyCode> availableCurrencies() {
                     return Sets.of(
-                        CurrencyCode.parse(currency1),
-                        CurrencyCode.parse(currency2)
+                        CURRENCY_CODE,
+                        DIFFERENT_CURRENCY_CODE
                     );
                 }
             },
-            currency1,
-            currency2
+            CURRENCY_CODE.value(),
+            DIFFERENT_CURRENCY_CODE.value()
         );
     }
 
@@ -105,22 +100,20 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
 
     @Test
     public void testCurrencyForCurrencyCode() {
-        final Currency currency = Currency.getInstance("AUD");
-
         this.currencyForCurrencyCodeAndCheck(
             new FakeCurrencyContext() {
                 @Override
                 public Optional<Currency> currencyForCurrencyCode(final CurrencyCode c) {
                     valueAndCheck(
                         c,
-                        currency.getCurrencyCode()
+                        CURRENCY.getCurrencyCode()
                     );
 
-                    return Optional.of(currency);
+                    return OPTIONAL_CURRENCY;
                 }
             },
-            CurrencyCode.fromCurrency(currency),
-            currency
+            CURRENCY_CODE,
+            CURRENCY
         );
     }
 
@@ -129,7 +122,6 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
     @Test
     public void testCurrencyForLocale() {
         final Locale locale = Locale.ENGLISH;
-        final Currency currency = Currency.getInstance("AUD");
 
         this.currencyForLocaleAndCheck(
             new FakeCurrencyContext() {
@@ -137,13 +129,11 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
                 public Optional<Currency> currencyForLocale(final Locale l) {
                     checkEquals(locale, l, "locale");
 
-                    return Optional.of(
-                        currency
-                    );
+                    return OPTIONAL_CURRENCY;
                 }
             },
             locale,
-            currency
+            CURRENCY
         );
     }
 
@@ -154,8 +144,6 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
         final String text = "text1";
         final int offset = 1;
         final int count = 23;
-        final String currencyCode1 = "AUD";
-        final String currencyCode2 = "NZD";
 
         this.findCurrencyByTextAndCheck(
             new FakeCurrencyContext() {
@@ -168,16 +156,16 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
                     checkEquals(count, c, "count");
 
                     return Sets.of(
-                        CurrencyCode.parse(currencyCode1),
-                        CurrencyCode.parse(currencyCode2)
+                        CURRENCY_CODE,
+                        DIFFERENT_CURRENCY_CODE
                     );
                 }
             },
             text,
             offset,
             count,
-            currencyCode1,
-            currencyCode2
+            CURRENCY_CODE.value(),
+            DIFFERENT_CURRENCY_CODE.value()
         );
     }
 
