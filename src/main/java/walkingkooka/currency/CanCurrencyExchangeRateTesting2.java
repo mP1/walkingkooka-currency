@@ -23,7 +23,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public interface CanCurrencyExchangeRateTesting2<C extends CanCurrencyExchangeRate> extends CanCurrencyExchangeRateTesting {
+public interface CanCurrencyExchangeRateTesting2<C extends CanCurrencyExchangeRate> extends CanCurrencyExchangeRateTesting,
+    HasCurrencyCodeTesting {
 
     @Test
     default void testCurrencyExchangeRateWithNullCurrencyExchangeFails() {
@@ -44,8 +45,8 @@ public interface CanCurrencyExchangeRateTesting2<C extends CanCurrencyExchangeRa
             () -> this.createCanCurrencyExchangeRate()
                 .currencyExchangeRate(
                     CurrencyExchange.with(
-                        CurrencyCode.parse("AUD"),
-                        CurrencyCode.parse("NZD")
+                        CURRENCY_CODE,
+                        DIFFERENT_CURRENCY_CODE
                     ),
                     null // dateTime
                 )
