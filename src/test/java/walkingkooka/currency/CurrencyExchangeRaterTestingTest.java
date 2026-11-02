@@ -24,7 +24,7 @@ public final class CurrencyExchangeRaterTestingTest implements CurrencyExchangeR
     PublicClassTesting<CurrencyExchangeRaterTesting> {
 
     @Test
-    public void testCurrencyContextConstantToString() {
+    public void testCurrencyExchangeRaterConstantToString() {
         this.checkEquals(
             "CURRENCY_EXCHANGE_RATER",
             CURRENCY_EXCHANGE_RATER.toString()
@@ -32,7 +32,7 @@ public final class CurrencyExchangeRaterTestingTest implements CurrencyExchangeR
     }
 
     @Test
-    public void testDifferentCurrencyContext() {
+    public void testCurrencyExchangeRaterConstantsDifferent() {
         this.checkNotEquals(
             DIFFERENT_CURRENCY_EXCHANGE_RATER,
             CURRENCY_EXCHANGE_RATER
