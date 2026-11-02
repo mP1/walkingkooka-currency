@@ -21,8 +21,6 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.ClassTesting2;
 
-import java.util.Currency;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyLocaleContextReadOnlyTest implements CurrencyLocaleContextTesting2<CurrencyLocaleContextReadOnly>,
@@ -42,9 +40,7 @@ public final class CurrencyLocaleContextReadOnlyTest implements CurrencyLocaleCo
         assertThrows(
             UnsupportedOperationException.class,
             () -> this.createContext()
-                .setCurrency(
-                    Currency.getInstance("NZD")
-                )
+                .setCurrency(CURRENCY)
         );
     }
 
