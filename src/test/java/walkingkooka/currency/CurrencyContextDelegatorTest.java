@@ -32,12 +32,10 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
 
     @Test
     public void testCurrencyText() {
-        final Currency currency = Currency.getInstance("AUD");
-
         this.currencyTextAndCheck(
             this.createContext(),
-            currency.getCurrencyCode(),
-            "***" + currency.getDisplayName()
+            CURRENCY_CODE,
+            "***" + CURRENCY.getDisplayName()
         );
     }
 
@@ -102,7 +100,7 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
 
             return Optional.of(
                 Currency.getInstance(
-                    LOCALE
+                    currencyCode.value()
                 )
             );
         }
@@ -112,9 +110,7 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
             Objects.requireNonNull(locale, "locale");
 
             return Optional.of(
-                Currency.getInstance(
-                    LOCALE
-                )
+                Currency.getInstance(locale)
             );
         }
 
@@ -152,13 +148,7 @@ public final class CurrencyContextDelegatorTest implements CurrencyContextTestin
             if (count < 0) {
                 throw new IllegalArgumentException("count " + count + " < 0");
             }
-            return Sets.of(
-                CurrencyCode.fromCurrency(
-                    Currency.getInstance(
-                        LOCALE
-                    )
-                )
-            );
+            return Sets.of(CURRENCY_CODE);
         }
 
         @Override
