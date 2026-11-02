@@ -154,7 +154,7 @@ public final class CurrencyContextReadOnlyTest implements CurrencyContextTesting
                     throw new IllegalArgumentException("count " + count + " < 0");
                 }
                 return Sets.of(
-                    CurrencyCode.fromCurrency(CURRENCY)
+                    CURRENCY_CODE
                 );
             }
 
