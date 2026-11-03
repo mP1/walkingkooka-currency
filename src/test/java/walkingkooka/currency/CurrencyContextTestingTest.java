@@ -121,18 +121,16 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
 
     @Test
     public void testCurrencyForLocale() {
-        final Locale locale = Locale.ENGLISH;
-
         this.currencyForLocaleAndCheck(
             new FakeCurrencyContext() {
                 @Override
                 public Optional<Currency> currencyForLocale(final Locale l) {
-                    checkEquals(locale, l, "locale");
+                    checkEquals(LOCALE, l, "locale");
 
                     return OPTIONAL_CURRENCY;
                 }
             },
-            locale,
+            LOCALE,
             CURRENCY
         );
     }
@@ -173,11 +171,6 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
 
     @Test
     public void testCurrencyExchangeRate() {
-        final CurrencyExchange currencyExchange = CurrencyExchange.with(
-            CURRENCY_CODE,
-            DIFFERENT_CURRENCY_CODE
-        );
-
         final Optional<LocalDateTime> dateTime = Optional.of(
             LocalDateTime.now()
         );
@@ -188,13 +181,13 @@ public final class CurrencyContextTestingTest implements CurrencyContextTesting,
                 @Override
                 public Optional<Number> currencyExchangeRate(final CurrencyExchange ce,
                                                              final Optional<LocalDateTime> d) {
-                    checkEquals(currencyExchange, ce, "currencyExchange");
+                    checkEquals(CURRENCY_EXCHANGE, ce, "currencyExchange");
                     checkEquals(dateTime, d, "dateTime");
 
                     return Optional.of(expected);
                 }
             },
-            currencyExchange,
+            CURRENCY_EXCHANGE,
             dateTime,
             expected
         );
