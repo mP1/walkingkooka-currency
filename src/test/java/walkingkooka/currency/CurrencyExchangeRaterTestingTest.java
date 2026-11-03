@@ -21,7 +21,8 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.PublicClassTesting;
 
 public final class CurrencyExchangeRaterTestingTest implements CurrencyExchangeRaterTesting,
-    PublicClassTesting<CurrencyExchangeRaterTesting> {
+    PublicClassTesting<CurrencyExchangeRaterTesting>,
+    CurrencyContextTesting {
 
     @Test
     public void testCurrencyExchangeRaterConstantToString() {
@@ -44,6 +45,66 @@ public final class CurrencyExchangeRaterTestingTest implements CurrencyExchangeR
         this.checkNotEquals(
             CURRENCY_EXCHANGE,
             DIFFERENT_CURRENCY_EXCHANGE
+        );
+    }
+
+    // CURRENCY_EXCHANGE_RATER..........................................................................................
+
+    @Test
+    public void testCurrencyExchangeRaterConstantCurrencyExchangeRateSame() {
+        this.currencyExchangeRateAndCheck(
+            CURRENCY_EXCHANGE_RATER,
+            CurrencyExchange.with(
+                CURRENCY_CODE,
+                CURRENCY_CODE
+            ),
+            CURRENCY_CONTEXT,
+            1.0
+        );
+    }
+
+    @Test
+    public void testCurrencyExchangeRaterConstantCurrencyExchangeRateSame2() {
+        this.currencyExchangeRateAndCheck(
+            CURRENCY_EXCHANGE_RATER,
+            CurrencyExchange.with(
+                DIFFERENT_CURRENCY_CODE,
+                DIFFERENT_CURRENCY_CODE
+            ),
+            CURRENCY_CONTEXT,
+            1.0
+        );
+    }
+
+    @Test
+    public void testCurrencyExchangeRaterConstantCurrencyExchangeRateWithCurrencyExchange() {
+        this.currencyExchangeRateAndCheck(
+            CURRENCY_EXCHANGE_RATER,
+            CURRENCY_EXCHANGE,
+            CURRENCY_CONTEXT,
+            2.0
+        );
+    }
+
+    @Test
+    public void testCurrencyExchangeRaterConstantCurrencyExchangeRateWithDifferentCurrencyExchange() {
+        this.currencyExchangeRateAndCheck(
+            CURRENCY_EXCHANGE_RATER,
+            DIFFERENT_CURRENCY_EXCHANGE,
+            CURRENCY_CONTEXT,
+            0.5
+        );
+    }
+
+    @Test
+    public void testCurrencyExchangeRaterConstantCurrencyExchangeRateWithUnknownCurrencyExchange() {
+        this.currencyExchangeRateAndCheck(
+            CURRENCY_EXCHANGE_RATER,
+            CurrencyExchange.with(
+                CurrencyCode.parse("UNK"),
+                CurrencyCode.parse("XYZ")
+            ),
+            CURRENCY_CONTEXT
         );
     }
 
