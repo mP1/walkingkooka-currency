@@ -20,6 +20,7 @@ package walkingkooka.currency;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.set.ImmutableSortedSetTesting;
 import walkingkooka.collect.set.SortedSets;
+import walkingkooka.reflect.PublicClassTesting;
 import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.HasTextTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
@@ -32,6 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 public final class CurrencyExchangeSetTest implements ImmutableSortedSetTesting<CurrencyExchangeSet, CurrencyExchange>,
     ParseStringTesting<CurrencyExchangeSet>,
     HasTextTesting,
+    PublicClassTesting<CurrencyExchangeSet>,
     TreePrintableTesting {
 
     private final static CurrencyExchange AUD_NZD = CurrencyExchange.parse("AUD-NZD");
