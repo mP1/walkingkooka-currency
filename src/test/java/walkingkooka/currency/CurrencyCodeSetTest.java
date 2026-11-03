@@ -36,37 +36,27 @@ import java.util.SortedSet;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<CurrencyCodeSet, CurrencyCode>,
+    HasCurrencyTesting,
+    HasCurrencyCodeTesting,
     HasTextWithSeparatorTesting,
     HasMultiLineTextTesting,
     ParseStringTesting<CurrencyCodeSet>,
     PublicClassTesting<CurrencyCodeSet>,
     TreePrintableTesting {
 
-    private final static CurrencyCode AUD = CurrencyCode.fromCurrency(
-        Currency.getInstance("AUD")
-    );
-
-    private final static CurrencyCode NZD = CurrencyCode.fromCurrency(
-        Currency.getInstance("NZD")
-    );
-
     @Test
     public void testDeleteBecomesEmpty() {
         assertSame(
             CurrencyCodeSet.EMPTY,
-            CurrencyCodeSet.EMPTY.concat(AUD)
-                .delete(AUD)
+            CurrencyCodeSet.EMPTY.concat(CURRENCY_CODE)
+                .delete(CURRENCY_CODE)
         );
     }
 
     @Test
     public void testSetElementsWithCurrencyCodeSet() {
         final CurrencyCodeSet set = CurrencyCodeSet.with(
-            SortedSets.of(
-                CurrencyCode.fromCurrency(
-                    Currency.getInstance("USD")
-                )
-            )
+            SortedSets.of(CURRENCY_CODE)
         );
 
         this.setElementsAndCheck(
@@ -92,21 +82,21 @@ public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<Curr
     public CurrencyCodeSet createSet() {
         final SortedSet<CurrencyCode> sortedSet = SortedSets.tree();
 
-        sortedSet.add(AUD);
-        sortedSet.add(NZD);
+        sortedSet.add(CURRENCY_CODE);
+        sortedSet.add(DIFFERENT_CURRENCY_CODE);
 
         return CurrencyCodeSet.with(
             SortedSets.of(
-                AUD,
-                NZD
+                CURRENCY_CODE,
+                DIFFERENT_CURRENCY_CODE
             )
         );
     }
 
     // filter...........................................................................................................
 
-    private final static Currency AUD_CURRENCY = Currency.getInstance("AUD");
-    private final static Currency NZD_CURRENCY = Currency.getInstance("NZD");
+    private final static Currency AUD_CURRENCY = CURRENCY;
+    private final static Currency NZD_CURRENCY = DIFFERENT_CURRENCY;
     private final static Currency EUR_CURRENCY = Currency.getInstance("EUR");
 
     private final static String AUD_TEXT = "Australia Dollar";
