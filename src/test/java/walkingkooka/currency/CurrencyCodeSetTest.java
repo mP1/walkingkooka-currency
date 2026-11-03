@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.set.ImmutableSortedSetTesting;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
+import walkingkooka.reflect.PublicClassTesting;
 import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.HasMultiLineTextTesting;
 import walkingkooka.text.HasTextWithSeparatorTesting;
@@ -38,6 +39,7 @@ public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<Curr
     HasTextWithSeparatorTesting,
     HasMultiLineTextTesting,
     ParseStringTesting<CurrencyCodeSet>,
+    PublicClassTesting<CurrencyCodeSet>,
     TreePrintableTesting {
 
     private final static CurrencyCode AUD = CurrencyCode.fromCurrency(
