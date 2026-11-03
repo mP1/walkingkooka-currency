@@ -18,6 +18,7 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.CanBeEmptyTesting;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.ClassTesting;
@@ -30,7 +31,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class OptionalCurrencyTest implements ClassTesting<OptionalCurrency>,
     HashCodeEqualsDefinedTesting2<OptionalCurrency>,
-    ToStringTesting<OptionalCurrency> {
+    ToStringTesting<OptionalCurrency>,
+    CanBeEmptyTesting,
+    HasOptionalCurrencyTesting {
 
     private final static Optional<Currency> CURRENCY = Optional.of(
         Currency.getInstance("AUD")
@@ -79,6 +82,24 @@ public final class OptionalCurrencyTest implements ClassTesting<OptionalCurrency
         this.toStringAndCheck(
             OptionalCurrency.EMPTY,
             ""
+        );
+    }
+
+    // CanBeEmpty.......................................................................................................
+
+    @Test
+    public void testIsEmptyWithEmpty() {
+        this.isEmptyAndCheck(
+            OptionalCurrency.EMPTY,
+            true
+        );
+    }
+
+    @Test
+    public void testIsEmptyWithCurrency() {
+        this.isEmptyAndCheck(
+            OptionalCurrency.with(OPTIONAL_CURRENCY),
+            false
         );
     }
 
