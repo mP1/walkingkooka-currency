@@ -19,8 +19,10 @@ package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
+import walkingkooka.reflect.PublicClassTesting;
 
-public final class HasCurrencyCodeTestingTest implements HasCurrencyCodeTesting {
+public final class HasCurrencyCodeTestingTest implements HasCurrencyCodeTesting,
+    PublicClassTesting<HasCurrencyCodeTesting> {
 
     @Test
     public void testConstants() {
@@ -62,5 +64,12 @@ public final class HasCurrencyCodeTestingTest implements HasCurrencyCodeTesting 
             true,
             failed
         );
+    }
+
+    // class............................................................................................................
+
+    @Override
+    public Class<HasCurrencyCodeTesting> type() {
+        return HasCurrencyCodeTesting.class;
     }
 }
