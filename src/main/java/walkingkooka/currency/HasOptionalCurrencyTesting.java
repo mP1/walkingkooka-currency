@@ -17,12 +17,10 @@
 
 package walkingkooka.currency;
 
-import walkingkooka.text.printer.TreePrintableTesting;
-
 import java.util.Currency;
 import java.util.Optional;
 
-public interface HasOptionalCurrencyTesting extends TreePrintableTesting {
+public interface HasOptionalCurrencyTesting extends HasCurrencyTesting {
 
     default void currencyAndCheck(final HasOptionalCurrency has) {
         this.currencyAndCheck(
