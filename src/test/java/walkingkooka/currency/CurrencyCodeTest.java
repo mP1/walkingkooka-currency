@@ -20,8 +20,7 @@ package walkingkooka.currency;
 import org.junit.jupiter.api.Test;
 import walkingkooka.HasValueTesting;
 import walkingkooka.compare.ComparableTesting2;
-import walkingkooka.reflect.ClassTesting2;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PublicClassTesting;
 import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
 
@@ -30,7 +29,7 @@ import java.util.Currency;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyCodeTest implements ComparableTesting2<CurrencyCode>,
-    ClassTesting2<CurrencyCode>,
+    PublicClassTesting<CurrencyCode>,
     HasCurrencyTesting,
     HasCurrencyCodeTesting,
     ParseStringTesting<CurrencyCode>,
@@ -130,10 +129,5 @@ public final class CurrencyCodeTest implements ComparableTesting2<CurrencyCode>,
     @Override
     public Class<CurrencyCode> type() {
         return CurrencyCode.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }
