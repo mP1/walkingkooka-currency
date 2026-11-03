@@ -17,6 +17,7 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.CanBeEmpty;
 import walkingkooka.Cast;
 import walkingkooka.HasValue;
 
@@ -28,7 +29,8 @@ import java.util.Optional;
  * A typed {@link Optional} necessary because generic types are lost in java.
  * This class is intended to be a target when converting a cell to a {@link Currency} to patch cells.
  */
-public final class OptionalCurrency implements HasValue<Optional<Currency>> {
+public final class OptionalCurrency implements HasValue<Optional<Currency>>,
+    CanBeEmpty {
 
     public final static OptionalCurrency EMPTY = new OptionalCurrency(Optional.empty());
 
@@ -50,6 +52,13 @@ public final class OptionalCurrency implements HasValue<Optional<Currency>> {
     }
 
     private final Optional<Currency> value;
+
+    // CanBeEmpty.......................................................................................................
+
+    @Override
+    public boolean isEmpty() {
+        return this.value.isEmpty();
+    }
 
     // Object...........................................................................................................
 
