@@ -31,11 +31,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyCodeTest implements ComparableTesting2<CurrencyCode>,
     ClassTesting2<CurrencyCode>,
+    HasCurrencyTesting,
+    HasCurrencyCodeTesting,
     ParseStringTesting<CurrencyCode>,
     TreePrintableTesting,
     HasValueTesting {
-
-    private final static Currency CURRENCY = Currency.getInstance("AUD");
 
     @Test
     public void testFromCurrencyNullCurrencyFails() {
@@ -47,9 +47,8 @@ public final class CurrencyCodeTest implements ComparableTesting2<CurrencyCode>,
 
     @Test
     public void testFromCurrency() {
-        final CurrencyCode currencyCode = CurrencyCode.fromCurrency(CURRENCY);
         this.valueAndCheck(
-            currencyCode,
+            CURRENCY_CODE,
             CURRENCY.getCurrencyCode()
         );
     }
@@ -81,7 +80,7 @@ public final class CurrencyCodeTest implements ComparableTesting2<CurrencyCode>,
     public void testParse() {
         this.parseStringAndCheck(
             "AUD",
-            CurrencyCode.fromCurrency(CURRENCY)
+            CURRENCY_CODE
         );
     }
 
