@@ -25,7 +25,6 @@ import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Currency;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -46,6 +45,10 @@ public interface CurrencyExchangeRaterTesting extends HasCurrencyCodeTesting,
 
     CurrencyExchange DIFFERENT_CURRENCY_EXCHANGE = CURRENCY_EXCHANGE.swap();
 
+    double CURRENCY_EXCHANGE_RATE = 2.0;
+
+    double DIFFERENT_CURRENCY_EXCHANGE_RATE = 0.5;
+
     CurrencyExchangeRater<CurrencyContext> CURRENCY_EXCHANGE_RATER = new CurrencyExchangeRater<>() {
         @Override
         public Set<CurrencyExchange> currencyExchanges(final CurrencyContext context) {
@@ -62,16 +65,14 @@ public interface CurrencyExchangeRaterTesting extends HasCurrencyCodeTesting,
             Objects.requireNonNull(dateTime, "dateTime");
             Objects.requireNonNull(context, "context");
 
-            return Optional.of(
-                1.0 *
-                    Currency.getInstance(
-                        currencyExchange.from()
-                            .value()
-                    ).getDisplayName().length() /
-                    Currency.getInstance(
-                        currencyExchange.to()
-                            .value()
-                    ).getDisplayName().length()
+            return Optional.ofNullable(
+                currencyExchange.from().equals(currencyExchange.to()) ?
+                    1.0 :
+                    CURRENCY_EXCHANGE.equals(currencyExchange) ?
+                        CURRENCY_EXCHANGE_RATE :
+                        DIFFERENT_CURRENCY_EXCHANGE.equals(currencyExchange) ?
+                            DIFFERENT_CURRENCY_EXCHANGE_RATE :
+                            (Number)null // without cast strange NPE at runtime
             );
         }
 
