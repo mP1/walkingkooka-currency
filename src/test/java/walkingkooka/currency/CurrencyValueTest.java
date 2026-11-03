@@ -21,8 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.HasValueTesting;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.ToStringTesting;
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PublicClassTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import static org.junit.jupiter.api.Assertions.assertNotSame;
@@ -33,7 +32,7 @@ public final class CurrencyValueTest implements HashCodeEqualsDefinedTesting2<Cu
     TreePrintableTesting,
     ToStringTesting<CurrencyValue>,
     HasCurrencyCodeTesting,
-    ClassTesting<CurrencyValue>,
+    PublicClassTesting<CurrencyValue>,
     HasValueTesting {
 
     private final static Number NUMBER = 1;
@@ -189,10 +188,5 @@ public final class CurrencyValueTest implements HashCodeEqualsDefinedTesting2<Cu
     @Override
     public Class<CurrencyValue> type() {
         return CurrencyValue.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }
