@@ -36,7 +36,7 @@ public final class CanHaveCurrencyValueTest implements PublicClassTesting<CanHav
         this.maybeShouldHaveCurrencyValueAndCheck(
             new CanHaveCurrencyValue() {
                 @Override
-                public boolean maybeShouldHaveCurrencyValue() {
+                public boolean shouldHaveCurrencyValue() {
                     return true;
                 }
             },
@@ -49,7 +49,7 @@ public final class CanHaveCurrencyValueTest implements PublicClassTesting<CanHav
         this.maybeShouldHaveCurrencyValueAndCheck(
             new CanHaveCurrencyValue() {
                 @Override
-                public boolean maybeShouldHaveCurrencyValue() {
+                public boolean shouldHaveCurrencyValue() {
                     return false;
                 }
             },
