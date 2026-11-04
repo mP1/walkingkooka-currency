@@ -17,9 +17,53 @@
 
 package walkingkooka.currency;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.PublicClassTesting;
 
 public final class CanHaveCurrencyValueTest implements PublicClassTesting<CanHaveCurrencyValue> {
+
+    @Test
+    public void testMaybeShouldHaveCurrencyValueWithNull() {
+        this.maybeShouldHaveCurrencyValueAndCheck(
+            null,
+            false
+        );
+    }
+
+
+    @Test
+    public void testMaybeShouldHaveCurrencyValueWithCanHaveCurrencyValueTrue() {
+        this.maybeShouldHaveCurrencyValueAndCheck(
+            new CanHaveCurrencyValue() {
+                @Override
+                public boolean maybeShouldHaveCurrencyValue() {
+                    return true;
+                }
+            },
+            true
+        );
+    }
+
+    @Test
+    public void testMaybeShouldHaveCurrencyValueWithCanHaveCurrencyValueFalse() {
+        this.maybeShouldHaveCurrencyValueAndCheck(
+            new CanHaveCurrencyValue() {
+                @Override
+                public boolean maybeShouldHaveCurrencyValue() {
+                    return false;
+                }
+            },
+            false
+        );
+    }
+
+    private void maybeShouldHaveCurrencyValueAndCheck(final CanHaveCurrencyValue can,
+                                                      final boolean expected) {
+        this.checkEquals(
+            expected,
+            can
+        );
+    }
 
     // class............................................................................................................
 

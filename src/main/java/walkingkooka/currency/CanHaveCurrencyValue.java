@@ -28,7 +28,15 @@ import java.util.Currency;
 public interface CanHaveCurrencyValue {
 
     /**
+     * Null safe an {@link CanHaveCurrencyValue} tester.
+     */
+    static boolean maybeShouldHaveCurrencyValue(final CanHaveCurrencyValue value) {
+        return value instanceof CanHaveCurrencyValue &&
+            value.maybeShouldHaveCurrencyValue();
+    }
+
+    /**
      * Returns true if this instance should have a {@link CurrencyValue}.
      */
-    boolean shouldHaveCurrencyValue();
+    boolean maybeShouldHaveCurrencyValue();
 }

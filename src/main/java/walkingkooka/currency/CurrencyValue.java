@@ -99,7 +99,7 @@ public final class CurrencyValue implements CanHaveCurrencyValue,
     // CanHaveCurrencyValue.............................................................................................
 
     @Override
-    public boolean shouldHaveCurrencyValue() {
+    public boolean maybeShouldHaveCurrencyValue() {
         return true;
     }
 
