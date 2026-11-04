@@ -27,7 +27,7 @@ public interface CanHaveCurrencyValueTesting extends TreePrintableTesting {
                                                  final boolean expected) {
         this.checkEquals(
             expected,
-            can.maybeShouldHaveCurrencyValue()
+            can.shouldHaveCurrencyValue()
         );
     }
 }

@@ -32,11 +32,11 @@ public interface CanHaveCurrencyValue {
      */
     static boolean maybeShouldHaveCurrencyValue(final CanHaveCurrencyValue value) {
         return value instanceof CanHaveCurrencyValue &&
-            value.maybeShouldHaveCurrencyValue();
+            value.shouldHaveCurrencyValue();
     }
 
     /**
      * Returns true if this instance should have a {@link CurrencyValue}.
      */
-    boolean maybeShouldHaveCurrencyValue();
+    boolean shouldHaveCurrencyValue();
 }
