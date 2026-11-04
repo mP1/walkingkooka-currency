@@ -31,6 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class CurrencyValueTest implements HashCodeEqualsDefinedTesting2<CurrencyValue>,
     TreePrintableTesting,
     ToStringTesting<CurrencyValue>,
+    CanHaveCurrencyValueTesting,
     HasCurrencyCodeTesting,
     PublicClassTesting<CurrencyValue>,
     HasValueTesting {
@@ -165,6 +166,16 @@ public final class CurrencyValueTest implements HashCodeEqualsDefinedTesting2<Cu
                 CURRENCY_CODE
             ),
             "1 AUD"
+        );
+    }
+
+    // CanHaveCurrencyValue.............................................................................................
+
+    @Test
+    public void testShouldHaveCurrencyValue() {
+        this.shouldHaveCurrencyValueAndCheck(
+            this.createObject(),
+            true
         );
     }
 

@@ -27,7 +27,8 @@ import java.util.Objects;
 /**
  * A composite {@link Number} value that includes a number and {@link CurrencyCode}.
  */
-public final class CurrencyValue implements HasValue<Number>,
+public final class CurrencyValue implements CanHaveCurrencyValue,
+    HasValue<Number>,
     HasCurrencyCode,
     TreePrintable {
 
@@ -93,6 +94,13 @@ public final class CurrencyValue implements HasValue<Number>,
     @Override
     public String toString() {
         return this.number + " " + this.currencyCode;
+    }
+
+    // CanHaveCurrencyValue.............................................................................................
+
+    @Override
+    public boolean shouldHaveCurrencyValue() {
+        return true;
     }
 
     // TreePrintable....................................................................................................
