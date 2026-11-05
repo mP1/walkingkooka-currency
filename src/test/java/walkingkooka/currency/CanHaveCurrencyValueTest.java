@@ -61,7 +61,7 @@ public final class CanHaveCurrencyValueTest implements PublicClassTesting<CanHav
                                                       final boolean expected) {
         this.checkEquals(
             expected,
-            can
+            CanHaveCurrencyValue.maybeShouldHaveCurrencyValue(can)
         );
     }
 
