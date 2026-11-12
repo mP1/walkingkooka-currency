@@ -37,7 +37,7 @@ public final class CurrencyExchangeTest implements HashCodeEqualsDefinedTesting2
     HasCurrencyCodeTesting,
     HasTextTesting,
     ParseStringTesting<CurrencyExchange>,
-    ToStringTesting<CurrencyExchange>,
+    ToStringTesting,
     TreePrintableTesting {
 
     @Test

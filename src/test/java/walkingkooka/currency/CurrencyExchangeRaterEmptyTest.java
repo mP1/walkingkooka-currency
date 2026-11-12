@@ -24,7 +24,7 @@ import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 
 public final class CurrencyExchangeRaterEmptyTest implements CurrencyExchangeRaterTesting2<CurrencyExchangeRaterEmpty<CurrencyExchangeRaterContext>, CurrencyExchangeRaterContext>,
-    ToStringTesting<CurrencyExchangeRaterEmpty<CurrencyExchangeRaterContext>>,
+    ToStringTesting,
     ClassTesting<CurrencyExchangeRaterEmpty<CurrencyExchangeRaterContext>>,
     HasCurrencyCodeTesting{
 

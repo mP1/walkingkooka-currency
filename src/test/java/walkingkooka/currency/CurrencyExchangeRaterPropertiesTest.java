@@ -35,7 +35,7 @@ public final class CurrencyExchangeRaterPropertiesTest implements CurrencyExchan
     HasCurrencyCodeTesting,
     HasPropertiesTesting,
     HashCodeEqualsDefinedTesting2<CurrencyExchangeRaterProperties<CurrencyExchangeRaterContext>>,
-    ToStringTesting<CurrencyExchangeRaterProperties<CurrencyExchangeRaterContext>>,
+    ToStringTesting,
     ClassTesting<CurrencyExchangeRaterProperties<CurrencyExchangeRaterContext>> {
 
     private final static Properties PROPERTIES = Properties.parse("AUD-NZD=1.1\nAUD-CAD=1.2\n");

@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class OptionalCurrencyTest implements ClassTesting<OptionalCurrency>,
     HashCodeEqualsDefinedTesting2<OptionalCurrency>,
-    ToStringTesting<OptionalCurrency>,
+    ToStringTesting,
     CanBeEmptyTesting,
     HasOptionalCurrencyTesting {
 

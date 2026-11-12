@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class CurrencyLocaleContextBasicTest implements CurrencyLocaleContextTesting2<CurrencyLocaleContextBasic>,
     HashCodeEqualsDefinedTesting2<CurrencyLocaleContextBasic>,
     ClassTesting2<CurrencyLocaleContextBasic>,
-    ToStringTesting<CurrencyLocaleContextBasic> {
+    ToStringTesting {
 
     @Test
     public void testWithNullCurrencyContextFails() {

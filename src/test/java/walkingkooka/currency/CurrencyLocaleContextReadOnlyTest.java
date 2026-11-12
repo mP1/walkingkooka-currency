@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyLocaleContextReadOnlyTest implements CurrencyLocaleContextTesting2<CurrencyLocaleContextReadOnly>,
     ClassTesting2<CurrencyLocaleContextReadOnly>,
-    ToStringTesting<CurrencyLocaleContextReadOnly> {
+    ToStringTesting {
 
     @Test
     public void testWithNullContextFails() {

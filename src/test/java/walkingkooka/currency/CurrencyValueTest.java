@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyValueTest implements HashCodeEqualsDefinedTesting2<CurrencyValue>,
     TreePrintableTesting,
-    ToStringTesting<CurrencyValue>,
+    ToStringTesting,
     CanHaveCurrencyValueTesting,
     HasCurrencyCodeTesting,
     PublicClassTesting<CurrencyValue>,
