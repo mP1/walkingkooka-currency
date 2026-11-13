@@ -208,7 +208,7 @@ public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<Curr
     public void testTextWithSeparatorNotCommaWhenNotEmpty() {
         this.textWithSeparatorAndCheck(
             this.createSet(),
-            ';',
+            ";",
             "AUD;NZD"
         );
     }
