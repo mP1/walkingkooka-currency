@@ -220,7 +220,7 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
 
         final LineEnding lineEnding = context.lineEnding();
 
-        return MultiLineText.with(
+        return MultiLineText.EMPTY.setText(
             this.stream()
             .map(CurrencyCode::value)
             .collect(
