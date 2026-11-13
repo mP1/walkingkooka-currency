@@ -199,17 +199,25 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
     // HasTextWithSeparator.............................................................................................
 
     @Override
-    public char separator() {
-        return SEPARATOR.character();
+    public CharSequence defaultTextSeparator() {
+        return SEPARATOR;
     }
 
     @Override
-    public String textWithSeparator(final char c) {
-        return CharacterConstant.with(c)
-            .toSeparatedString(
-                this,
-                CurrencyCode::value
-            );
+    public CharSequence textSeparator(final int index) {
+        return SEPARATOR;
+    }
+
+    @Override
+    public String textWithSeparator(final CharSequence separator) {
+        final String stringSeparator = String.valueOf(separator);
+
+        return SEPARATOR.toDelimiteredString(
+            this.stream()
+                .map(CurrencyCode::value)
+                .collect(Collectors.toList()),
+            (int position) -> stringSeparator
+        );
     }
 
     // HasMultiLineText.................................................................................................
