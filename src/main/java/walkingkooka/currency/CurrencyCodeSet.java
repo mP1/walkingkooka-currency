@@ -17,6 +17,7 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.collect.iterable.Iterables;
 import walkingkooka.collect.iterator.Iterators;
 import walkingkooka.collect.set.ImmutableSortedSetDefaults;
 import walkingkooka.collect.set.Sets;
@@ -213,9 +214,10 @@ public final class CurrencyCodeSet extends AbstractSet<CurrencyCode>
         final String stringSeparator = String.valueOf(separator);
 
         return SEPARATOR.toDelimiteredString(
-            this.stream()
-                .map(CurrencyCode::value)
-                .collect(Collectors.toList()),
+            Iterables.mapping(
+                this,
+                CurrencyCode::value
+            ),
             (int position) -> stringSeparator
         );
     }
