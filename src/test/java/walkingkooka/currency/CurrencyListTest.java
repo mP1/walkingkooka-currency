@@ -19,6 +19,7 @@ package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.HasCsvStringListTesting;
+import walkingkooka.collect.list.HasTsvStringListTesting;
 import walkingkooka.collect.list.ImmutableListTesting;
 import walkingkooka.collect.list.Lists;
 
@@ -26,7 +27,8 @@ import java.util.Currency;
 
 public final class CurrencyListTest implements ImmutableListTesting<CurrencyList, Currency>,
     HasCurrencyTesting,
-    HasCsvStringListTesting {
+    HasCsvStringListTesting,
+    HasTsvStringListTesting {
 
     @Test
     public void testSetElementsWithDifferent() {
@@ -75,6 +77,18 @@ public final class CurrencyListTest implements ImmutableListTesting<CurrencyList
                 .concat(null)
                 .concat(DIFFERENT_CURRENCY),
             "AUD,,NZD"
+        );
+    }
+
+    // HasTsvStringList.................................................................................................
+
+    @Test
+    public void testTsvStringList() {
+        this.tsvStringListAndCheck(
+            CurrencyList.EMPTY.concat(CURRENCY)
+                .concat(null)
+                .concat(DIFFERENT_CURRENCY),
+            "AUD\t\tNZD"
         );
     }
 
