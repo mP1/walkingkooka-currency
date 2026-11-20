@@ -22,12 +22,16 @@ import walkingkooka.collect.list.HasCsvStringList;
 import walkingkooka.collect.list.HasTsvStringList;
 import walkingkooka.collect.list.ImmutableListDefaults;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.collect.list.StringLikeList;
 import walkingkooka.collect.list.TsvStringList;
+import walkingkooka.text.CharSequences;
 
 import java.util.AbstractList;
 import java.util.Collection;
 import java.util.Currency;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * A {@link List} that holds nullable {@link Currency currencies}.
@@ -38,6 +42,23 @@ public final class CurrencyList extends AbstractList<Currency>
     HasTsvStringList {
 
     public final static CurrencyList EMPTY = new CurrencyList(Lists.empty());
+
+    /**
+     * Accepts a {@link StringLikeList} converting non null and non empty into a {@link Currency}. Null or empty strings
+     * will become null {@link Currency}.
+     */
+    public static CurrencyList fromStringLikeList(final StringLikeList strings) {
+        Objects.requireNonNull(strings, "strings");
+
+        return EMPTY.setElements(
+            strings.stream()
+                .map(
+                    (final String string) -> CharSequences.isNullOrEmpty(string) ?
+                        null :
+                        Currency.getInstance(string)
+                ).collect(Collectors.toList())
+        );
+    }
 
     // @VisibleForTesting
     CurrencyList(final List<Currency> list) {

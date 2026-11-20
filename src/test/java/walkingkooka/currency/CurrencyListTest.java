@@ -22,13 +22,78 @@ import walkingkooka.collect.list.HasCsvStringListTesting;
 import walkingkooka.collect.list.HasTsvStringListTesting;
 import walkingkooka.collect.list.ImmutableListTesting;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.collect.list.StringLikeList;
+import walkingkooka.collect.list.StringList;
 
 import java.util.Currency;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyListTest implements ImmutableListTesting<CurrencyList, Currency>,
     HasCurrencyTesting,
     HasCsvStringListTesting,
     HasTsvStringListTesting {
+
+    @Test
+    public void testFromStringLikeListWithNullFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> CurrencyList.fromStringLikeList(null)
+        );
+    }
+
+    @Test
+    public void testFromStringLikeListWithEmpty() {
+        this.fromStringLikeList(
+            StringList.EMPTY,
+            CurrencyList.EMPTY
+        );
+    }
+
+    @Test
+    public void testFromStringLikeListWithNotEmpty() {
+        this.fromStringLikeList(
+            StringList.EMPTY.concat(CURRENCY.getCurrencyCode())
+                .concat(DIFFERENT_CURRENCY.getCurrencyCode()),
+            CurrencyList.EMPTY.concat(CURRENCY)
+                .concat(DIFFERENT_CURRENCY)
+        );
+    }
+
+    @Test
+    public void testFromStringLikeListWithNotEmptyWithNull() {
+        this.fromStringLikeList(
+            StringList.EMPTY.concat(CURRENCY.getCurrencyCode())
+                .concat(null)
+                .concat(DIFFERENT_CURRENCY.getCurrencyCode()),
+            CurrencyList.EMPTY.concat(CURRENCY)
+                .concat(null)
+                .concat(DIFFERENT_CURRENCY)
+        );
+    }
+
+    @Test
+    public void testFromStringLikeListWithNotEmptyWithEmpty() {
+        this.fromStringLikeList(
+            StringList.EMPTY.concat(CURRENCY.getCurrencyCode())
+                .concat("")
+                .concat(DIFFERENT_CURRENCY.getCurrencyCode()),
+            CurrencyList.EMPTY.concat(CURRENCY)
+                .concat(null)
+                .concat(DIFFERENT_CURRENCY)
+        );
+    }
+
+    private void fromStringLikeList(final StringLikeList strings,
+                                    final CurrencyList expected) {
+        this.checkEquals(
+            expected,
+            CurrencyList.fromStringLikeList(strings),
+            strings::toString
+        );
+    }
+
+    // setElements......................................................................................................
 
     @Test
     public void testSetElementsWithDifferent() {
