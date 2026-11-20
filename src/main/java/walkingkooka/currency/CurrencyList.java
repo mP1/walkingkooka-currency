@@ -17,6 +17,8 @@
 
 package walkingkooka.currency;
 
+import walkingkooka.collect.list.CsvStringList;
+import walkingkooka.collect.list.HasCsvStringList;
 import walkingkooka.collect.list.ImmutableListDefaults;
 import walkingkooka.collect.list.Lists;
 
@@ -28,7 +30,9 @@ import java.util.List;
 /**
  * A {@link List} that holds nullable {@link Currency currencies}.
  */
-public final class CurrencyList extends AbstractList<Currency> implements ImmutableListDefaults<CurrencyList, Currency> {
+public final class CurrencyList extends AbstractList<Currency>
+    implements ImmutableListDefaults<CurrencyList, Currency>,
+    HasCsvStringList {
 
     public final static CurrencyList EMPTY = new CurrencyList(Lists.empty());
 
@@ -76,4 +80,16 @@ public final class CurrencyList extends AbstractList<Currency> implements Immuta
     }
 
     private final List<Currency> list;
+
+    // HasCsvStringList.................................................................................................
+
+    @Override
+    public CsvStringList csvStringList() {
+        return CsvStringList.makeCsvStringList(
+            this.list,
+            (Currency currency) -> null == currency ?
+                "" :
+                currency.getCurrencyCode()
+        );
+    }
 }
