@@ -18,8 +18,7 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.collect.list.HasCsvStringListTesting;
-import walkingkooka.collect.list.HasTsvStringListTesting;
+import walkingkooka.collect.list.HasCsvStringListTsvStringListTesting2;
 import walkingkooka.collect.list.ImmutableListTesting;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.list.StringLikeList;
@@ -31,8 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyListTest implements ImmutableListTesting<CurrencyList, Currency>,
     HasCurrencyTesting,
-    HasCsvStringListTesting,
-    HasTsvStringListTesting {
+    HasCsvStringListTsvStringListTesting2<CurrencyList> {
 
     @Test
     public void testFromStringLikeListWithNullFails() {
@@ -122,6 +120,11 @@ public final class CurrencyListTest implements ImmutableListTesting<CurrencyList
     @Override
     public CurrencyList createList() {
         return CurrencyList.EMPTY;
+    }
+
+    @Override
+    public CurrencyList createHasCsvStringListTsvStringList() {
+        return this.createList();
     }
 
     // HasCsvStringList.................................................................................................
