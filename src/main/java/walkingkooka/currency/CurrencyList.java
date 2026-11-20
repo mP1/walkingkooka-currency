@@ -18,12 +18,10 @@
 package walkingkooka.currency;
 
 import walkingkooka.collect.list.CsvStringList;
-import walkingkooka.collect.list.HasCsvStringList;
-import walkingkooka.collect.list.HasTsvStringList;
+import walkingkooka.collect.list.HasCsvStringListTsvStringList;
 import walkingkooka.collect.list.ImmutableListDefaults;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.list.StringLikeList;
-import walkingkooka.collect.list.TsvStringList;
 import walkingkooka.text.CharSequences;
 
 import java.util.AbstractList;
@@ -38,8 +36,7 @@ import java.util.stream.Collectors;
  */
 public final class CurrencyList extends AbstractList<Currency>
     implements ImmutableListDefaults<CurrencyList, Currency>,
-    HasCsvStringList,
-    HasTsvStringList {
+    HasCsvStringListTsvStringList {
 
     public final static CurrencyList EMPTY = new CurrencyList(Lists.empty());
 
@@ -114,15 +111,6 @@ public final class CurrencyList extends AbstractList<Currency>
             (Currency currency) -> null == currency ?
                 "" :
                 currency.getCurrencyCode()
-        );
-    }
-
-    // HasTsvStringList.................................................................................................
-
-    @Override
-    public TsvStringList tsvStringList() {
-        return TsvStringList.EMPTY.setElements(
-            this.csvStringList()
         );
     }
 }
