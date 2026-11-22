@@ -18,6 +18,7 @@
 package walkingkooka.currency;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.collect.list.HasCsvStringListTsvStringListTesting2;
 import walkingkooka.collect.list.ImmutableListTesting;
 import walkingkooka.collect.list.Lists;
@@ -30,7 +31,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CurrencyListTest implements ImmutableListTesting<CurrencyList, Currency>,
     HasCurrencyTesting,
-    HasCsvStringListTsvStringListTesting2<CurrencyList> {
+    HasCsvStringListTsvStringListTesting2<CurrencyList>,
+    HashCodeEqualsDefinedTesting2<CurrencyList> {
 
     @Test
     public void testFromStringLikeListWithNullFails() {
@@ -158,6 +160,31 @@ public final class CurrencyListTest implements ImmutableListTesting<CurrencyList
                 .concat(DIFFERENT_CURRENCY),
             "AUD\t\tNZD"
         );
+    }
+
+    // hashCode/equals..................................................................................................
+
+    @Test
+    public void testEqualsNotEmpty() {
+        this.checkEquals(
+            CurrencyList.EMPTY.concat(CURRENCY)
+                .concat(DIFFERENT_CURRENCY),
+            CurrencyList.EMPTY.concat(CURRENCY)
+                .concat(DIFFERENT_CURRENCY)
+        );
+    }
+
+    @Test
+    public void testEqualsNotEmptyDifferent() {
+        this.checkNotEquals(
+            CurrencyList.EMPTY.concat(CURRENCY),
+            CurrencyList.EMPTY.concat(DIFFERENT_CURRENCY)
+        );
+    }
+
+    @Override
+    public CurrencyList createObject() {
+        return this.createList();
     }
 
     // class............................................................................................................
