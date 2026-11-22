@@ -23,6 +23,9 @@ import walkingkooka.collect.list.ImmutableListDefaults;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.list.StringLikeList;
 import walkingkooka.text.CharSequences;
+import walkingkooka.text.HasMultiLineText;
+import walkingkooka.text.MultiLineText;
+import walkingkooka.text.TextContext;
 
 import java.util.AbstractList;
 import java.util.Collection;
@@ -36,7 +39,8 @@ import java.util.stream.Collectors;
  */
 public final class CurrencyList extends AbstractList<Currency>
     implements ImmutableListDefaults<CurrencyList, Currency>,
-    HasCsvStringListTsvStringList {
+    HasCsvStringListTsvStringList,
+    HasMultiLineText {
 
     public final static CurrencyList EMPTY = new CurrencyList(Lists.empty());
 
@@ -112,5 +116,12 @@ public final class CurrencyList extends AbstractList<Currency>
                 "" :
                 currency.getCurrencyCode()
         );
+    }
+
+    // HasMultiLineText.................................................................................................
+
+    @Override
+    public MultiLineText multiLineText(final TextContext textContext) {
+        return null;
     }
 }

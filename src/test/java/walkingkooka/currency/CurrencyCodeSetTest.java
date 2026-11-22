@@ -267,7 +267,7 @@ public final class CurrencyCodeSetTest implements ImmutableSortedSetTesting<Curr
             this.createSet(),
             LineEnding.NL,
             "AUD\n" +
-                "NZD\n"
+                "NZD"
         );
     }
 
