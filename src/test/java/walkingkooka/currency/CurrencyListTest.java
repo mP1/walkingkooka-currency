@@ -26,6 +26,7 @@ import walkingkooka.collect.list.StringLikeList;
 import walkingkooka.collect.list.StringList;
 
 import java.util.Currency;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -116,6 +117,23 @@ public final class CurrencyListTest implements ImmutableListTesting<CurrencyList
             ),
             Lists.empty(),
             CurrencyList.EMPTY
+        );
+    }
+
+    @Test
+    public void testSetElementsWithListIncludesNull() {
+        final List<Currency> list = Lists.of(
+            null,
+            CURRENCY,
+            DIFFERENT_CURRENCY
+        );
+
+        this.setElementsAndCheck(
+            new CurrencyList(
+                Lists.of(CURRENCY)
+            ),
+            list,
+            new CurrencyList(list)
         );
     }
 
