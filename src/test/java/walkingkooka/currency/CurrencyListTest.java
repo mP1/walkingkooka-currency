@@ -137,6 +137,71 @@ public final class CurrencyListTest implements ImmutableListTesting<CurrencyList
         );
     }
 
+    // subList..........................................................................................................
+
+    private final static Currency CURRENCY1 = CURRENCY;
+    private final static Currency CURRENCY2 = DIFFERENT_CURRENCY;
+    private final static Currency CURRENCY3 = Currency.getInstance("CAD");
+    private final static Currency CURRENCY4 = Currency.getInstance("GBP");
+    private final static Currency CURRENCY5 = Currency.getInstance("USD");
+
+    private final static List<Currency> ELEMENTS = Lists.of(
+        CURRENCY1,
+        CURRENCY2,
+        CURRENCY3,
+        CURRENCY4,
+        CURRENCY5
+    );
+
+    @Test
+    public void testSubList() {
+        this.subListAndCheck(
+            new CurrencyList(ELEMENTS),
+            0,
+            2,
+            new CurrencyList(
+                Lists.of(
+                    CURRENCY1,
+                    CURRENCY2
+                )
+            )
+        );
+    }
+
+    @Test
+    public void testSubList2() {
+        this.subListAndCheck(
+            new CurrencyList(ELEMENTS),
+            2,
+            4,
+            new CurrencyList(
+                Lists.of(
+                    CURRENCY3,
+                    CURRENCY4
+                )
+            )
+        );
+    }
+
+    @Test
+    public void testSubListSubList() {
+        this.subListAndCheck(
+            new CurrencyList(ELEMENTS)
+                .subList(
+                    1,
+                    4
+                ), // 2, 3, 4
+            1,
+            3,
+            new CurrencyList(
+                Lists.of(
+                    CURRENCY3,
+                    CURRENCY4
+                )
+            )
+        );
+    }
+
     @Override
     public CurrencyList createList() {
         return CurrencyList.EMPTY;
