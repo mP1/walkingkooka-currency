@@ -97,7 +97,7 @@ public final class CurrencyList extends AbstractList<Currency>
 
     @Override
     public CurrencyList subList(final int from,
-                              final int to) {
+                                final int to) {
         return 0 == from && this.size() == to ?
             this :
             this.replaceCurrency(
