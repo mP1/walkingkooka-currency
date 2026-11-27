@@ -78,21 +78,14 @@ public final class CurrencyList extends AbstractList<Currency>
     }
 
     @Override
-    public CurrencyList setElements(final Collection<Currency> collection) {
-        final CurrencyList currencyList;
-
-        if (collection instanceof CurrencyList) {
-            currencyList = (CurrencyList) collection;
-        } else {
-            final List<Currency> copy = Lists.array();
-            copy.addAll(collection);
-
-            currencyList = this.equals(copy) ?
-                this :
-                this.replaceCurrency(copy);
-        }
-
-        return currencyList;
+    public CurrencyList setElements(final Collection<Currency> elements) {
+        return (CurrencyList)
+            this.setElementsMaybeCreate(
+                elements,
+                (Collection<Currency> collection) -> collection instanceof CurrencyList,
+                this::elementCheck,
+                this::replaceCurrencies
+            );
     }
 
     @Override
@@ -100,7 +93,7 @@ public final class CurrencyList extends AbstractList<Currency>
                                 final int to) {
         return 0 == from && this.size() == to ?
             this :
-            this.replaceCurrency(
+            this.replaceCurrencies(
                 this.list.subList(
                     from,
                     to
@@ -108,7 +101,7 @@ public final class CurrencyList extends AbstractList<Currency>
             );
     }
 
-    private CurrencyList replaceCurrency(final List<Currency> currencys) {
+    private CurrencyList replaceCurrencies(final List<Currency> currencys) {
         return currencys.isEmpty() ?
             EMPTY :
             new CurrencyList(currencys);
